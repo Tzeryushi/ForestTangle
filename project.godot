@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneManager="*res://globals/scene_manager.tscn"
+Shake="*res://globals/shake.gd"
+Globals="*res://globals/globals.gd"
 
 [display]
 

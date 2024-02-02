@@ -15,21 +15,30 @@ radius = 19.0
 [node name="Asteroid" type="Node2D"]
 script = ExtResource("1_q10du")
 
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_o31y0")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_mq4s7")
 
-[node name="AsteroidHitbox" type="Area2D" parent="."]
+[node name="AsteroidHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("3_ydeq8")
+health = NodePath("../Health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AsteroidHitbox"]
 shape = SubResource("CircleShape2D_u6wwc")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("3_o31y0")
-
-[node name="AsteroidHurtbox" type="Area2D" parent="."]
+[node name="AsteroidHurtbox" type="Area2D" parent="." node_paths=PackedStringArray("asteroid")]
+collision_layer = 0
+collision_mask = 13
 script = ExtResource("5_qjph2")
+asteroid = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AsteroidHurtbox"]
 shape = SubResource("CircleShape2D_qkc3i")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
+[connection signal="area_entered" from="AsteroidHurtbox" to="AsteroidHurtbox" method="_on_area_entered"]
