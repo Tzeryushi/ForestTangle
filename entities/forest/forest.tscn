@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfpu2ir1bjh1v"]
+
+[ext_resource type="Script" path="res://entities/forest/forest.gd" id="1_ofoyq"]
+[ext_resource type="PackedScene" uid="uid://c72cfpydhk88s" path="res://entities/forest/thicket.tscn" id="2_8al58"]
+
+[node name="Forest" type="Node2D"]
+script = ExtResource("1_ofoyq")
+
+[node name="Thicket" parent="." instance=ExtResource("2_8al58")]
+
+[editable path="Thicket"]

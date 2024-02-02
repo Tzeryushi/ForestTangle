@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn3ib0d6bduwl"]
+
+[ext_resource type="Script" path="res://assets/forest_hitbox.gd" id="1_25xl8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5w7ra"]
+size = Vector2(480, 90)
+
+[node name="ForestHitbox" type="Area2D"]
+script = ExtResource("1_25xl8")
+
+[node name="HitShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -45)
+shape = SubResource("RectangleShape2D_5w7ra")

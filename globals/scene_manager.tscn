@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvafp4mt6aglo"]
+
+[ext_resource type="Script" path="res://globals/scene_manager.gd" id="1_valyq"]
+
+[node name="SceneManager" type="Node2D"]
+script = ExtResource("1_valyq")
+scenes = {
+"main_menu": "res://scenes/main_menu.tscn"
+}
