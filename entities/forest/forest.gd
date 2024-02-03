@@ -10,11 +10,33 @@ extends Node2D
 signal forest_lost(lost_forest:Forest)
 
 @export var base_thicket : Thicket
-@onready var top_thicket = base_thicket
+@export var thicket_scene : PackedScene
+
+@onready var top_thicket : Thicket = base_thicket
+
+func _unhandled_input(event) -> void:
+	if Input.is_action_just_pressed("ui_up"):
+		grow_thicket()
 
 ##immediately grows a new thicket
 func grow_thicket() -> void:
 	#should instance new thicket, connect it to the last thicket
+	var new_thicket : Thicket = thicket_scene.instantiate()
+	new_thicket = new_thicket as Thicket
+	
+	if base_thicket == null:
+		base_thicket = new_thicket
+		new_thicket.position = Vector2.ZERO
+	else:
+		new_thicket.position = top_thicket.position
+		top_thicket.next_thicket = new_thicket
+		new_thicket.last_thicket = top_thicket
+	top_thicket = new_thicket
+	new_thicket.destructed.connect(_on_thicket_destructed)
+	add_child(new_thicket)
+	if base_thicket == new_thicket:
+		new_thicket.position = new_thicket.position + Vector2(0.0, new_thicket.thicket_height)
+	new_thicket.pop_up()
 	pass
 
 ##heal all thickets in the forest
@@ -24,3 +46,14 @@ func heal_thickets() -> void:
 ##prompts the top thicket to grow upwards and destroy asteroids above it
 func attack() -> void:
 	pass
+
+
+func _on_thicket_destructed(thicket_node:Thicket, last_thicket:Thicket):
+	if thicket_node == base_thicket:
+		forest_lost.emit()
+		print("Forest Lost!")
+		base_thicket = null
+		top_thicket = null
+	elif last_thicket != null:
+		print("swap thicket?")
+		top_thicket = last_thicket

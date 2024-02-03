@@ -21,7 +21,7 @@ func spawn_asteroid() -> void:
 	var asteroid : Asteroid = asteroid_scene.instantiate()
 	asteroid = asteroid as Asteroid
 	asteroid.global_position = spawn_coords
-	asteroid.spawn(direction)
+	asteroid.spawn(direction, 3.0)
 	add_child(asteroid)
 
 func get_destination() -> Vector2:

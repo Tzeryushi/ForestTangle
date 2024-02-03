@@ -3,9 +3,14 @@
 [ext_resource type="Script" path="res://entities/forest/forest.gd" id="1_ofoyq"]
 [ext_resource type="PackedScene" uid="uid://c72cfpydhk88s" path="res://entities/forest/thicket.tscn" id="2_8al58"]
 
-[node name="Forest" type="Node2D"]
+[node name="Forest" type="Node2D" node_paths=PackedStringArray("base_thicket")]
 script = ExtResource("1_ofoyq")
+base_thicket = NodePath("Thicket")
+thicket_scene = ExtResource("2_8al58")
 
 [node name="Thicket" parent="." instance=ExtResource("2_8al58")]
+is_base_thicket = true
+
+[connection signal="destructed" from="Thicket" to="." method="_on_thicket_destructed"]
 
 [editable path="Thicket"]
