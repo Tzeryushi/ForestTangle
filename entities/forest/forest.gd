@@ -38,6 +38,7 @@ func grow_thicket() -> void:
 	top_thicket = new_thicket
 	new_thicket.destructed.connect(_on_thicket_destructed)
 	add_child(new_thicket)
+	move_child(new_thicket, 0)
 	if base_thicket == new_thicket:
 		new_thicket.position = new_thicket.position + Vector2(0.0, new_thicket.thicket_height)
 	forest_grown.emit(Vector2(new_thicket.position.x, new_thicket.position.y-new_thicket.thicket_height))

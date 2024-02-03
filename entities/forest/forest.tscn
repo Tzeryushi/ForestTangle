@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfpu2ir1bjh1v"]
+[gd_scene load_steps=5 format=3 uid="uid://bfpu2ir1bjh1v"]
 
 [ext_resource type="Script" path="res://entities/forest/forest.gd" id="1_ofoyq"]
 [ext_resource type="PackedScene" uid="uid://c72cfpydhk88s" path="res://entities/forest/thicket.tscn" id="2_8al58"]
+[ext_resource type="Shader" path="res://entities/forest/thicket.gdshader" id="3_b4m0m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e4anr"]
+resource_local_to_scene = true
+shader = ExtResource("3_b4m0m")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
 
 [node name="Forest" type="Node2D" node_paths=PackedStringArray("base_thicket")]
 script = ExtResource("1_ofoyq")
@@ -10,6 +24,9 @@ thicket_scene = ExtResource("2_8al58")
 
 [node name="Thicket" parent="." instance=ExtResource("2_8al58")]
 is_base_thicket = true
+
+[node name="TreeSprite" parent="Thicket" index="1"]
+material = SubResource("ShaderMaterial_e4anr")
 
 [connection signal="destructed" from="Thicket" to="." method="_on_thicket_destructed"]
 

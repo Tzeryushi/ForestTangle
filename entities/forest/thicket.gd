@@ -3,7 +3,10 @@ extends Node2D
 
 @export var is_base_thicket : bool = false
 @export var health : Health
-@export var thicket_height : float = 90.0
+@export var sprite : Sprite2D
+@export var thicket_height : float = 45.0
+
+@onready var sprite_shader : ShaderMaterial = sprite.material
 
 var last_thicket : Thicket = null
 var next_thicket : Thicket = null
@@ -12,6 +15,7 @@ signal destructed(thicket_node:Thicket, last_thicket:Thicket)
 
 func _ready() -> void:
 	assert(health != null, "Health not set on " + str(self))
+	sprite_shader.set_shader_parameter("speed", randf_range(0.7, 2))
 
 ##moves a new thicket into place with an animation
 func pop_up() -> void:
