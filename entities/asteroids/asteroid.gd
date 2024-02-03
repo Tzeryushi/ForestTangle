@@ -21,3 +21,6 @@ func destruct() -> void:
 
 func _on_health_health_depleted():
 	destruct()
+
+func _on_asteroid_hurtbox_collided():
+	destruct()

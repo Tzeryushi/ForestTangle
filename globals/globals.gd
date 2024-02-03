@@ -1,8 +1,8 @@
 extends Node
 
-var camera : Camera2D
+var camera : MainCamera
 
-func set_camera(new_camera:Camera2D) -> void:
+func set_camera(new_camera:MainCamera) -> void:
 	camera = new_camera
-func get_camera() -> Camera2D:
+func get_camera() -> MainCamera:
 	return camera

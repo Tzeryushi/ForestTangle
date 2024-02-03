@@ -42,3 +42,4 @@ shape = SubResource("CircleShape2D_qkc3i")
 
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
 [connection signal="area_entered" from="AsteroidHurtbox" to="AsteroidHurtbox" method="_on_area_entered"]
+[connection signal="collided" from="AsteroidHurtbox" to="." method="_on_asteroid_hurtbox_collided"]
