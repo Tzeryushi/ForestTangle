@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://wk4gwx56fos7"]
+
+[ext_resource type="Script" path="res://entities/circle/sky_circle.gd" id="1_bxcij"]
+[ext_resource type="Texture2D" uid="uid://ce82egsrp5np0" path="res://entities/circle/backdrop1.PNG" id="2_dj3rx"]
+[ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="3_kqcho"]
+
+[node name="SkyCircle" type="Node2D"]
+script = ExtResource("1_bxcij")
+
+[node name="SkyBackdrop" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_dj3rx")
+
+[node name="MagicCircle" parent="." instance=ExtResource("3_kqcho")]

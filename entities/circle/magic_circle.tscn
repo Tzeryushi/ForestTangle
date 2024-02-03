@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ebmudovtofl"]
+
+[ext_resource type="Texture2D" uid="uid://cqxqimy4nikb6" path="res://entities/circle/Circle1.PNG" id="1_ela0a"]
+[ext_resource type="Script" path="res://entities/circle/magic_circle.gd" id="2_5mpl3"]
+
+[node name="MagicCircle" type="Sprite2D"]
+texture = ExtResource("1_ela0a")
+script = ExtResource("2_5mpl3")
