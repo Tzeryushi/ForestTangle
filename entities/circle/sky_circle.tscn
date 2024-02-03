@@ -9,6 +9,7 @@ script = ExtResource("1_bxcij")
 magic_circle = NodePath("MagicCircle")
 
 [node name="SkyBackdrop" type="Sprite2D" parent="."]
+z_index = -20
 scale = Vector2(3, 3)
 texture = ExtResource("2_dj3rx")
 

@@ -13,6 +13,7 @@ signal forest_receded(position:Vector2)
 
 @export var base_thicket : Thicket
 @export var thicket_scene : PackedScene
+@export var spike_scene : PackedScene
 @export var forest_call : String = "forest1"
 
 @onready var top_thicket : Thicket = base_thicket
@@ -59,7 +60,17 @@ func heal_thickets() -> void:
 	pass
 
 ##prompts the top thicket to grow upwards and destroy asteroids above it
-func attack() -> void:
+func attack_spikes() -> void:
+	var new_spikes = spike_scene.instantiate()
+	new_spikes = new_spikes as Spikes
+	new_spikes.position = top_thicket.position
+	add_child(new_spikes)
+	new_spikes.spawn()
+
+func attack_pods() -> void:
+	pass
+
+func attack_bears() -> void:
 	pass
 
 func get_top_location() -> Vector2:

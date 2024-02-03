@@ -10,12 +10,14 @@ var is_circle_activated : bool = false
 var is_circle_pathing : bool = false
 
 signal grow_casted
-signal attack_casted
+signal attack_spikes_casted
+signal attack_pods_casted
+signal attack_bears_casted
 
 ##dictionary of callables that sends signals for use by main level
 var book_of_stars : Dictionary = {
 	[0,1,2,3,4,5,6,7]:grow,
-	[7,6,5,4,3,2,1,0]:attack
+	[7,6]:attack_spikes
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -57,8 +59,10 @@ func _on_magic_circle_stars_logged(stars_logged):
 
 func grow() -> void:
 	grow_casted.emit()
-	print("grow!")
 
-func attack() -> void:
-	attack_casted.emit()
-	print("attack!")
+func attack_spikes() -> void:
+	attack_spikes_casted.emit()
+
+func attack_pods() -> void:
+	attack_pods_casted.emit()
+	print("attack pods!")

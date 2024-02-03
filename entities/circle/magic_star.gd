@@ -10,7 +10,7 @@ extends Node2D
 
 const SMALL_STAR_SCALE = Vector2(0.5, 0.5)
 const MED_STAR_SCALE = Vector2(0.75, 0.75)
-const LARGE_STAR_SCALE = Vector2(1.2, 1.2)
+const LARGE_STAR_SCALE = Vector2(1.35, 1.35)
 
 var is_activated : bool = false
 var is_pathing : bool = false
@@ -51,5 +51,4 @@ func end_pathing() -> void:
 func _on_collection_area_mouse_entered():
 	#if pathing active, activate
 	if is_pathing and !is_activated:
-		print("Pathed!")
 		activate()
