@@ -12,19 +12,24 @@ position = Vector2(240, 1080)
 
 [node name="Forest2" parent="." instance=ExtResource("1_0cunq")]
 position = Vector2(720, 1080)
+forest_call = "forest2"
 
 [node name="Forest3" parent="." instance=ExtResource("1_0cunq")]
 position = Vector2(1200, 1080)
+forest_call = "forest3"
 
 [node name="Forest4" parent="." instance=ExtResource("1_0cunq")]
 position = Vector2(1680, 1080)
+forest_call = "forest4"
 
 [node name="AsteroidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
 script = ExtResource("2_aoqv5")
 camera = NodePath("../MainCamera")
 asteroid_scene = ExtResource("3_tblxa")
 
-[node name="MainCamera" type="Camera2D" parent="."]
+[node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("forest_array")]
 position = Vector2(960, 541)
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 script = ExtResource("2_vrnwh")
+forest_array = [NodePath("../Forest1"), NodePath("../Forest2"), NodePath("../Forest3"), NodePath("../Forest4")]

@@ -8,15 +8,19 @@ extends Node2D
 #if a forest has no thickets, it triggers a signal
 
 signal forest_lost(lost_forest:Forest)
+signal forest_grown(position:Vector2)
+signal forest_receded(position:Vector2)
 
 @export var base_thicket : Thicket
 @export var thicket_scene : PackedScene
+@export var forest_call : String = "forest1"
 
 @onready var top_thicket : Thicket = base_thicket
 
 func _unhandled_input(event) -> void:
-	if Input.is_action_just_pressed("ui_up"):
-		grow_thicket()
+	if Input.is_action_pressed(forest_call):
+		if Input.is_action_just_pressed("ui_up"):
+			grow_thicket()
 
 ##immediately grows a new thicket
 func grow_thicket() -> void:
@@ -36,6 +40,7 @@ func grow_thicket() -> void:
 	add_child(new_thicket)
 	if base_thicket == new_thicket:
 		new_thicket.position = new_thicket.position + Vector2(0.0, new_thicket.thicket_height)
+	forest_grown.emit(Vector2(new_thicket.position.x, new_thicket.position.y-new_thicket.thicket_height))
 	new_thicket.pop_up()
 	pass
 
@@ -47,6 +52,10 @@ func heal_thickets() -> void:
 func attack() -> void:
 	pass
 
+func get_top_location() -> Vector2:
+	if top_thicket == null:
+		return Vector2.ZERO
+	return top_thicket.position
 
 func _on_thicket_destructed(thicket_node:Thicket, last_thicket:Thicket):
 	if thicket_node == base_thicket:
@@ -55,5 +64,5 @@ func _on_thicket_destructed(thicket_node:Thicket, last_thicket:Thicket):
 		base_thicket = null
 		top_thicket = null
 	elif last_thicket != null:
-		print("swap thicket?")
 		top_thicket = last_thicket
+		forest_receded.emit(top_thicket.position)
