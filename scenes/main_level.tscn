@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=7 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
+[ext_resource type="Script" path="res://scenes/main_level.gd" id="1_llerk"]
 [ext_resource type="Script" path="res://scenes/main_level assets/asteroid_spawner.gd" id="2_aoqv5"]
 [ext_resource type="Script" path="res://scenes/main_level assets/main_camera.gd" id="2_vrnwh"]
 [ext_resource type="PackedScene" uid="uid://dvry1a86ykyak" path="res://entities/asteroids/asteroid.tscn" id="3_tblxa"]
 
-[node name="MainLevel" type="Node2D"]
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle")]
+script = ExtResource("1_llerk")
+forests = [NodePath("Forest1"), NodePath("Forest2"), NodePath("Forest3"), NodePath("Forest4")]
+sky_circle = NodePath("SkyCircle")
 
 [node name="SkyCircle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_jirym")]
 camera = NodePath("../MainCamera")

@@ -1,8 +1,98 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5ebmudovtofl"]
+[gd_scene load_steps=5 format=3 uid="uid://b5ebmudovtofl"]
 
 [ext_resource type="Texture2D" uid="uid://cqxqimy4nikb6" path="res://entities/circle/Circle1.PNG" id="1_ela0a"]
 [ext_resource type="Script" path="res://entities/circle/magic_circle.gd" id="2_5mpl3"]
+[ext_resource type="PackedScene" uid="uid://7qn23jc1hv32" path="res://entities/circle/magic_star.tscn" id="3_nfpt8"]
 
-[node name="MagicCircle" type="Sprite2D"]
+[sub_resource type="Curve2D" id="Curve2D_1jvxm"]
+
+[node name="MagicCircle" type="Sprite2D" node_paths=PackedStringArray("stars")]
+modulate = Color(1, 1, 1, 0.5)
 texture = ExtResource("1_ela0a")
 script = ExtResource("2_5mpl3")
+stars = [NodePath("MagicStar0"), NodePath("MagicStar1"), NodePath("MagicStar2"), NodePath("MagicStar3"), NodePath("MagicStar4"), NodePath("MagicStar5"), NodePath("MagicStar6"), NodePath("MagicStar7"), NodePath("MagicStar8"), NodePath("MagicStar9"), NodePath("MagicStar10"), NodePath("MagicStar11"), NodePath("MagicStar12"), NodePath("MagicStar13"), NodePath("MagicStar14"), NodePath("MagicStar15"), NodePath("MagicStar16"), NodePath("MagicStar17"), NodePath("MagicStar18"), NodePath("MagicStar19"), NodePath("MagicStar20")]
+
+[node name="MagicStar0" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(0, -435)
+
+[node name="MagicStar1" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(307, -308)
+star_number = 1
+
+[node name="MagicStar2" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(434, 0)
+star_number = 2
+
+[node name="MagicStar3" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(308, 308)
+star_number = 3
+
+[node name="MagicStar4" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(0, 435)
+star_number = 4
+
+[node name="MagicStar5" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(-308, 308)
+star_number = 5
+
+[node name="MagicStar6" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(-434, 0)
+star_number = 6
+
+[node name="MagicStar7" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(-308, -308)
+star_number = 7
+
+[node name="MagicStar8" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(128, -307)
+star_number = 8
+
+[node name="MagicStar9" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(307, -128)
+star_number = 9
+
+[node name="MagicStar10" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(308, 127)
+star_number = 10
+
+[node name="MagicStar11" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(127, 308)
+star_number = 11
+
+[node name="MagicStar12" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(-131, 304)
+star_number = 12
+
+[node name="MagicStar13" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(-308, 126)
+star_number = 13
+
+[node name="MagicStar14" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(-307, -128)
+star_number = 14
+
+[node name="MagicStar15" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(-131, -302)
+star_number = 15
+
+[node name="MagicStar16" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(0, -206)
+star_number = 16
+
+[node name="MagicStar17" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(206, 0)
+star_number = 17
+
+[node name="MagicStar18" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(0, 205)
+star_number = 18
+
+[node name="MagicStar19" parent="." instance=ExtResource("3_nfpt8")]
+position = Vector2(-206, 0)
+star_number = 19
+
+[node name="MagicStar20" parent="." instance=ExtResource("3_nfpt8")]
+star_number = 20
+
+[node name="StarPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_1jvxm")

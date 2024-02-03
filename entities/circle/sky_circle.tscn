@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ce82egsrp5np0" path="res://entities/circle/backdrop1.PNG" id="2_dj3rx"]
 [ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="3_kqcho"]
 
-[node name="SkyCircle" type="Node2D"]
+[node name="SkyCircle" type="Node2D" node_paths=PackedStringArray("magic_circle")]
 script = ExtResource("1_bxcij")
+magic_circle = NodePath("MagicCircle")
 
 [node name="SkyBackdrop" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
