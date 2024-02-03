@@ -1,16 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5ebmudovtofl"]
+[gd_scene load_steps=6 format=3 uid="uid://b5ebmudovtofl"]
 
 [ext_resource type="Texture2D" uid="uid://cqxqimy4nikb6" path="res://entities/circle/Circle1.PNG" id="1_ela0a"]
 [ext_resource type="Script" path="res://entities/circle/magic_circle.gd" id="2_5mpl3"]
 [ext_resource type="PackedScene" uid="uid://7qn23jc1hv32" path="res://entities/circle/magic_star.tscn" id="3_nfpt8"]
+[ext_resource type="Script" path="res://entities/circle/star_path.gd" id="4_c3v0i"]
 
-[sub_resource type="Curve2D" id="Curve2D_1jvxm"]
+[sub_resource type="Curve" id="Curve_awaej"]
+_data = [Vector2(0, 0.243767), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[node name="MagicCircle" type="Sprite2D" node_paths=PackedStringArray("stars")]
+[node name="MagicCircle" type="Sprite2D" node_paths=PackedStringArray("stars", "star_path")]
 modulate = Color(1, 1, 1, 0.5)
 texture = ExtResource("1_ela0a")
 script = ExtResource("2_5mpl3")
 stars = [NodePath("MagicStar0"), NodePath("MagicStar1"), NodePath("MagicStar2"), NodePath("MagicStar3"), NodePath("MagicStar4"), NodePath("MagicStar5"), NodePath("MagicStar6"), NodePath("MagicStar7"), NodePath("MagicStar8"), NodePath("MagicStar9"), NodePath("MagicStar10"), NodePath("MagicStar11"), NodePath("MagicStar12"), NodePath("MagicStar13"), NodePath("MagicStar14"), NodePath("MagicStar15"), NodePath("MagicStar16"), NodePath("MagicStar17"), NodePath("MagicStar18"), NodePath("MagicStar19"), NodePath("MagicStar20")]
+star_path = NodePath("StarPath")
 
 [node name="MagicStar0" parent="." instance=ExtResource("3_nfpt8")]
 position = Vector2(0, -435)
@@ -94,5 +98,11 @@ star_number = 19
 [node name="MagicStar20" parent="." instance=ExtResource("3_nfpt8")]
 star_number = 20
 
-[node name="StarPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_1jvxm")
+[node name="StarPath" type="Line2D" parent="."]
+width = 30.0
+width_curve = SubResource("Curve_awaej")
+default_color = Color(1, 1, 0.435294, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_c3v0i")

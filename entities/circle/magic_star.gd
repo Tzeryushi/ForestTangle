@@ -9,6 +9,7 @@ extends Node2D
 @onready var spin_speed = randf_range(-0.5,0.5)
 
 const SMALL_STAR_SCALE = Vector2(0.5, 0.5)
+const MED_STAR_SCALE = Vector2(0.75, 0.75)
 const LARGE_STAR_SCALE = Vector2(1.2, 1.2)
 
 var is_activated : bool = false
@@ -33,13 +34,19 @@ func deactivate() -> void:
 	is_activated = false
 	pass
 
+func grow_visible() -> void:
+	scale = MED_STAR_SCALE
+
+func shrink_visible() -> void:
+	scale = SMALL_STAR_SCALE
+
 func start_pathing() -> void:
 	scale = Vector2.ONE
 	is_pathing = true
 
 func end_pathing() -> void:
 	is_pathing = false
-	scale = SMALL_STAR_SCALE
+	scale = MED_STAR_SCALE
 
 func _on_collection_area_mouse_entered():
 	#if pathing active, activate

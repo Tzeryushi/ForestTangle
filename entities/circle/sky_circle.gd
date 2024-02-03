@@ -6,6 +6,9 @@ extends Node2D
 
 const FOLLOW_SPEED = 3.0
 
+var is_circle_activated : bool = false
+var is_circle_pathing : bool = false
+
 signal grow_casted
 signal attack_casted
 
@@ -24,13 +27,29 @@ func _process(delta):
 	global_position = global_position.lerp(camera.global_position, delta*FOLLOW_SPEED)
 	scale = Vector2.ONE/camera.zoom
 
+func _unhandled_input(event) -> void:
+	if is_circle_activated :
+		if Input.is_action_just_pressed("draw") and !is_circle_pathing:
+			magic_circle.start_pathing()
+			is_circle_pathing = true
+		elif Input.is_action_just_released("draw") and is_circle_pathing:
+			magic_circle.end_pathing()
+			is_circle_pathing = false
+
 func activate_circle() -> void:
 	magic_circle.overlap()
-	magic_circle.start_pathing()
+	is_circle_activated = true
+	if Input.is_action_pressed("draw"):
+		magic_circle.start_pathing()
+		is_circle_pathing = true
 
 func deactivate_circle() -> void:
+	if is_circle_pathing:
+		magic_circle.end_pathing()
+		is_circle_pathing = false
 	magic_circle.recede()
-	magic_circle.end_pathing()
+	is_circle_activated = false
+		
 
 func _on_magic_circle_stars_logged(stars_logged):
 	if book_of_stars.has(stars_logged):
