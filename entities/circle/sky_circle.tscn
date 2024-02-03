@@ -13,3 +13,5 @@ scale = Vector2(3, 3)
 texture = ExtResource("2_dj3rx")
 
 [node name="MagicCircle" parent="." instance=ExtResource("3_kqcho")]
+
+[connection signal="stars_logged" from="MagicCircle" to="." method="_on_magic_circle_stars_logged"]

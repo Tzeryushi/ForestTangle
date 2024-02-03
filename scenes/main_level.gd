@@ -39,3 +39,9 @@ func remove_active_forest() -> void:
 		if active_forest.is_activated:
 			deselect_forest(active_forest)
 		active_forest = null
+
+func _on_sky_circle_grow_casted():
+	active_forest.grow_thicket()
+	sky_circle.deactivate_circle()
+	remove_active_forest()
+	

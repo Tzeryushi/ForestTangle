@@ -3,12 +3,16 @@ extends Sprite2D
 
 @export var stars : Array[MagicStar]
 
+var star_log : Array[int]
+
+signal stars_logged(stars_logged:Array[int])
+
 func _ready() -> void:
 	for star in stars:
 		star.path_encountered.connect(log_star)
 
-
 func start_pathing() -> void:
+	star_log.clear()
 	for star in stars:
 		star.start_pathing()
 
@@ -17,6 +21,7 @@ func end_pathing() -> void:
 		if star.is_activated:
 			star.deactivate()
 		star.end_pathing()
+	#star_log.clear()
 
 func overlap() -> void:
 	modulate.a = 1.0
@@ -27,4 +32,5 @@ func recede() -> void:
 	z_index = 0
 
 func log_star(star_number:int) -> void:
-	pass
+	star_log.append(star_number)
+	stars_logged.emit(star_log)

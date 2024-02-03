@@ -19,19 +19,17 @@ signal forest_receded(position:Vector2)
 
 var is_activated : bool = false
 
-func _unhandled_input(event) -> void:
-	if is_activated:
-		if Input.is_action_just_pressed("ui_up"):
-			grow_thicket()
+#func _unhandled_input(event) -> void:
+	#if is_activated:
+		#if Input.is_action_just_pressed("ui_up"):
+			#grow_thicket()
 
 ##activates forest for drawing
 func activate() -> void:
 	is_activated = true
-	print(forest_call + " activated")
 
 func deactivate() -> void:
 	is_activated = false
-	print(forest_call + " deactivated")
 
 ##immediately grows a new thicket
 func grow_thicket() -> void:

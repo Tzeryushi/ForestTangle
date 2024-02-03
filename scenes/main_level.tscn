@@ -41,3 +41,5 @@ zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 script = ExtResource("2_vrnwh")
 forest_array = [NodePath("../Forest1"), NodePath("../Forest2"), NodePath("../Forest3"), NodePath("../Forest4")]
+
+[connection signal="grow_casted" from="SkyCircle" to="." method="_on_sky_circle_grow_casted"]
