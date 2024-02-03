@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://byfqhdee3bti5"]
+
+[ext_resource type="Script" path="res://entities/forest/attacks/seedpod.gd" id="1_7yxdb"]
+[ext_resource type="Texture2D" uid="uid://prudqrfgtd0x" path="res://entities/forest/attacks/seed_pod.PNG" id="2_ss1g4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6nl1"]
+radius = 7.0
+height = 28.0
+
+[node name="Seedpod" type="Node2D"]
+script = ExtResource("1_7yxdb")
+
+[node name="PodSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ss1g4")
+
+[node name="PodHurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PodHurtbox"]
+position = Vector2(4, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_i6nl1")
+
+[connection signal="area_entered" from="PodHurtbox" to="." method="_on_pod_hurtbox_area_entered"]

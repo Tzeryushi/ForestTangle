@@ -17,6 +17,15 @@ func start_pathing() -> void:
 	for star in stars:
 		star.start_pathing()
 	star_path.start_pathing()
+	
+	#check if mouse starts inside a star
+	var space_state = get_world_2d().direct_space_state
+	var params = PhysicsPointQueryParameters2D.new()
+	params.collide_with_areas = true
+	params.position = get_global_mouse_position()
+	var out = space_state.intersect_point(params)
+	if out.size() > 0 and out[0].collider is CollisionObject2D:
+		out[0].collider.mouse_entered.emit()
 
 func end_pathing() -> void:
 	for star in stars:

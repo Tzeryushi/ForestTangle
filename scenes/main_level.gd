@@ -51,3 +51,9 @@ func _on_sky_circle_attack_spikes_casted():
 		active_forest.attack_spikes()
 		sky_circle.deactivate_circle()
 		remove_active_forest()
+
+func _on_sky_circle_attack_pods_casted():
+	if active_forest:
+		active_forest.attack_pods()
+		sky_circle.deactivate_circle()
+		remove_active_forest()

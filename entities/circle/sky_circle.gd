@@ -17,7 +17,8 @@ signal attack_bears_casted
 ##dictionary of callables that sends signals for use by main level
 var book_of_stars : Dictionary = {
 	[0,1,2,3,4,5,6,7]:grow,
-	[7,6]:attack_spikes
+	[7,6]:attack_spikes,
+	[1,2]:attack_pods
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -65,4 +66,3 @@ func attack_spikes() -> void:
 
 func attack_pods() -> void:
 	attack_pods_casted.emit()
-	print("attack pods!")

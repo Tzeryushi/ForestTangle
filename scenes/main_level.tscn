@@ -41,5 +41,13 @@ position_smoothing_enabled = true
 script = ExtResource("2_vrnwh")
 forest_array = [NodePath("../Forest1"), NodePath("../Forest2"), NodePath("../Forest3"), NodePath("../Forest4")]
 
+[node name="AsteroidTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="SpawnSpace" type="Node2D" parent="." groups=["spawnspace"]]
+
+[connection signal="attack_pods_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_pods_casted"]
 [connection signal="attack_spikes_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_spikes_casted"]
 [connection signal="grow_casted" from="SkyCircle" to="." method="_on_sky_circle_grow_casted"]
+[connection signal="timeout" from="AsteroidTimer" to="AsteroidSpawner" method="_on_asteroid_timer_timeout"]

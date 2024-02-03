@@ -12,7 +12,7 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qkc3i"]
 radius = 19.0
 
-[node name="Asteroid" type="Node2D"]
+[node name="Asteroid" type="Node2D" groups=["asteroid"]]
 script = ExtResource("1_q10du")
 
 [node name="Health" type="Node" parent="."]

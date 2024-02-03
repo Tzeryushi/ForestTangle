@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://entities/forest/thicket.gd" id="1_g6slc"]
 [ext_resource type="Shader" path="res://entities/forest/thicket.gdshader" id="2_kc5aj"]
 [ext_resource type="PackedScene" uid="uid://cn3ib0d6bduwl" path="res://assets/forest_hitbox.tscn" id="3_gufnx"]
-[ext_resource type="Texture2D" uid="uid://k05uchgm7owo" path="res://entities/forest/trees.png" id="3_xixk0"]
+[ext_resource type="Texture2D" uid="uid://ci0b4a10v6s7n" path="res://entities/forest/trees2.png" id="4_qjiog"]
 [ext_resource type="PackedScene" uid="uid://c0dcs20ds5k6c" path="res://assets/health.tscn" id="4_x2ieo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h48f5"]
@@ -29,7 +29,7 @@ health = NodePath("../Health")
 
 [node name="TreeSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_h48f5")
-texture = ExtResource("3_xixk0")
+texture = ExtResource("4_qjiog")
 offset = Vector2(0, -45)
 
 [node name="Health" parent="." instance=ExtResource("4_x2ieo")]

@@ -14,6 +14,7 @@ signal forest_receded(position:Vector2)
 @export var base_thicket : Thicket
 @export var thicket_scene : PackedScene
 @export var spike_scene : PackedScene
+@export var pod_scene : PackedScene
 @export var forest_call : String = "forest1"
 
 @onready var top_thicket : Thicket = base_thicket
@@ -63,12 +64,16 @@ func heal_thickets() -> void:
 func attack_spikes() -> void:
 	var new_spikes = spike_scene.instantiate()
 	new_spikes = new_spikes as Spikes
-	new_spikes.position = top_thicket.position
-	add_child(new_spikes)
+	get_tree().get_first_node_in_group("spawnspace").add_child(new_spikes)
+	new_spikes.global_position = top_thicket.global_position
 	new_spikes.spawn()
 
 func attack_pods() -> void:
-	pass
+	var new_podmaker = pod_scene.instantiate()
+	new_podmaker = new_podmaker as Podmaker
+	new_podmaker.position = top_thicket.position
+	add_child(new_podmaker)
+	new_podmaker.call_pods()
 
 func attack_bears() -> void:
 	pass
