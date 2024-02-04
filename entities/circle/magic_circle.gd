@@ -22,6 +22,7 @@ func start_pathing() -> void:
 	var space_state = get_world_2d().direct_space_state
 	var params = PhysicsPointQueryParameters2D.new()
 	params.collide_with_areas = true
+	params.collision_mask = 0b10000
 	params.position = get_global_mouse_position()
 	var out = space_state.intersect_point(params)
 	if out.size() > 0 and out[0].collider is CollisionObject2D:

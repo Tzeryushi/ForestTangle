@@ -6,7 +6,7 @@ extends Node2D
 @export var boom_particles : PackedScene
 @export var boom_sfx : AudioStream
 @export var default_damage : float = 4.0
-@export var default_speed : float = 0.8
+@export var default_speed : float = 1.2
 
 @onready var rotation_speed = randf_range(-1,1)
 

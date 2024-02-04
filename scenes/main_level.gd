@@ -29,6 +29,10 @@ func _ready() -> void:
 	await dialoguer.finished
 	dialoguer.play_dialogue("Bolster the forest, grow to the heavens", 4.0)
 	await dialoguer.finished
+	dialoguer.play_dialogue("Hold 1, 2, 3, and four to target forests", 4.0)
+	await dialoguer.finished
+	dialoguer.play_dialogue("Draw upon the heavens with your mouse", 4.0)
+	await dialoguer.finished
 	asteroid_timer.start()
 	dialoguer.play_dialogue("Follow the stars", 3.0)
 	await dialoguer.finished
@@ -78,9 +82,9 @@ func set_forest_height(new_height:float) -> void:
 	forest_height = new_height
 	if int(forest_height/100) != danger_level:
 		danger_level = int(forest_height/100)
-		asteroid_timer.wait_time = clampf(asteroid_wait_default - float(danger_level+1)*0.7, 0.2, asteroid_wait_default)
-	if forest_height > 1080:
-		print("win! replace this with killing the space wizard")
+		asteroid_timer.wait_time = clampf(asteroid_wait_default - float(danger_level+2)*0.8, 0.12, asteroid_wait_default)
+	if forest_height > 1200:
+		game_win()
 
 func druid_heal(heal_value:float) -> void:
 	for forest in forests:
