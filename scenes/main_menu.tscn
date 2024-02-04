@@ -88,7 +88,7 @@ theme_override_constants/outline_size = 12
 theme_override_fonts/normal_font = ExtResource("4_v3tel")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
-text = "[center][wave amp=20.0 freq=2.0]Paint the Sky"
+text = "[center][wave amp=20.0 freq=2.0]Paint the Stars"
 scroll_active = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/StarText"]

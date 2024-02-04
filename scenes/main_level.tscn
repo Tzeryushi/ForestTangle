@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=20 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -17,6 +17,9 @@
 [ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="12_br7i5"]
 [ext_resource type="Script" path="res://scenes/dialogue_layer.gd" id="13_qlqsy"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="14_g1n0c"]
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="18_k6g82"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xn5i"]
 
 [node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer", "dialoguer") groups=["main_level"]]
 script = ExtResource("1_llerk")
@@ -162,6 +165,75 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.141176)
 
+[node name="Pause" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="Pause"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("18_k6g82")
+
+[node name="ColorRect" type="ColorRect" parent="Pause/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.784314)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/PauseMenu/ColorRect"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -293.0
+offset_top = 204.0
+offset_right = 293.0
+offset_bottom = -204.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="Pause/PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
+theme_override_fonts/font = ExtResource("14_g1n0c")
+theme_override_font_sizes/font_size = 80
+text = "Resume"
+
+[node name="HSeparator" type="HSeparator" parent="Pause/PauseMenu/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3xn5i")
+
+[node name="Menu" type="Button" parent="Pause/PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
+theme_override_fonts/font = ExtResource("14_g1n0c")
+theme_override_font_sizes/font_size = 80
+text = "Main Menu"
+
+[node name="HSeparator2" type="HSeparator" parent="Pause/PauseMenu/ColorRect/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3xn5i")
+
+[node name="Quit" type="Button" parent="Pause/PauseMenu/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
+theme_override_fonts/font = ExtResource("14_g1n0c")
+theme_override_font_sizes/font_size = 80
+text = "Quit"
+
 [connection signal="attack_bears_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_bears_casted"]
 [connection signal="attack_pods_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_pods_casted"]
 [connection signal="attack_spikes_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_spikes_casted"]
@@ -170,3 +242,6 @@ color = Color(0, 0, 0, 0.141176)
 [connection signal="make_druid_casted" from="SkyCircle" to="." method="_on_sky_circle_make_druid_casted"]
 [connection signal="defeated" from="Skyman" to="." method="_on_skyman_defeated"]
 [connection signal="timeout" from="AsteroidTimer" to="AsteroidSpawner" method="_on_asteroid_timer_timeout"]
+[connection signal="pressed" from="Pause/PauseMenu/ColorRect/VBoxContainer/Resume" to="Pause/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="Pause/PauseMenu/ColorRect/VBoxContainer/Menu" to="Pause/PauseMenu" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Pause/PauseMenu/ColorRect/VBoxContainer/Quit" to="Pause/PauseMenu" method="_on_quit_pressed"]

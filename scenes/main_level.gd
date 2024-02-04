@@ -97,7 +97,7 @@ func game_win() -> void:
 		if asteroid is Asteroid:
 			asteroid.queue_free()
 	asteroid_timer.stop()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	dialoguer.play_dialogue("Death is the reward of the destroyer.", 4.0)
 	await dialoguer.finished
 	dialoguer.play_dialogue("Your forest grows strong.", 4.0)

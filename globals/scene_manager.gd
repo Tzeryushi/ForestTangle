@@ -25,6 +25,7 @@ func switch_scene(scene_name:String) -> void:
 	get_tree().change_scene_to_file(scenes[scene_name])
 	transition = transition_scene.instantiate()
 	get_tree().root.add_child(transition)
+	ParticleCache.establish()
 	transition.fadeout()
 	await transition.finished
 	transition.queue_free()

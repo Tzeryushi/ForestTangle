@@ -1,14 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8o415ye0cdn3"]
+[gd_scene load_steps=6 format=3 uid="uid://b8o415ye0cdn3"]
 
+[ext_resource type="Script" path="res://scenes/victory_screen.gd" id="1_4toa8"]
 [ext_resource type="Texture2D" uid="uid://bm4qd4sahw262" path="res://scenes/EndScreen.PNG" id="1_xq3x4"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="2_b5432"]
-[ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="3_ede0u"]
+[ext_resource type="AudioStream" uid="uid://d0m8kelugfkm2" path="res://music/Keepers.wav" id="2_oflua"]
+[ext_resource type="Texture2D" uid="uid://kc6lq70qvcxa" path="res://scenes/main_level assets/starry_sky/DruidsConst.PNG" id="4_4kglv"]
 
 [node name="VictoryScreen" type="Node2D"]
+script = ExtResource("1_4toa8")
+menu_music = ExtResource("2_oflua")
 
 [node name="EndScreen" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 texture = ExtResource("1_xq3x4")
+
+[node name="DruidsConst" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.364706)
+position = Vector2(538, 383)
+rotation = -0.339987
+scale = Vector2(0.764271, 0.764271)
+texture = ExtResource("4_4kglv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -100,15 +111,6 @@ text = "[center][wave amp=20.0 freq=2.0]Celtic Hand font by
 Dieter Steffmann"
 scroll_active = false
 
-[node name="MagicCircle" parent="." node_paths=PackedStringArray("stars", "star_path") instance=ExtResource("3_ede0u")]
-modulate = Color(1, 1, 1, 0.141176)
-z_index = 0
-position = Vector2(588, 390)
-rotation = -0.280343
-scale = Vector2(0.736645, 0.736645)
-stars = [NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
-star_path = NodePath("")
-
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -133,10 +135,12 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Begin" type="Button" parent="Control/VBoxContainer"]
+[node name="Menu" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
 theme_override_fonts/font = ExtResource("2_b5432")
 theme_override_font_sizes/font_size = 80
 text = "Main Menu"
+
+[connection signal="pressed" from="Control/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
