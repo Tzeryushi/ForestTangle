@@ -1,0 +1,142 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8o415ye0cdn3"]
+
+[ext_resource type="Texture2D" uid="uid://bm4qd4sahw262" path="res://scenes/EndScreen.PNG" id="1_xq3x4"]
+[ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="2_b5432"]
+[ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="3_ede0u"]
+
+[node name="VictoryScreen" type="Node2D"]
+
+[node name="EndScreen" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_xq3x4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StarText" type="RichTextLabel" parent="CanvasLayer"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -867.0
+offset_top = -352.0
+offset_right = 867.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_b5432")
+theme_override_font_sizes/normal_font_size = 160
+bbcode_enabled = true
+text = "[center][wave amp=20.0 freq=2.0]Thanks for Playing!"
+scroll_active = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/StarText"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1570.0
+offset_top = -109.0
+offset_right = 1570.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.352941)
+
+[node name="StarText2" type="RichTextLabel" parent="CanvasLayer"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 357.0
+offset_top = -127.0
+offset_right = 805.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_b5432")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center][wave amp=20.0 freq=2.0]Everything by:
+Tzeryushi"
+scroll_active = false
+
+[node name="StarText3" type="RichTextLabel" parent="CanvasLayer"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 467.0
+offset_top = 20.0
+offset_right = 915.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_b5432")
+theme_override_font_sizes/normal_font_size = 35
+bbcode_enabled = true
+text = "[center][wave amp=20.0 freq=2.0]Celtic Hand font by 
+Dieter Steffmann"
+scroll_active = false
+
+[node name="MagicCircle" parent="." node_paths=PackedStringArray("stars", "star_path") instance=ExtResource("3_ede0u")]
+modulate = Color(1, 1, 1, 0.141176)
+z_index = 0
+position = Vector2(588, 390)
+rotation = -0.280343
+scale = Vector2(0.736645, 0.736645)
+stars = [NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+star_path = NodePath("")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = 444.0
+offset_right = 242.0
+offset_bottom = -477.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Begin" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
+theme_override_fonts/font = ExtResource("2_b5432")
+theme_override_font_sizes/font_size = 80
+text = "Main Menu"

@@ -1,8 +1,112 @@
-[gd_scene load_steps=3 format=3 uid="uid://b72txff18tomj"]
+[gd_scene load_steps=7 format=3 uid="uid://b72txff18tomj"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_0kkvv"]
 [ext_resource type="AudioStream" uid="uid://d0m8kelugfkm2" path="res://music/Keepers.wav" id="2_4b8u0"]
+[ext_resource type="Texture2D" uid="uid://xl28he42a63p" path="res://scenes/main_level assets/DruidMain.PNG" id="3_h82kd"]
+[ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="4_tv4xe"]
+[ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="4_v3tel"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_etj37"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_0kkvv")
 title_music = ExtResource("2_4b8u0")
+
+[node name="DruidMain" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("3_h82kd")
+
+[node name="MagicCircle" parent="." instance=ExtResource("4_tv4xe")]
+modulate = Color(1, 1, 1, 0.141176)
+z_index = 0
+position = Vector2(960, 540)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -206.0
+offset_top = 561.0
+offset_right = 206.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Begin" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
+theme_override_fonts/font = ExtResource("4_v3tel")
+theme_override_font_sizes/font_size = 80
+text = "BEGIN"
+
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_etj37")
+
+[node name="End" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
+theme_override_fonts/font = ExtResource("4_v3tel")
+theme_override_font_sizes/font_size = 80
+text = "END"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StarText" type="RichTextLabel" parent="CanvasLayer"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -867.0
+offset_top = -352.0
+offset_right = 867.0
+offset_bottom = -191.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("4_v3tel")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[center][wave amp=20.0 freq=2.0]Paint the Sky"
+scroll_active = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/StarText"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1570.0
+offset_top = -109.0
+offset_right = 1570.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.352941)
+
+[connection signal="pressed" from="Control/VBoxContainer/Begin" to="." method="_on_begin_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/End" to="." method="_on_end_pressed"]

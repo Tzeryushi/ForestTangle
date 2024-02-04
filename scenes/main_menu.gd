@@ -4,5 +4,10 @@ extends Node2D
 
 func _ready() -> void:
 	MusicManager.play(title_music)
-	await get_tree().create_timer(4.0).timeout
+
+
+func _on_begin_pressed():
 	SceneManager.switch_scene("main_level")
+
+func _on_end_pressed():
+	SceneManager.quit_game()

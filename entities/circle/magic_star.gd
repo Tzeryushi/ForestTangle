@@ -27,7 +27,7 @@ func _physics_process(_delta) -> void:
 ##activate grows the star and spins it faster
 func activate() -> void:
 	is_activated = true
-	SfxManager.play(shine_sfx, 0.1)
+	SfxManager.play(shine_sfx, 0.05)
 	star_sprite.scale = LARGE_STAR_SCALE
 	path_encountered.emit(star_number)
 	pass

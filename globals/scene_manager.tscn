@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvafp4mt6aglo"]
+[gd_scene load_steps=3 format=3 uid="uid://cvafp4mt6aglo"]
 
 [ext_resource type="Script" path="res://globals/scene_manager.gd" id="1_valyq"]
+[ext_resource type="PackedScene" uid="uid://degckiq235jrk" path="res://scenes/fade_transition.tscn" id="2_2f4r1"]
 
 [node name="SceneManager" type="Node2D"]
 script = ExtResource("1_valyq")
 scenes = {
 "main_level": "res://scenes/main_level.tscn",
-"main_menu": "res://scenes/main_menu.tscn"
+"main_menu": "res://scenes/main_menu.tscn",
+"victory_screen": "res://scenes/victory_screen.tscn"
 }
+transition_scene = ExtResource("2_2f4r1")

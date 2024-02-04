@@ -14,6 +14,7 @@ extends Node2D
 var active_forest : Forest = null
 var forest_height : float = 0.0
 var danger_level : int = 0
+var intro_done : bool = false
 
 const asteroid_wait_default : float = 10.0
 
@@ -29,13 +30,14 @@ func _ready() -> void:
 	await dialoguer.finished
 	dialoguer.play_dialogue("Bolster the forest, grow to the heavens", 4.0)
 	await dialoguer.finished
-	dialoguer.play_dialogue("Hold 1, 2, 3, and four to target forests", 4.0)
+	dialoguer.play_dialogue("Hold 1, 2, 3, and 4 to target forests", 4.0)
 	await dialoguer.finished
 	dialoguer.play_dialogue("Draw upon the heavens with your mouse", 4.0)
 	await dialoguer.finished
 	asteroid_timer.start()
 	dialoguer.play_dialogue("Follow the stars", 3.0)
 	await dialoguer.finished
+	intro_done = true
 
 func _unhandled_input(_event) -> void:
 	var was_no_active_forest : bool = active_forest == null
@@ -83,7 +85,7 @@ func set_forest_height(new_height:float) -> void:
 	if int(forest_height/100) != danger_level:
 		danger_level = int(forest_height/100)
 		asteroid_timer.wait_time = clampf(asteroid_wait_default - float(danger_level+2)*0.8, 0.12, asteroid_wait_default)
-	if forest_height > 1200:
+	if forest_height > 1400:
 		game_win()
 
 func druid_heal(heal_value:float) -> void:
@@ -93,14 +95,16 @@ func druid_heal(heal_value:float) -> void:
 func game_win() -> void:
 	for asteroid in get_tree().get_nodes_in_group("asteroid"):
 		if asteroid is Asteroid:
-			asteroid.destruct()
+			asteroid.queue_free()
+	asteroid_timer.stop()
+	await get_tree().create_timer(2.0).timeout
 	dialoguer.play_dialogue("Death is the reward of the destroyer.", 4.0)
 	await dialoguer.finished
 	dialoguer.play_dialogue("Your forest grows strong.", 4.0)
 	await dialoguer.finished
 	dialoguer.play_dialogue("Well done", 2.0)
 	await dialoguer.finished
-	SceneManager.switch_scene("main_menu")
+	SceneManager.switch_scene("victory_screen")
 
 func game_lose() -> void:
 	dialoguer.play_dialogue("We must prevail.", 3.0)
@@ -114,33 +118,55 @@ func _on_sky_circle_grow_casted():
 		active_forest.grow_thicket()
 		sky_circle.deactivate_circle()
 		remove_active_forest()
+		if intro_done:
+			dialoguer.play_dialogue("GROW", 2.0)
+			await dialoguer.finished
 
 func _on_sky_circle_attack_spikes_casted():
 	if active_forest:
 		active_forest.attack_spikes()
 		sky_circle.deactivate_circle()
 		remove_active_forest()
+		if intro_done:
+			dialoguer.play_dialogue("SPIKES", 2.0)
+			await dialoguer.finished
 
 func _on_sky_circle_attack_bears_casted():
 	if active_forest:
 		active_forest.attack_bears()
 		sky_circle.deactivate_circle()
 		remove_active_forest()
+		if intro_done:
+			dialoguer.play_dialogue("...BEARS?", 2.0)
+			await dialoguer.finished
 
 func _on_sky_circle_attack_pods_casted():
 	if active_forest:
 		active_forest.attack_pods()
 		sky_circle.deactivate_circle()
 		remove_active_forest()
+		if intro_done:
+			dialoguer.play_dialogue("PODS", 2.0)
+			await dialoguer.finished
 
 func _on_sky_circle_make_druid_casted():
 	if active_forest:
 		active_forest.make_druid()
 		sky_circle.deactivate_circle()
 		remove_active_forest()
+		if intro_done:
+			dialoguer.play_dialogue("NEW DRUID", 2.0)
+			await dialoguer.finished
 
 func _on_sky_circle_heal_casted():
 	if active_forest:
 		active_forest.heal_thickets(10.0)
 		sky_circle.deactivate_circle()
 		remove_active_forest()
+		if intro_done:
+			dialoguer.play_dialogue("HEAL", 2.0)
+			await dialoguer.finished
+
+
+func _on_skyman_defeated():
+	game_win()

@@ -15,7 +15,7 @@ func _ready() -> void:
 func spawn() -> void:
 	SfxManager.play(spike_sfx, 0.2)
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector2.ONE, SPEED).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(self, "scale", Vector2.ONE, SPEED).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(self, "modulate:a", 0.0, 1.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)
 	tween.parallel().tween_callback(disable_hurtbox)
 	tween.tween_callback(queue_free)
@@ -25,4 +25,6 @@ func disable_hurtbox() -> void:
 
 func _on_spike_hurtbox_area_entered(area):
 	if area is AsteroidHitbox:
+		area.take_damage(DAMAGE)
+	if area is SkyHitbox:
 		area.take_damage(DAMAGE)

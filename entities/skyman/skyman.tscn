@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq5xuf5cf6d8f"]
+
+[ext_resource type="Script" path="res://entities/skyman/skyman.gd" id="1_mkhf8"]
+[ext_resource type="Texture2D" uid="uid://b8ww3vrhwmiy6" path="res://entities/skyman/Skyman.PNG" id="2_4ptne"]
+[ext_resource type="AudioStream" uid="uid://3ajj1vgqmlld" path="res://SFX/victoryRumble.wav" id="2_l136s"]
+[ext_resource type="Script" path="res://assets/health.gd" id="3_ilvnm"]
+[ext_resource type="Script" path="res://entities/skyman/sky_hitbox.gd" id="4_lwoal"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm3c6"]
+size = Vector2(1818, 184)
+
+[node name="Skyman" type="Node2D"]
+script = ExtResource("1_mkhf8")
+hit_color = Color(0.678431, 0, 0, 1)
+death_sfx = ExtResource("2_l136s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4ptne")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_ilvnm")
+max_health = 60.0
+
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("4_lwoal")
+health = NodePath("../Health")
+
+[node name="HitShape" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_vm3c6")
+
+[connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]
+[connection signal="took_damage" from="Health" to="." method="_on_health_took_damage"]
