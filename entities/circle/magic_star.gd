@@ -18,7 +18,7 @@ var is_pathing : bool = false
 signal path_encountered(number:int)
 
 func _ready() -> void:
-	scale = SMALL_STAR_SCALE
+	star_sprite.scale = SMALL_STAR_SCALE
 
 func _physics_process(_delta) -> void:
 	star_sprite.rotation += spin_speed*0.1
@@ -26,7 +26,7 @@ func _physics_process(_delta) -> void:
 ##activate grows the star and spins it faster
 func activate() -> void:
 	is_activated = true
-	scale = LARGE_STAR_SCALE
+	star_sprite.scale = LARGE_STAR_SCALE
 	path_encountered.emit(star_number)
 	pass
 
@@ -35,18 +35,18 @@ func deactivate() -> void:
 	pass
 
 func grow_visible() -> void:
-	scale = MED_STAR_SCALE
+	star_sprite.scale = MED_STAR_SCALE
 
 func shrink_visible() -> void:
-	scale = SMALL_STAR_SCALE
+	star_sprite.scale = SMALL_STAR_SCALE
 
 func start_pathing() -> void:
-	scale = Vector2.ONE
+	star_sprite.scale = Vector2.ONE
 	is_pathing = true
 
 func end_pathing() -> void:
 	is_pathing = false
-	scale = MED_STAR_SCALE
+	star_sprite.scale = MED_STAR_SCALE
 
 func _on_collection_area_mouse_entered():
 	#if pathing active, activate

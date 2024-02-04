@@ -4,7 +4,6 @@ extends Node2D
 @export var pod_damage : float = 5.0
 @export var acceleration : float = 0.1
 @export var top_speed : float = 6.0
-@export var lifetime : float = 5.0
 
 var target_asteroid : Asteroid = null
 var direction : Vector2 = Vector2.UP
@@ -20,7 +19,7 @@ func _physics_process(_delta) -> void:
 		direction = distance.normalized()
 		if distance.length() < 1000 and distance.length() != 0.0:
 			shifted_acceleration = acceleration + top_speed*2/distance.length()
-			if distance.length() < 50:
+			if distance.length() < 100:
 				shifted_acceleration = shifted_acceleration*20
 	else:
 		seek()
@@ -52,4 +51,7 @@ func destruct() -> void:
 func _on_pod_hurtbox_area_entered(area):
 	if area is AsteroidHitbox:
 		area.take_damage(pod_damage)
+	destruct()
+
+func _on_lifetimer_timeout():
 	destruct()

@@ -18,6 +18,7 @@ signal forest_receded(position:Vector2)
 @export var forest_call : String = "forest1"
 
 @onready var top_thicket : Thicket = base_thicket
+@onready var thicket_array : Array[Thicket] = [base_thicket]
 
 var is_activated : bool = false
 
@@ -46,6 +47,7 @@ func grow_thicket() -> void:
 		new_thicket.position = top_thicket.position
 		top_thicket.next_thicket = new_thicket
 		new_thicket.last_thicket = top_thicket
+	thicket_array.append(new_thicket)
 	top_thicket = new_thicket
 	new_thicket.destructed.connect(_on_thicket_destructed)
 	add_child(new_thicket)
@@ -83,7 +85,11 @@ func get_top_location() -> Vector2:
 		return Vector2.ZERO
 	return top_thicket.position
 
+func get_stack_size() -> int:
+	return thicket_array.size()
+
 func _on_thicket_destructed(thicket_node:Thicket, last_thicket:Thicket):
+	thicket_array.erase(thicket_node)
 	if thicket_node == base_thicket:
 		forest_lost.emit()
 		print("Forest Lost!")

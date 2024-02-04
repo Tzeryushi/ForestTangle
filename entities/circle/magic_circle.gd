@@ -43,10 +43,11 @@ func overlap() -> void:
 
 func recede() -> void:
 	modulate.a = 0.3
-	z_index = 0
+	z_index = -14
 	for star in stars:
 		star.shrink_visible()
 
 func log_star(star_number:int) -> void:
 	star_log.append(star_number)
+	print(star_log)
 	stars_logged.emit(star_log)

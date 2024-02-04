@@ -1,19 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=11 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_llerk"]
+[ext_resource type="Texture2D" uid="uid://baiq6qg4un23p" path="res://scenes/main_level assets/starry_sky/GrowthConst.PNG" id="2_7063h"]
 [ext_resource type="Script" path="res://scenes/main_level assets/asteroid_spawner.gd" id="2_aoqv5"]
 [ext_resource type="Script" path="res://scenes/main_level assets/main_camera.gd" id="2_vrnwh"]
+[ext_resource type="Texture2D" uid="uid://c1v3n8drhqxdr" path="res://scenes/main_level assets/Hills.PNG" id="3_3u80s"]
+[ext_resource type="Texture2D" uid="uid://dwu21xmrurv52" path="res://scenes/main_level assets/starry_sky/PodsConst.PNG" id="3_mdkvm"]
 [ext_resource type="PackedScene" uid="uid://dvry1a86ykyak" path="res://entities/asteroids/asteroid.tscn" id="3_tblxa"]
+[ext_resource type="Texture2D" uid="uid://dffg6bk5kblo5" path="res://scenes/main_level assets/starry_sky/SpikesConst.PNG" id="4_xpta2"]
 
-[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle")]
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer")]
 script = ExtResource("1_llerk")
 forests = [NodePath("Forest1"), NodePath("Forest2"), NodePath("Forest3"), NodePath("Forest4")]
 sky_circle = NodePath("SkyCircle")
+asteroid_timer = NodePath("AsteroidTimer")
+
+[node name="Skies" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.254902)
+z_index = -15
+
+[node name="GrowthConst" type="Sprite2D" parent="Skies"]
+position = Vector2(274, 240)
+scale = Vector2(0.493197, 0.493197)
+texture = ExtResource("2_7063h")
+
+[node name="PodsConst" type="Sprite2D" parent="Skies"]
+position = Vector2(1742, 159)
+scale = Vector2(0.310101, 0.310101)
+texture = ExtResource("3_mdkvm")
+
+[node name="SpikesConst" type="Sprite2D" parent="Skies"]
+position = Vector2(1647, 388)
+scale = Vector2(0.298005, 0.298005)
+texture = ExtResource("4_xpta2")
 
 [node name="SkyCircle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_jirym")]
 camera = NodePath("../MainCamera")
+
+[node name="Hills" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(773, 1430)
+texture = ExtResource("3_3u80s")
 
 [node name="Forest1" parent="." instance=ExtResource("1_0cunq")]
 position = Vector2(240, 1080)
@@ -42,7 +71,7 @@ script = ExtResource("2_vrnwh")
 forest_array = [NodePath("../Forest1"), NodePath("../Forest2"), NodePath("../Forest3"), NodePath("../Forest4")]
 
 [node name="AsteroidTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 8.0
 autostart = true
 
 [node name="SpawnSpace" type="Node2D" parent="." groups=["spawnspace"]]

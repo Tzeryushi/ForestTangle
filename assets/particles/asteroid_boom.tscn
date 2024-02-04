@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://psj8iwupfkb3"]
+
+[ext_resource type="PackedScene" uid="uid://s7sjwdyw2elx" path="res://assets/particles/BaseParticle.tscn" id="1_hwx5o"]
+[ext_resource type="Script" path="res://assets/particles/asteroid_boom.gd" id="2_xvf3a"]
+[ext_resource type="Texture2D" uid="uid://tj62bugjgf6q" path="res://assets/particles/LongFleck.PNG" id="3_vd5sq"]
+[ext_resource type="Texture2D" uid="uid://c6u8fvh8t43jv" path="res://assets/particles/RoundFleck.PNG" id="4_pien7"]
+
+[sub_resource type="Curve" id="Curve_u0jcv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.24915, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hq03h"]
+curve = SubResource("Curve_u0jcv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ti8fc"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 50, 0)
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_hq03h")
+
+[sub_resource type="Curve" id="Curve_hrufe"]
+_data = [Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.24915, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5tbh2"]
+curve = SubResource("Curve_hrufe")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r5dni"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_5tbh2")
+
+[node name="AsteroidBoom" node_paths=PackedStringArray("particles") instance=ExtResource("1_hwx5o")]
+script = ExtResource("2_xvf3a")
+particles = [NodePath("Flecks"), NodePath("Bubbles")]
+
+[node name="Flecks" type="GPUParticles2D" parent="." index="0"]
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_ti8fc")
+texture = ExtResource("3_vd5sq")
+one_shot = true
+explosiveness = 0.97
+
+[node name="Bubbles" type="GPUParticles2D" parent="." index="1"]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_r5dni")
+texture = ExtResource("4_pien7")
+one_shot = true
+explosiveness = 1.0

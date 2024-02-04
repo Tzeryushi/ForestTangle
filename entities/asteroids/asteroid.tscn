@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvry1a86ykyak"]
+[gd_scene load_steps=12 format=3 uid="uid://dvry1a86ykyak"]
 
 [ext_resource type="Script" path="res://entities/asteroids/asteroid.gd" id="1_q10du"]
-[ext_resource type="Texture2D" uid="uid://bixecb0yl8dpm" path="res://icon.svg" id="2_mq4s7"]
+[ext_resource type="Texture2D" uid="uid://b5jjssjvbwuus" path="res://entities/asteroids/Asteroid2.PNG" id="3_e5iox"]
+[ext_resource type="Texture2D" uid="uid://b6wxdv58xchc8" path="res://entities/asteroids/Asteroid.PNG" id="3_hxmip"]
 [ext_resource type="Script" path="res://assets/health.gd" id="3_o31y0"]
 [ext_resource type="Script" path="res://entities/asteroids/asteroid_hitbox.gd" id="3_ydeq8"]
+[ext_resource type="Texture2D" uid="uid://t7kl6ato42mp" path="res://entities/asteroids/Asteroid3.PNG" id="4_cjarc"]
+[ext_resource type="PackedScene" uid="uid://psj8iwupfkb3" path="res://assets/particles/asteroid_boom.tscn" id="5_h7oyx"]
 [ext_resource type="Script" path="res://entities/asteroids/asteroid_hurtbox.gd" id="5_qjph2"]
+[ext_resource type="PackedScene" uid="uid://dgshgnqj22ctr" path="res://assets/def_trail.tscn" id="8_qrk7x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u6wwc"]
 radius = 18.0
@@ -12,15 +16,20 @@ radius = 18.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qkc3i"]
 radius = 19.0
 
-[node name="Asteroid" type="Node2D" groups=["asteroid"]]
+[node name="Asteroid" type="Node2D" node_paths=PackedStringArray("asteroid_sprite") groups=["asteroid"]]
 script = ExtResource("1_q10du")
+asteroid_sprite = NodePath("AsteroidSprite")
+sprites = Array[CompressedTexture2D]([ExtResource("3_hxmip"), ExtResource("3_e5iox"), ExtResource("4_cjarc")])
+boom_particles = ExtResource("5_h7oyx")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_o31y0")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_mq4s7")
+[node name="DefTrail" parent="." instance=ExtResource("8_qrk7x")]
+
+[node name="AsteroidSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.58, 0.58)
+texture = ExtResource("3_hxmip")
 
 [node name="AsteroidHitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 2

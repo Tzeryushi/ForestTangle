@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://s7sjwdyw2elx"]
+
+[ext_resource type="Script" path="res://assets/particles/BaseParticle.gd" id="1_30lty"]
+
+[node name="BaseParticle" type="Node2D"]
+script = ExtResource("1_30lty")

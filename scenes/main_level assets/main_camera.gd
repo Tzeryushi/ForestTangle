@@ -15,7 +15,7 @@ func _ready() -> void:
 		forest.forest_grown.connect(check_change_camera)
 		forest.forest_receded.connect(check_change_camera)
 	
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	position = base_position + forest_offset/2 + (get_local_mouse_position()*move_ratio).limit_length(100.0)
 	
 func check_change_camera(forest_position:Vector2) -> void:

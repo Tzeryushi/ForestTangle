@@ -34,4 +34,5 @@ offset = Vector2(0, -45)
 
 [node name="Health" parent="." instance=ExtResource("4_x2ieo")]
 
+[connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

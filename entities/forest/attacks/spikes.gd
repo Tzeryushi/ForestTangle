@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func spawn() -> void:
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector2.ONE, SPEED).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(self, "scale", Vector2.ONE, SPEED).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(self, "modulate:a", 0.0, 1.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)
 	tween.parallel().tween_callback(disable_hurtbox)
 	tween.tween_callback(queue_free)

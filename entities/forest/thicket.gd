@@ -5,6 +5,7 @@ extends Node2D
 @export var health : Health
 @export var sprite : Sprite2D
 @export var thicket_height : float = 45.0
+@export var damaged_color : Color = Color.CRIMSON
 
 @onready var sprite_shader : ShaderMaterial = sprite.material
 
@@ -32,3 +33,7 @@ func destruct() -> void:
 
 func _on_health_health_depleted():
 	destruct()
+
+func _on_health_health_changed(new_health):
+	var health_ratio : float = new_health/health.max_health
+	modulate = damaged_color.lerp(Color(1,1,1,1), health_ratio)

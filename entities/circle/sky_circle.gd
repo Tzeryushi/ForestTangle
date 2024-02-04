@@ -13,12 +13,16 @@ signal grow_casted
 signal attack_spikes_casted
 signal attack_pods_casted
 signal attack_bears_casted
+signal heal_casted
 
 ##dictionary of callables that sends signals for use by main level
 var book_of_stars : Dictionary = {
-	[0,1,2,3,4,5,6,7]:grow,
-	[7,6]:attack_spikes,
-	[1,2]:attack_pods
+	[0,1]:grow,
+	[12,19,6,14,15,0,8,9,2,17,11]:grow,
+	[1, 2, 17, 16, 19, 6, 7]:attack_spikes,
+	[20, 17, 16, 19, 12, 18, 11, 4]:attack_pods,
+	[0, 8, 17, 18, 13, 6, 5, 4, 3, 2, 1]:attack_bears,
+	[14, 6, 13, 10, 2, 9, 16, 20]:heal
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -30,7 +34,7 @@ func _process(delta):
 	global_position = global_position.lerp(camera.global_position, delta*FOLLOW_SPEED)
 	scale = Vector2.ONE/camera.zoom
 
-func _unhandled_input(event) -> void:
+func _unhandled_input(_event) -> void:
 	if is_circle_activated :
 		if Input.is_action_just_pressed("draw") and !is_circle_pathing:
 			magic_circle.start_pathing()
@@ -54,9 +58,14 @@ func deactivate_circle() -> void:
 	is_circle_activated = false
 		
 
-func _on_magic_circle_stars_logged(stars_logged):
+func _on_magic_circle_stars_logged(stars_logged:Array[int]):
 	if book_of_stars.has(stars_logged):
 		book_of_stars[stars_logged].call()
+	else:
+		var reverse : Array = stars_logged.duplicate()
+		reverse.reverse()
+		if book_of_stars.has(reverse):
+			book_of_stars[reverse].call()
 
 func grow() -> void:
 	grow_casted.emit()
@@ -66,3 +75,9 @@ func attack_spikes() -> void:
 
 func attack_pods() -> void:
 	attack_pods_casted.emit()
+
+func attack_bears() -> void:
+	attack_bears_casted.emit()
+
+func heal() -> void:
+	heal_casted.emit()
