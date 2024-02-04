@@ -7,6 +7,7 @@ extends Node2D
 @export var forests : Array[Forest]
 @export var sky_circle : SkyCircle
 @export var asteroid_timer : Timer
+@export var playing_music : AudioStream
 
 var active_forest : Forest = null
 var forest_height : float = 0.0
@@ -15,6 +16,7 @@ var danger_level : int = 0
 const asteroid_wait_default : float = 10.0
 
 func _ready() -> void:
+	MusicManager.play(playing_music)
 	for forest in forests:
 		forest.forest_grown.connect(check_change_level)
 		forest.forest_receded.connect(check_change_level)

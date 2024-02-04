@@ -11,6 +11,7 @@ var forest_offset = Vector2.ZERO
 
 func _ready() -> void:
 	Globals.set_camera(self)
+	Shake.set_camera(self)
 	for forest in forest_array:
 		forest.forest_grown.connect(check_change_camera)
 		forest.forest_receded.connect(check_change_camera)

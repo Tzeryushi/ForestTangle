@@ -32,6 +32,7 @@ func destruct() -> void:
 	queue_free()
 
 func _on_health_health_depleted():
+	Shake.add_trauma(0.5)
 	destruct()
 
 func _on_health_health_changed(new_health):

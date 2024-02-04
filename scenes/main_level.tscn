@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=12 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://baiq6qg4un23p" path="res://scenes/main_level assets/starry_sky/GrowthConst.PNG" id="2_7063h"]
 [ext_resource type="Script" path="res://scenes/main_level assets/asteroid_spawner.gd" id="2_aoqv5"]
 [ext_resource type="Script" path="res://scenes/main_level assets/main_camera.gd" id="2_vrnwh"]
+[ext_resource type="AudioStream" uid="uid://fpmha1ljf65e" path="res://music/TheForestGrows.wav" id="2_yfn0k"]
 [ext_resource type="Texture2D" uid="uid://c1v3n8drhqxdr" path="res://scenes/main_level assets/Hills.PNG" id="3_3u80s"]
 [ext_resource type="Texture2D" uid="uid://dwu21xmrurv52" path="res://scenes/main_level assets/starry_sky/PodsConst.PNG" id="3_mdkvm"]
 [ext_resource type="PackedScene" uid="uid://dvry1a86ykyak" path="res://entities/asteroids/asteroid.tscn" id="3_tblxa"]
@@ -16,6 +17,7 @@ script = ExtResource("1_llerk")
 forests = [NodePath("Forest1"), NodePath("Forest2"), NodePath("Forest3"), NodePath("Forest4")]
 sky_circle = NodePath("SkyCircle")
 asteroid_timer = NodePath("AsteroidTimer")
+playing_music = ExtResource("2_yfn0k")
 
 [node name="Skies" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.254902)

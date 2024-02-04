@@ -3,7 +3,7 @@ extends Node
 var decay : float = 1.2
 var max_offset : Vector2 = Vector2(100, 75)
 var max_roll : float = 0.1
-var max_trauma : float = 1.5
+var max_trauma : float = 1.1
 
 @onready var noise : FastNoiseLite = FastNoiseLite.new()
 var shake_camera : Camera2D = null

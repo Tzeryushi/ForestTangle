@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://b72txff18tomj"]
+[gd_scene load_steps=3 format=3 uid="uid://b72txff18tomj"]
+
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_0kkvv"]
+[ext_resource type="AudioStream" uid="uid://d0m8kelugfkm2" path="res://music/Keepers.wav" id="2_4b8u0"]
 
 [node name="MainMenu" type="Node2D"]
+script = ExtResource("1_0kkvv")
+title_music = ExtResource("2_4b8u0")

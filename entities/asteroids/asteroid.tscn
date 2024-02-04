@@ -26,6 +26,7 @@ boom_particles = ExtResource("5_h7oyx")
 script = ExtResource("3_o31y0")
 
 [node name="DefTrail" parent="." instance=ExtResource("8_qrk7x")]
+points = PackedVector2Array(-62, -22)
 
 [node name="AsteroidSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.58, 0.58)

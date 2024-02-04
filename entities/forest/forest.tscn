@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfpu2ir1bjh1v"]
+[gd_scene load_steps=8 format=3 uid="uid://bfpu2ir1bjh1v"]
 
 [ext_resource type="Script" path="res://entities/forest/forest.gd" id="1_ofoyq"]
 [ext_resource type="PackedScene" uid="uid://c72cfpydhk88s" path="res://entities/forest/thicket.tscn" id="2_8al58"]
 [ext_resource type="Shader" path="res://entities/forest/thicket.gdshader" id="3_b4m0m"]
 [ext_resource type="PackedScene" uid="uid://ca0wx0uaxbdod" path="res://entities/forest/attacks/spikes.tscn" id="3_dvfja"]
 [ext_resource type="PackedScene" uid="uid://qb1vv12307ev" path="res://entities/forest/attacks/podmaker.tscn" id="4_m8ide"]
+[ext_resource type="Texture2D" uid="uid://8c6eqy78tos3" path="res://entities/forest/Selector.PNG" id="6_fpogv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e4anr"]
 resource_local_to_scene = true
@@ -19,18 +20,26 @@ shader_parameter/distortion = null
 shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
-[node name="Forest" type="Node2D" node_paths=PackedStringArray("base_thicket")]
+[node name="Forest" type="Node2D" node_paths=PackedStringArray("base_thicket", "selector")]
 script = ExtResource("1_ofoyq")
 base_thicket = NodePath("Thicket")
 thicket_scene = ExtResource("2_8al58")
 spike_scene = ExtResource("3_dvfja")
 pod_scene = ExtResource("4_m8ide")
+selector = NodePath("Selector")
 
 [node name="Thicket" parent="." instance=ExtResource("2_8al58")]
 is_base_thicket = true
 
 [node name="TreeSprite" parent="Thicket" index="1"]
 material = SubResource("ShaderMaterial_e4anr")
+
+[node name="Selector" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.4, 0.811765, 0.458824, 0.368627)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_fpogv")
+offset = Vector2(0, -223)
 
 [connection signal="destructed" from="Thicket" to="." method="_on_thicket_destructed"]
 

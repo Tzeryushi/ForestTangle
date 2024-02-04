@@ -15,6 +15,7 @@ signal forest_receded(position:Vector2)
 @export var thicket_scene : PackedScene
 @export var spike_scene : PackedScene
 @export var pod_scene : PackedScene
+@export var selector : Sprite2D
 @export var forest_call : String = "forest1"
 
 @onready var top_thicket : Thicket = base_thicket
@@ -30,9 +31,13 @@ var is_activated : bool = false
 ##activates forest for drawing
 func activate() -> void:
 	is_activated = true
+	selector.position = top_thicket.position + Vector2(0, -200)
+	selector.show()
+	
 
 func deactivate() -> void:
 	is_activated = false
+	selector.hide()
 
 ##immediately grows a new thicket
 func grow_thicket() -> void:
