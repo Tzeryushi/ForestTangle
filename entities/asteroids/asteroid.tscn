@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvry1a86ykyak"]
+[gd_scene load_steps=13 format=3 uid="uid://dvry1a86ykyak"]
 
 [ext_resource type="Script" path="res://entities/asteroids/asteroid.gd" id="1_q10du"]
 [ext_resource type="Texture2D" uid="uid://b5jjssjvbwuus" path="res://entities/asteroids/Asteroid2.PNG" id="3_e5iox"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://t7kl6ato42mp" path="res://entities/asteroids/Asteroid3.PNG" id="4_cjarc"]
 [ext_resource type="PackedScene" uid="uid://psj8iwupfkb3" path="res://assets/particles/asteroid_boom.tscn" id="5_h7oyx"]
 [ext_resource type="Script" path="res://entities/asteroids/asteroid_hurtbox.gd" id="5_qjph2"]
+[ext_resource type="AudioStream" uid="uid://bolv4prslsysl" path="res://SFX/asteroid_destroy.wav" id="6_0aeb3"]
 [ext_resource type="PackedScene" uid="uid://dgshgnqj22ctr" path="res://assets/def_trail.tscn" id="8_qrk7x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u6wwc"]
@@ -21,12 +22,12 @@ script = ExtResource("1_q10du")
 asteroid_sprite = NodePath("AsteroidSprite")
 sprites = Array[CompressedTexture2D]([ExtResource("3_hxmip"), ExtResource("3_e5iox"), ExtResource("4_cjarc")])
 boom_particles = ExtResource("5_h7oyx")
+boom_sfx = ExtResource("6_0aeb3")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_o31y0")
 
 [node name="DefTrail" parent="." instance=ExtResource("8_qrk7x")]
-points = PackedVector2Array(-62, -22)
 
 [node name="AsteroidSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.58, 0.58)

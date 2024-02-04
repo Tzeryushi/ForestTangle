@@ -78,7 +78,17 @@ autostart = true
 
 [node name="SpawnSpace" type="Node2D" parent="." groups=["spawnspace"]]
 
+[node name="Floor" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(-40, 1100, 1968, 1100, 1968, 950, 2039, 950, 2034, 1182, -109, 1180, -107, 950, -40, 955)
+
+[connection signal="attack_bears_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_bears_casted"]
 [connection signal="attack_pods_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_pods_casted"]
 [connection signal="attack_spikes_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_spikes_casted"]
 [connection signal="grow_casted" from="SkyCircle" to="." method="_on_sky_circle_grow_casted"]
+[connection signal="heal_casted" from="SkyCircle" to="." method="_on_sky_circle_heal_casted"]
+[connection signal="make_druid_casted" from="SkyCircle" to="." method="_on_sky_circle_make_druid_casted"]
 [connection signal="timeout" from="AsteroidTimer" to="AsteroidSpawner" method="_on_asteroid_timer_timeout"]

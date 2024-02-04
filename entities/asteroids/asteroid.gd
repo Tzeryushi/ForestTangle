@@ -4,6 +4,7 @@ extends Node2D
 @export var asteroid_sprite : Sprite2D
 @export var sprites : Array[CompressedTexture2D]
 @export var boom_particles : PackedScene
+@export var boom_sfx : AudioStream
 @export var default_damage : float = 4.0
 @export var default_speed : float = 0.8
 
@@ -28,8 +29,9 @@ func spawn(_direction, _speed=default_speed, _damage=default_damage) -> void:
 	damage = _damage
 
 func destruct() -> void:
+	SfxManager.play(boom_sfx, 0.5)
 	var particles = boom_particles.instantiate()
-	particles as BaseParticle
+	particles = particles as BaseParticle
 	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
 	particles.global_position = global_position
 	particles.play()

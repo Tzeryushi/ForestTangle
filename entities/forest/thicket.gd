@@ -6,6 +6,8 @@ extends Node2D
 @export var sprite : Sprite2D
 @export var thicket_height : float = 45.0
 @export var damaged_color : Color = Color.CRIMSON
+@export var thicket_destruct_sfx : AudioStream
+@export var heal_particles : PackedScene
 
 @onready var sprite_shader : ShaderMaterial = sprite.material
 
@@ -25,6 +27,7 @@ func pop_up() -> void:
 
 func destruct() -> void:
 	#thicket dies and must crawl through chain to delete others before deleting itself
+	SfxManager.play(thicket_destruct_sfx, 0.4)
 	if next_thicket != null:
 		next_thicket.destruct()
 		await next_thicket.destructed
@@ -38,3 +41,10 @@ func _on_health_health_depleted():
 func _on_health_health_changed(new_health):
 	var health_ratio : float = new_health/health.max_health
 	modulate = damaged_color.lerp(Color(1,1,1,1), health_ratio)
+
+func _on_health_gained_life(life):
+	var particles = heal_particles.instantiate()
+	particles = particles as BaseParticle
+	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	particles.global_position = global_position + Vector2(0,-20)
+	particles.play()

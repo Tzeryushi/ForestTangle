@@ -82,8 +82,28 @@ func _on_sky_circle_attack_spikes_casted():
 		sky_circle.deactivate_circle()
 		remove_active_forest()
 
+func _on_sky_circle_attack_bears_casted():
+	if active_forest:
+		active_forest.attack_bears()
+		sky_circle.deactivate_circle()
+		remove_active_forest()
+
 func _on_sky_circle_attack_pods_casted():
 	if active_forest:
 		active_forest.attack_pods()
 		sky_circle.deactivate_circle()
 		remove_active_forest()
+
+func _on_sky_circle_make_druid_casted():
+	if active_forest:
+		active_forest.make_druid()
+		sky_circle.deactivate_circle()
+		remove_active_forest()
+
+func _on_sky_circle_heal_casted():
+	if active_forest:
+		active_forest.heal_thickets(10.0)
+		sky_circle.deactivate_circle()
+		remove_active_forest()
+
+

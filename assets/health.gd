@@ -29,7 +29,8 @@ func take_damage(value:float) -> void:
 func heal(value:float) -> void:
 	var old_health = health
 	health = clampf(health+value, 0.0, max_health)
-	gained_life.emit(value)
+	if old_health < health:
+		gained_life.emit(value)
 	health_changed.emit(health)
 	if old_health+value <= 0.0:
 		health_depleted.emit()

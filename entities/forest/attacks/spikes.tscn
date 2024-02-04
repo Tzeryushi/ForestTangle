@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca0wx0uaxbdod"]
+[gd_scene load_steps=5 format=3 uid="uid://ca0wx0uaxbdod"]
 
 [ext_resource type="Script" path="res://entities/forest/attacks/spikes.gd" id="1_wwldr"]
 [ext_resource type="Texture2D" uid="uid://ddv5dq5sw27fn" path="res://entities/forest/attacks/spikes.png" id="2_dgqg2"]
+[ext_resource type="AudioStream" uid="uid://bj2f5g0y7fgyq" path="res://SFX/spikes_up.wav" id="2_vfrlm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bsh2"]
 size = Vector2(456, 1032)
@@ -9,6 +10,7 @@ size = Vector2(456, 1032)
 [node name="Spikes" type="Node2D"]
 z_index = -5
 script = ExtResource("1_wwldr")
+spike_sfx = ExtResource("2_vfrlm")
 
 [node name="SpikeSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -540)

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://bx7w8nobbmhoi"]
+
+[ext_resource type="Script" path="res://assets/particles/heal_particles.gd" id="1_cikpc"]
+[ext_resource type="Texture2D" uid="uid://cvvp772esbihu" path="res://assets/particles/Heals.PNG" id="2_1v27b"]
+
+[sub_resource type="Gradient" id="Gradient_jphkh"]
+colors = PackedColorArray(1, 1, 0, 1, 0.717647, 0.733333, 0.733333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i2kac"]
+gradient = SubResource("Gradient_jphkh")
+
+[sub_resource type="Curve" id="Curve_66erl"]
+_data = [Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.24915, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6imd8"]
+curve = SubResource("Curve_66erl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qybrt"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(240, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 77.812
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 0.5
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_6imd8")
+color_ramp = SubResource("GradientTexture1D_i2kac")
+
+[node name="HealParticles" type="Node2D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_cikpc")
+particles = [NodePath("Heals")]
+
+[node name="Heals" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_qybrt")
+texture = ExtResource("2_1v27b")
+one_shot = true
+explosiveness = 0.87

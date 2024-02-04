@@ -1,7 +1,7 @@
 class_name DefTrail
 extends Line2D
 
-@export var trail_length : int = 200
+@export var trail_length : int = 150
 
 func _ready():
 	pass # Replace with function body.

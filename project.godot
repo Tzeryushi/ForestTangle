@@ -21,6 +21,7 @@ SceneManager="*res://globals/scene_manager.tscn"
 Shake="*res://globals/shake.gd"
 Globals="*res://globals/globals.gd"
 MusicManager="*res://globals/music_manager.gd"
+SfxManager="*res://globals/sfx_manager.gd"
 
 [display]
 

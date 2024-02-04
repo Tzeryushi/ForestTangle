@@ -14,6 +14,7 @@ signal attack_spikes_casted
 signal attack_pods_casted
 signal attack_bears_casted
 signal heal_casted
+signal make_druid_casted
 
 ##dictionary of callables that sends signals for use by main level
 var book_of_stars : Dictionary = {
@@ -22,7 +23,8 @@ var book_of_stars : Dictionary = {
 	[1, 2, 17, 16, 19, 6, 7]:attack_spikes,
 	[20, 17, 16, 19, 12, 18, 11, 4]:attack_pods,
 	[0, 8, 17, 18, 13, 6, 5, 4, 3, 2, 1]:attack_bears,
-	[14, 6, 13, 10, 2, 9, 16, 20]:heal
+	[14, 6, 13, 10, 2, 9, 16, 20]:heal,
+	[15, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 0, 16, 17, 18, 19, 20]:make_druid
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -81,3 +83,6 @@ func attack_bears() -> void:
 
 func heal() -> void:
 	heal_casted.emit()
+
+func make_druid() -> void:
+	make_druid_casted.emit()

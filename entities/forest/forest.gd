@@ -15,6 +15,7 @@ signal forest_receded(position:Vector2)
 @export var thicket_scene : PackedScene
 @export var spike_scene : PackedScene
 @export var pod_scene : PackedScene
+@export var heal_sfx : AudioStream
 @export var selector : Sprite2D
 @export var forest_call : String = "forest1"
 
@@ -31,9 +32,11 @@ var is_activated : bool = false
 ##activates forest for drawing
 func activate() -> void:
 	is_activated = true
-	selector.position = top_thicket.position + Vector2(0, -200)
+	if top_thicket:
+		selector.position = top_thicket.position + Vector2(0, -100)
+	else:
+		selector.position = Vector2(0, -100)
 	selector.show()
-	
 
 func deactivate() -> void:
 	is_activated = false
@@ -64,8 +67,12 @@ func grow_thicket() -> void:
 	pass
 
 ##heal all thickets in the forest
-func heal_thickets() -> void:
-	pass
+func heal_thickets(heal_amount:float) -> void:
+	SfxManager.play(heal_sfx,0.7)
+	for thicket in thicket_array:
+		for child in thicket.get_children():
+			if child is Health:
+				child.heal(heal_amount)
 
 ##prompts the top thicket to grow upwards and destroy asteroids above it
 func attack_spikes() -> void:
@@ -83,6 +90,12 @@ func attack_pods() -> void:
 	new_podmaker.call_pods()
 
 func attack_bears() -> void:
+	print("make bears!")
+	pass
+
+##spawns a new druid at top thicket
+func make_druid() -> void:
+	print("make a druid here!")
 	pass
 
 func get_top_location() -> Vector2:

@@ -4,6 +4,3 @@ extends Node2D
 
 func _ready() -> void:
 	MusicManager.play(title_music)
-
-func _process(delta):
-	pass

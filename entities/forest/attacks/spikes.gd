@@ -1,6 +1,8 @@
 class_name Spikes
 extends Node2D
 
+@export var spike_sfx : AudioStream
+
 @onready var spike_shape := $SpikeHurtbox/CollisionShape2D
 
 const STARTING_SCALE : Vector2 = Vector2(1.0, 0.01)
@@ -11,6 +13,7 @@ func _ready() -> void:
 	scale = STARTING_SCALE
 
 func spawn() -> void:
+	SfxManager.play(spike_sfx, 0.2)
 	var tween : Tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ONE, SPEED).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(self, "modulate:a", 0.0, 1.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CIRC)

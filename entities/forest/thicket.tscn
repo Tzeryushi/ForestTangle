@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c72cfpydhk88s"]
+[gd_scene load_steps=9 format=3 uid="uid://c72cfpydhk88s"]
 
 [ext_resource type="Script" path="res://entities/forest/thicket.gd" id="1_g6slc"]
+[ext_resource type="AudioStream" uid="uid://oeu5y0lcu50p" path="res://SFX/forest_destroyed.wav" id="2_gegbv"]
 [ext_resource type="Shader" path="res://entities/forest/thicket.gdshader" id="2_kc5aj"]
+[ext_resource type="PackedScene" uid="uid://bx7w8nobbmhoi" path="res://assets/particles/heal_particles.tscn" id="3_04bu8"]
 [ext_resource type="PackedScene" uid="uid://cn3ib0d6bduwl" path="res://assets/forest_hitbox.tscn" id="3_gufnx"]
 [ext_resource type="Texture2D" uid="uid://ci0b4a10v6s7n" path="res://entities/forest/trees2.png" id="4_qjiog"]
 [ext_resource type="PackedScene" uid="uid://c0dcs20ds5k6c" path="res://assets/health.tscn" id="4_x2ieo"]
@@ -23,6 +25,8 @@ shader_parameter/offset = 0.0
 script = ExtResource("1_g6slc")
 health = NodePath("Health")
 sprite = NodePath("TreeSprite")
+thicket_destruct_sfx = ExtResource("2_gegbv")
+heal_particles = ExtResource("3_04bu8")
 
 [node name="ForestHitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_gufnx")]
 health = NodePath("../Health")
@@ -34,5 +38,6 @@ offset = Vector2(0, -45)
 
 [node name="Health" parent="." instance=ExtResource("4_x2ieo")]
 
+[connection signal="gained_life" from="Health" to="." method="_on_health_gained_life"]
 [connection signal="health_changed" from="Health" to="." method="_on_health_health_changed"]
 [connection signal="health_depleted" from="Health" to="." method="_on_health_health_depleted"]

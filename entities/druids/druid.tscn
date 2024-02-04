@@ -1,6 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkv20xh0xtiqb"]
+[gd_scene load_steps=10 format=3 uid="uid://dkv20xh0xtiqb"]
 
 [ext_resource type="Script" path="res://entities/druids/druid.gd" id="1_h6xek"]
+[ext_resource type="Texture2D" uid="uid://b8v3ifxgblykx" path="res://entities/druids/images/Druid0003.png" id="2_uimeh"]
+[ext_resource type="Texture2D" uid="uid://nsah8byqkp02" path="res://entities/druids/images/Druid0004.png" id="3_8qfxs"]
+[ext_resource type="Texture2D" uid="uid://5swio21vkubm" path="res://entities/druids/images/Druid0000.png" id="4_22tcs"]
+[ext_resource type="Texture2D" uid="uid://cwit33475281x" path="res://entities/druids/images/Druid0001.png" id="5_o4fxx"]
+[ext_resource type="Texture2D" uid="uid://cu85vltpkp4ji" path="res://entities/druids/images/Druid0002.png" id="6_uwi2u"]
+[ext_resource type="Script" path="res://entities/druids/state_manager.gd" id="7_ha4mh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4i5at"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uimeh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8qfxs")
+}],
+"loop": true,
+"name": &"cast",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_22tcs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_o4fxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uwi2u")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vj75p"]
+height = 42.0
 
 [node name="Druid" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 6
 script = ExtResource("1_h6xek")
+
+[node name="DruidSprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -25)
+sprite_frames = SubResource("SpriteFrames_4i5at")
+animation = &"idle"
+frame_progress = 0.897701
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21)
+shape = SubResource("CapsuleShape2D_vj75p")
+
+[node name="StateManager" type="Node" parent="."]
+script = ExtResource("7_ha4mh")
+
+[node name="IdleState" type="Node" parent="StateManager"]
+
+[node name="MoveState" type="Node" parent="StateManager"]
+
+[node name="FallState" type="Node" parent="StateManager"]
+
+[node name="HealState" type="Node" parent="StateManager"]
+
+[node name="ShootState" type="Node" parent="StateManager"]

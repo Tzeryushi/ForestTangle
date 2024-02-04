@@ -1,6 +1,8 @@
 class_name Seedpod
 extends Node2D
 
+@export var pod_spawn_sfx : AudioStream
+@export var pod_hit_sfx : AudioStream
 @export var pod_damage : float = 5.0
 @export var acceleration : float = 0.1
 @export var top_speed : float = 6.0
@@ -40,12 +42,14 @@ func seek() -> void:
 		target_asteroid.tree_exiting.connect(clear_asteroid_ref)
 
 func spawn(new_acceleration:float=acceleration) -> void:
+	SfxManager.play(pod_spawn_sfx,0.2)
 	acceleration = new_acceleration
 
 func clear_asteroid_ref() -> void:
 	target_asteroid = null
 
 func destruct() -> void:
+	SfxManager.play(pod_hit_sfx,0.05)
 	queue_free()
 
 func _on_pod_hurtbox_area_entered(area):
