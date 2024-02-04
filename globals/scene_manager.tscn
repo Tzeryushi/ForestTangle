@@ -5,5 +5,6 @@
 [node name="SceneManager" type="Node2D"]
 script = ExtResource("1_valyq")
 scenes = {
+"main_level": "res://scenes/main_level.tscn",
 "main_menu": "res://scenes/main_menu.tscn"
 }

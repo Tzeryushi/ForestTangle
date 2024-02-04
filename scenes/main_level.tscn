@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=16 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -14,12 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="12_br7i5"]
 [ext_resource type="Script" path="res://scenes/dialogue_layer.gd" id="13_qlqsy"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="14_g1n0c"]
+[ext_resource type="Texture2D" uid="uid://bixecb0yl8dpm" path="res://icon.svg" id="15_chbct"]
 
-[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer") groups=["main_level"]]
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer", "dialoguer") groups=["main_level"]]
 script = ExtResource("1_llerk")
 forests = [NodePath("Forest1"), NodePath("Forest2"), NodePath("Forest3"), NodePath("Forest4")]
 sky_circle = NodePath("SkyCircle")
 asteroid_timer = NodePath("AsteroidTimer")
+dialoguer = NodePath("Dialogue/DialogueLayer")
 playing_music = ExtResource("2_yfn0k")
 
 [node name="Skies" type="Node2D" parent="."]
@@ -77,7 +79,6 @@ forest_array = [NodePath("../Forest1"), NodePath("../Forest2"), NodePath("../For
 
 [node name="AsteroidTimer" type="Timer" parent="."]
 wait_time = 8.0
-autostart = true
 
 [node name="SpawnSpace" type="Node2D" parent="." groups=["spawnspace"]]
 
@@ -93,16 +94,19 @@ position = Vector2(959, 744)
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
 
-[node name="DialogueLayer" type="Control" parent="Dialogue"]
+[node name="DialogueLayer" type="Control" parent="Dialogue" node_paths=PackedStringArray("star_text")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("13_qlqsy")
+star_text = NodePath("StarText")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Dialogue/DialogueLayer"]
+[node name="StarText" type="RichTextLabel" parent="Dialogue/DialogueLayer"]
 clip_contents = false
 layout_mode = 1
 anchors_preset = 8
@@ -110,19 +114,23 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -740.0
+offset_left = -867.0
 offset_top = -41.0
-offset_right = 740.0
+offset_right = 867.0
 offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
 theme_override_fonts/normal_font = ExtResource("14_g1n0c")
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "[center][wave amp=20.0 freq=2.0]This is a test."
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(969, -991)
+texture = ExtResource("15_chbct")
 
 [connection signal="attack_bears_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_bears_casted"]
 [connection signal="attack_pods_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_pods_casted"]

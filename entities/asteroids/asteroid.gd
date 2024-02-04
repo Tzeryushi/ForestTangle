@@ -29,7 +29,7 @@ func spawn(_direction, _speed=default_speed, _damage=default_damage) -> void:
 	damage = _damage
 
 func destruct() -> void:
-	SfxManager.play(boom_sfx, 0.5)
+	SfxManager.play(boom_sfx, 0.1)
 	var particles = boom_particles.instantiate()
 	particles = particles as BaseParticle
 	get_tree().get_first_node_in_group("spawnspace").add_child(particles)

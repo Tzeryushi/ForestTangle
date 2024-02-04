@@ -8,6 +8,7 @@ extends Node2D
 @export var forests : Array[Forest]
 @export var sky_circle : SkyCircle
 @export var asteroid_timer : Timer
+@export var dialoguer : DialogueLayer
 @export var playing_music : AudioStream
 
 var active_forest : Forest = null
@@ -22,6 +23,15 @@ func _ready() -> void:
 		forest.forest_grown.connect(check_change_level)
 		forest.forest_receded.connect(check_change_level)
 		forest.forest_lost.connect(game_lose)
+	dialoguer.play_dialogue("Hell rains from the sky", 3.0)
+	await dialoguer.finished
+	dialoguer.play_dialogue("Should the treeline break, all will end", 4.0)
+	await dialoguer.finished
+	dialoguer.play_dialogue("Bolster the forest, grow to the heavens", 4.0)
+	await dialoguer.finished
+	asteroid_timer.start()
+	dialoguer.play_dialogue("Follow the stars", 3.0)
+	await dialoguer.finished
 
 func _unhandled_input(_event) -> void:
 	var was_no_active_forest : bool = active_forest == null
@@ -76,8 +86,24 @@ func druid_heal(heal_value:float) -> void:
 	for forest in forests:
 		forest.heal_thickets(heal_value, true)
 
+func game_win() -> void:
+	for asteroid in get_tree().get_nodes_in_group("asteroid"):
+		if asteroid is Asteroid:
+			asteroid.destruct()
+	dialoguer.play_dialogue("Death is the reward of the destroyer.", 4.0)
+	await dialoguer.finished
+	dialoguer.play_dialogue("Your forest grows strong.", 4.0)
+	await dialoguer.finished
+	dialoguer.play_dialogue("Well done", 2.0)
+	await dialoguer.finished
+	SceneManager.switch_scene("main_menu")
+
 func game_lose() -> void:
-	pass
+	dialoguer.play_dialogue("We must prevail.", 3.0)
+	await dialoguer.finished
+	dialoguer.play_dialogue("Try again.", 2.0)
+	await dialoguer.finished
+	SceneManager.restart_scene()
 
 func _on_sky_circle_grow_casted():
 	if active_forest:
