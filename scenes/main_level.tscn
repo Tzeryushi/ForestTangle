@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=15 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -11,8 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://dwu21xmrurv52" path="res://scenes/main_level assets/starry_sky/PodsConst.PNG" id="3_mdkvm"]
 [ext_resource type="PackedScene" uid="uid://dvry1a86ykyak" path="res://entities/asteroids/asteroid.tscn" id="3_tblxa"]
 [ext_resource type="Texture2D" uid="uid://dffg6bk5kblo5" path="res://scenes/main_level assets/starry_sky/SpikesConst.PNG" id="4_xpta2"]
+[ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="12_br7i5"]
+[ext_resource type="Script" path="res://scenes/dialogue_layer.gd" id="13_qlqsy"]
+[ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="14_g1n0c"]
 
-[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer")]
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer") groups=["main_level"]]
 script = ExtResource("1_llerk")
 forests = [NodePath("Forest1"), NodePath("Forest2"), NodePath("Forest3"), NodePath("Forest4")]
 sky_circle = NodePath("SkyCircle")
@@ -67,7 +70,7 @@ camera = NodePath("../MainCamera")
 asteroid_scene = ExtResource("3_tblxa")
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("forest_array")]
-position = Vector2(960, 541)
+position = Vector2(960, 540)
 position_smoothing_enabled = true
 script = ExtResource("2_vrnwh")
 forest_array = [NodePath("../Forest1"), NodePath("../Forest2"), NodePath("../Forest3"), NodePath("../Forest4")]
@@ -84,6 +87,42 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
 polygon = PackedVector2Array(-40, 1100, 1968, 1100, 1968, 950, 2039, 950, 2034, 1182, -109, 1180, -107, 950, -40, 955)
+
+[node name="Druid" parent="." instance=ExtResource("12_br7i5")]
+position = Vector2(959, 744)
+
+[node name="Dialogue" type="CanvasLayer" parent="."]
+
+[node name="DialogueLayer" type="Control" parent="Dialogue"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_qlqsy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Dialogue/DialogueLayer"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -740.0
+offset_top = -41.0
+offset_right = 740.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/normal_font = ExtResource("14_g1n0c")
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center][wave amp=20.0 freq=2.0]This is a test."
 
 [connection signal="attack_bears_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_bears_casted"]
 [connection signal="attack_pods_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_pods_casted"]

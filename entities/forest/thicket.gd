@@ -8,6 +8,7 @@ extends Node2D
 @export var damaged_color : Color = Color.CRIMSON
 @export var thicket_destruct_sfx : AudioStream
 @export var heal_particles : PackedScene
+@export var small_heal_particles : PackedScene
 
 @onready var sprite_shader : ShaderMaterial = sprite.material
 
@@ -42,8 +43,11 @@ func _on_health_health_changed(new_health):
 	var health_ratio : float = new_health/health.max_health
 	modulate = damaged_color.lerp(Color(1,1,1,1), health_ratio)
 
-func _on_health_gained_life(life):
-	var particles = heal_particles.instantiate()
+func _on_health_gained_life(_life:float):
+	var use_particles = heal_particles
+	if _life < 1.0:
+		use_particles = small_heal_particles
+	var particles = use_particles.instantiate()
 	particles = particles as BaseParticle
 	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
 	particles.global_position = global_position + Vector2(0,-20)

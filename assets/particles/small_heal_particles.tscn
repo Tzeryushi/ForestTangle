@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjtc3w1ve8da6"]
+
+[ext_resource type="PackedScene" uid="uid://bx7w8nobbmhoi" path="res://assets/particles/heal_particles.tscn" id="1_53j4d"]
+
+[sub_resource type="Gradient" id="Gradient_sytdy"]
+colors = PackedColorArray(1, 1, 0, 1, 0.717647, 0.733333, 0.733333, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7osq7"]
+gradient = SubResource("Gradient_sytdy")
+
+[sub_resource type="Curve" id="Curve_d5fbb"]
+_data = [Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.24915, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ar1qw"]
+curve = SubResource("Curve_d5fbb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sb81f"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(240, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 77.812
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 0.2
+scale_max = 0.35
+scale_curve = SubResource("CurveTexture_ar1qw")
+color_ramp = SubResource("GradientTexture1D_7osq7")
+
+[node name="SmallHealParticles" instance=ExtResource("1_53j4d")]
+
+[node name="Heals" parent="." index="0"]
+amount = 8
+process_material = SubResource("ParticleProcessMaterial_sb81f")
+explosiveness = 0.85

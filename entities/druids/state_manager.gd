@@ -1,11 +1,12 @@
 class_name StateManager
 extends Node
 
-@export var first_state : PlayerState
+@export var first_state : DruidState
+@export var animation : AnimatedSprite2D
 
-var current_state : PlayerState
+var current_state : DruidState
 
-func swap_state(new_state:PlayerState) -> void:
+func swap_state(new_state:DruidState) -> void:
 	#swaps in new state, unless it is the same state
 	#cycle out of state as long as it exists
 	if current_state:
@@ -13,14 +14,15 @@ func swap_state(new_state:PlayerState) -> void:
 			assert(current_state == new_state)  #this shouldn't ever happen#,"ERROR: Actor state swapped to itself!")
 		current_state.on_exit()
 	current_state = new_state
+	animation.play(new_state.animation_type)
 	#print("Swapped to ", current_state)
 	current_state.on_enter()
 
-func init_state(player:Player) -> void:
+func init_state(druid:Druid) -> void:
 	#iterate through child nodes of StateManager to inject actor ref
 	for state in get_children():
-		if state is PlayerState:
-			state.player = player
+		if state is DruidState:
+			state.druid = druid
 	
 	#start at predesignated first state
 	swap_state(first_state)

@@ -15,6 +15,7 @@ signal forest_receded(position:Vector2)
 @export var thicket_scene : PackedScene
 @export var spike_scene : PackedScene
 @export var pod_scene : PackedScene
+@export var druid_scene : PackedScene
 @export var heal_sfx : AudioStream
 @export var selector : Sprite2D
 @export var forest_call : String = "forest1"
@@ -67,8 +68,11 @@ func grow_thicket() -> void:
 	pass
 
 ##heal all thickets in the forest
-func heal_thickets(heal_amount:float) -> void:
-	SfxManager.play(heal_sfx,0.7)
+func heal_thickets(heal_amount:float, druid_heal:bool=false) -> void:
+	if !druid_heal:
+		SfxManager.play(heal_sfx,0.6)
+	else:
+		SfxManager.play(heal_sfx,0.02)
 	for thicket in thicket_array:
 		for child in thicket.get_children():
 			if child is Health:
@@ -85,7 +89,8 @@ func attack_spikes() -> void:
 func attack_pods() -> void:
 	var new_podmaker = pod_scene.instantiate()
 	new_podmaker = new_podmaker as Podmaker
-	new_podmaker.position = top_thicket.position
+	if top_thicket:
+		new_podmaker.position = top_thicket.position
 	add_child(new_podmaker)
 	new_podmaker.call_pods()
 
@@ -95,7 +100,12 @@ func attack_bears() -> void:
 
 ##spawns a new druid at top thicket
 func make_druid() -> void:
-	print("make a druid here!")
+	var new_druid = druid_scene.instantiate()
+	get_tree().get_first_node_in_group("spawnspace").add_child(new_druid)
+	if top_thicket:
+		new_druid.global_position = top_thicket.global_position
+	else:
+		new_druid.global_position = global_position
 	pass
 
 func get_top_location() -> Vector2:
@@ -110,7 +120,6 @@ func _on_thicket_destructed(thicket_node:Thicket, last_thicket:Thicket):
 	thicket_array.erase(thicket_node)
 	if thicket_node == base_thicket:
 		forest_lost.emit()
-		print("Forest Lost!")
 		base_thicket = null
 		top_thicket = null
 	elif last_thicket != null:

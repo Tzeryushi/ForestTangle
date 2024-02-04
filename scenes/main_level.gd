@@ -1,3 +1,4 @@
+class_name MainLevel
 extends Node2D
 
 ##handles input to game
@@ -20,6 +21,7 @@ func _ready() -> void:
 	for forest in forests:
 		forest.forest_grown.connect(check_change_level)
 		forest.forest_receded.connect(check_change_level)
+		forest.forest_lost.connect(game_lose)
 
 func _unhandled_input(_event) -> void:
 	var was_no_active_forest : bool = active_forest == null
@@ -70,6 +72,13 @@ func set_forest_height(new_height:float) -> void:
 	if forest_height > 1080:
 		print("win! replace this with killing the space wizard")
 
+func druid_heal(heal_value:float) -> void:
+	for forest in forests:
+		forest.heal_thickets(heal_value, true)
+
+func game_lose() -> void:
+	pass
+
 func _on_sky_circle_grow_casted():
 	if active_forest:
 		active_forest.grow_thicket()
@@ -105,5 +114,3 @@ func _on_sky_circle_heal_casted():
 		active_forest.heal_thickets(10.0)
 		sky_circle.deactivate_circle()
 		remove_active_forest()
-
-

@@ -13,6 +13,7 @@ func call_pods() -> void:
 		var tween : Tween = create_tween()
 		tween.tween_callback(spawn_pod)
 		await get_tree().create_timer(0.5).timeout
+	queue_free()
 
 func spawn_pod() -> void:
 	var new_pod = pod_scene.instantiate()

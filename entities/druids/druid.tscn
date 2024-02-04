@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkv20xh0xtiqb"]
+[gd_scene load_steps=16 format=3 uid="uid://dkv20xh0xtiqb"]
 
 [ext_resource type="Script" path="res://entities/druids/druid.gd" id="1_h6xek"]
 [ext_resource type="Texture2D" uid="uid://b8v3ifxgblykx" path="res://entities/druids/images/Druid0003.png" id="2_uimeh"]
@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://cwit33475281x" path="res://entities/druids/images/Druid0001.png" id="5_o4fxx"]
 [ext_resource type="Texture2D" uid="uid://cu85vltpkp4ji" path="res://entities/druids/images/Druid0002.png" id="6_uwi2u"]
 [ext_resource type="Script" path="res://entities/druids/state_manager.gd" id="7_ha4mh"]
+[ext_resource type="Script" path="res://entities/druids/states/idle_state.gd" id="8_gvxgb"]
+[ext_resource type="Script" path="res://entities/druids/states/move_state.gd" id="9_qjoyh"]
+[ext_resource type="Script" path="res://entities/druids/states/fall_state.gd" id="10_gdabb"]
+[ext_resource type="Script" path="res://entities/druids/states/heal_state.gd" id="11_abyrt"]
+[ext_resource type="Script" path="res://entities/druids/states/shoot_state.gd" id="12_2phrl"]
+[ext_resource type="PackedScene" uid="uid://byfqhdee3bti5" path="res://entities/forest/attacks/seedpod.tscn" id="13_kj0wc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4i5at"]
 animations = [{
@@ -44,10 +50,11 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vj75p"]
 height = 42.0
 
-[node name="Druid" type="CharacterBody2D"]
+[node name="Druid" type="CharacterBody2D" node_paths=PackedStringArray("state_manager")]
 collision_layer = 8
 collision_mask = 6
 script = ExtResource("1_h6xek")
+state_manager = NodePath("StateManager")
 
 [node name="DruidSprites" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -25)
@@ -59,15 +66,45 @@ frame_progress = 0.897701
 position = Vector2(0, -21)
 shape = SubResource("CapsuleShape2D_vj75p")
 
-[node name="StateManager" type="Node" parent="."]
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("first_state", "animation")]
 script = ExtResource("7_ha4mh")
+first_state = NodePath("IdleState")
+animation = NodePath("../DruidSprites")
 
-[node name="IdleState" type="Node" parent="StateManager"]
+[node name="IdleState" type="Node" parent="StateManager" node_paths=PackedStringArray("move_state", "fall_state", "heal_state", "shoot_state", "state_timer")]
+script = ExtResource("8_gvxgb")
+move_state = NodePath("../MoveState")
+fall_state = NodePath("../FallState")
+heal_state = NodePath("../HealState")
+shoot_state = NodePath("../ShootState")
+state_timer = NodePath("../StateTimer")
+animation_type = "idle"
 
-[node name="MoveState" type="Node" parent="StateManager"]
+[node name="MoveState" type="Node" parent="StateManager" node_paths=PackedStringArray("idle_state", "fall_state", "state_timer", "sprite")]
+script = ExtResource("9_qjoyh")
+idle_state = NodePath("../IdleState")
+fall_state = NodePath("../FallState")
+state_timer = NodePath("../StateTimer")
+sprite = NodePath("../../DruidSprites")
+animation_type = "walk"
 
-[node name="FallState" type="Node" parent="StateManager"]
+[node name="FallState" type="Node" parent="StateManager" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("10_gdabb")
+idle_state = NodePath("../IdleState")
+animation_type = "idle"
 
-[node name="HealState" type="Node" parent="StateManager"]
+[node name="HealState" type="Node" parent="StateManager" node_paths=PackedStringArray("idle_state", "fall_state")]
+script = ExtResource("11_abyrt")
+idle_state = NodePath("../IdleState")
+fall_state = NodePath("../FallState")
+animation_type = "cast"
 
-[node name="ShootState" type="Node" parent="StateManager"]
+[node name="ShootState" type="Node" parent="StateManager" node_paths=PackedStringArray("idle_state", "fall_state")]
+script = ExtResource("12_2phrl")
+idle_state = NodePath("../IdleState")
+fall_state = NodePath("../FallState")
+pod_scene = ExtResource("13_kj0wc")
+animation_type = "cast"
+
+[node name="StateTimer" type="Timer" parent="StateManager"]
+one_shot = true
