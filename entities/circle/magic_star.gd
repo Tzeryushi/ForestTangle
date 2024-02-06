@@ -5,6 +5,7 @@ extends Node2D
 ##it will grow larger and shine in this event, and will cease doing so on command
 @export_range(0, 20) var star_number : int = 0 
 @export var star_sprite : Sprite2D
+@export var star_sprite_group : StarSpriteGroup
 @export var shine_sfx : AudioStream
 
 @onready var spin_speed = randf_range(-0.5,0.5)
@@ -22,18 +23,23 @@ func _ready() -> void:
 	star_sprite.scale = SMALL_STAR_SCALE
 
 func _physics_process(_delta) -> void:
-	star_sprite.rotation += spin_speed*0.1
+	if is_activated:
+		star_sprite.rotation += 0.1
+	else:
+		star_sprite.rotation += spin_speed*0.1
 
 ##activate grows the star and spins it faster
 func activate() -> void:
 	is_activated = true
 	SfxManager.play(shine_sfx, 0.05)
+	star_sprite_group.set_glow(true)
 	star_sprite.scale = LARGE_STAR_SCALE
 	path_encountered.emit(star_number)
 	pass
 
 func deactivate() -> void:
 	is_activated = false
+	star_sprite_group.set_glow(false)
 	pass
 
 func grow_visible() -> void:

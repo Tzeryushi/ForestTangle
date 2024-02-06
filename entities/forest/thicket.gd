@@ -40,6 +40,11 @@ func pop_up() -> void:
 func destruct() -> void:
 	#thicket dies and must crawl through chain to delete others before deleting itself
 	SfxManager.play(thicket_destruct_sfx, 0.4)
+	var particles = leaf_particles.instantiate()
+	particles = particles as BaseParticle
+	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	particles.global_position = global_position - Vector2(0,thicket_height)
+	particles.play()
 	if next_thicket != null:
 		next_thicket.destruct()
 		await next_thicket.destructed

@@ -1,15 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://7qn23jc1hv32"]
+[gd_scene load_steps=8 format=3 uid="uid://7qn23jc1hv32"]
 
 [ext_resource type="Script" path="res://entities/circle/magic_star.gd" id="1_bxola"]
 [ext_resource type="Texture2D" uid="uid://cum58elipn6bf" path="res://entities/circle/Star.PNG" id="2_hl5li"]
 [ext_resource type="AudioStream" uid="uid://clv2g286nwcnh" path="res://SFX/Star.wav" id="2_m6m4p"]
+[ext_resource type="Shader" path="res://scenes/main_level.gdshader" id="3_s31ie"]
+[ext_resource type="Script" path="res://entities/circle/star_sprite_group.gd" id="4_uvhsq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bugm8"]
 radius = 40.0125
 
-[node name="MagicStar" type="Node2D" node_paths=PackedStringArray("star_sprite")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vr8q0"]
+resource_local_to_scene = true
+shader = ExtResource("3_s31ie")
+shader_parameter/activated = false
+shader_parameter/Smooth = true
+shader_parameter/width = 35.0
+shader_parameter/outline_color = Color(1, 1, 0, 0.47451)
+shader_parameter/pixel_size = 4
+shader_parameter/width_speed = 4.103
+
+[node name="MagicStar" type="Node2D" node_paths=PackedStringArray("star_sprite", "star_sprite_group")]
 script = ExtResource("1_bxola")
-star_sprite = NodePath("StarSprite")
+star_sprite = NodePath("StarSpriteGroup/StarSprite")
+star_sprite_group = NodePath("StarSpriteGroup")
 shine_sfx = ExtResource("2_m6m4p")
 
 [node name="CollectionArea" type="Area2D" parent="."]
@@ -19,7 +32,12 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectionArea"]
 shape = SubResource("CircleShape2D_bugm8")
 
-[node name="StarSprite" type="Sprite2D" parent="."]
+[node name="StarSpriteGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_vr8q0")
+fit_margin = 50.0
+script = ExtResource("4_uvhsq")
+
+[node name="StarSprite" type="Sprite2D" parent="StarSpriteGroup"]
 texture = ExtResource("2_hl5li")
 
 [connection signal="mouse_entered" from="CollectionArea" to="." method="_on_collection_area_mouse_entered"]

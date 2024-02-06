@@ -23,8 +23,8 @@ func _physics_process(_delta) -> void:
 		direction = distance.normalized()
 		if distance.length() < 1000 and distance.length() != 0.0:
 			shifted_acceleration = acceleration + top_speed*2/distance.length()
-			if distance.length() < 100:
-				shifted_acceleration = shifted_acceleration*20
+			if distance.length() < 150:
+				shifted_acceleration = shifted_acceleration + 5 * (1-distance.length()/150)
 	else:
 		seek()
 	velocity += (direction * shifted_acceleration)
