@@ -3,6 +3,7 @@ extends Node2D
 
 @export var camera : MainCamera
 @export var magic_circle : MagicCircle
+@export var call_sfx : AudioStream
 
 const FOLLOW_SPEED = 3.0
 
@@ -22,7 +23,7 @@ var book_of_stars : Dictionary = {
 	[12,19,6,14,15,0,8,9,2,17,11]:grow,
 	[1, 2, 17, 16, 19, 6, 7]:attack_spikes,
 	[20, 17, 16, 19, 12, 18, 11, 4]:attack_pods,
-	[0, 8, 17, 18, 13, 6, 5, 4, 3, 2, 1]:attack_bears,
+	[8, 17, 18, 13, 6, 5, 4, 3, 2, 1, 0]:attack_bears,
 	[14, 6, 13, 10, 2, 9, 16, 20]:heal,
 	[15, 7, 14, 6, 13, 5, 12, 4, 11, 3, 10, 2, 9, 1, 8, 0, 16, 17, 18, 19, 20]:make_druid
 }
@@ -62,14 +63,17 @@ func deactivate_circle() -> void:
 
 func _on_magic_circle_stars_logged(stars_logged:Array[int]):
 	if book_of_stars.has(stars_logged):
-		magic_circle.extend_sigil()
-		book_of_stars[stars_logged].call()
+		call_magic(book_of_stars[stars_logged])
 	else:
 		var reverse : Array = stars_logged.duplicate()
 		reverse.reverse()
 		if book_of_stars.has(reverse):
-			magic_circle.extend_sigil()
-			book_of_stars[reverse].call()
+			call_magic(book_of_stars[reverse])
+
+func call_magic(callable:Callable) -> void:
+	magic_circle.extend_sigil()
+	SfxManager.play(call_sfx, 0.5)
+	callable.call()
 
 func grow() -> void:
 	grow_casted.emit()

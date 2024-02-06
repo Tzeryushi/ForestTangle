@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://entities/circle/star_path.gd" id="4_c3v0i"]
 
 [sub_resource type="Curve" id="Curve_awaej"]
-_data = [Vector2(0, 0.243767), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.516931), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="MagicCircle" type="Sprite2D" node_paths=PackedStringArray("stars", "star_path")]

@@ -25,6 +25,7 @@ func make_end_copy(type:int=0) -> void:
 	get_tree().get_first_node_in_group("spawnspace").add_child(copy)
 	copy.z_index = 12
 	copy.global_position = global_position
+	copy.global_scale = global_scale
 	if type == 0:
 		copy.extend_and_fade()
 	else:
@@ -33,13 +34,13 @@ func make_end_copy(type:int=0) -> void:
 func extend_and_fade() -> void:
 	make_end_copy(1)
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(1.1, 1.1), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(self, "scale", scale*1.1, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property(self, "modulate:a", 0.0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.tween_callback(queue_free)
 
 func fade_and_end() -> void:
 	modulate.a = 0.5
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(2, 2), 3.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(self, "scale", scale*2, 3.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.parallel().tween_property(self, "modulate:a", 0.0, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.tween_callback(queue_free)

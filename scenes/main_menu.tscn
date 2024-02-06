@@ -1,10 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://b72txff18tomj"]
+[gd_scene load_steps=12 format=3 uid="uid://b72txff18tomj"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_0kkvv"]
 [ext_resource type="AudioStream" uid="uid://d0m8kelugfkm2" path="res://music/Keepers.wav" id="2_4b8u0"]
 [ext_resource type="Texture2D" uid="uid://xl28he42a63p" path="res://scenes/main_level assets/DruidMain.PNG" id="3_h82kd"]
 [ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="4_tv4xe"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="4_v3tel"]
+[ext_resource type="Texture2D" uid="uid://baiq6qg4un23p" path="res://scenes/main_level assets/starry_sky/GrowthConst.PNG" id="6_hg2be"]
+[ext_resource type="Texture2D" uid="uid://dwu21xmrurv52" path="res://scenes/main_level assets/starry_sky/PodsConst.PNG" id="7_f8ekx"]
+[ext_resource type="Texture2D" uid="uid://dffg6bk5kblo5" path="res://scenes/main_level assets/starry_sky/SpikesConst.PNG" id="8_5dcmu"]
+[ext_resource type="Texture2D" uid="uid://kc6lq70qvcxa" path="res://scenes/main_level assets/starry_sky/DruidsConst.PNG" id="9_cdsop"]
+[ext_resource type="Texture2D" uid="uid://ix0jfryq1igp" path="res://scenes/main_level assets/starry_sky/HealConst.PNG" id="10_vo2g8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_etj37"]
 
@@ -20,6 +25,34 @@ texture = ExtResource("3_h82kd")
 modulate = Color(1, 1, 1, 0.141176)
 z_index = 0
 position = Vector2(960, 540)
+
+[node name="Skies" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.254902)
+
+[node name="GrowthConst" type="Sprite2D" parent="Skies"]
+position = Vector2(314, 406)
+scale = Vector2(0.358448, 0.358448)
+texture = ExtResource("6_hg2be")
+
+[node name="PodsConst" type="Sprite2D" parent="Skies"]
+position = Vector2(1508, 217)
+scale = Vector2(0.450253, 0.450253)
+texture = ExtResource("7_f8ekx")
+
+[node name="SpikesConst" type="Sprite2D" parent="Skies"]
+position = Vector2(1684, 462)
+scale = Vector2(0.364932, 0.364932)
+texture = ExtResource("8_5dcmu")
+
+[node name="DruidsConst" type="Sprite2D" parent="Skies"]
+position = Vector2(1872, 103)
+scale = Vector2(0.413168, 0.413168)
+texture = ExtResource("9_cdsop")
+
+[node name="HealConst" type="Sprite2D" parent="Skies"]
+position = Vector2(39, 211)
+scale = Vector2(0.395057, 0.395057)
+texture = ExtResource("10_vo2g8")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

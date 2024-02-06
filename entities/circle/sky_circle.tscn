@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://wk4gwx56fos7"]
+[gd_scene load_steps=5 format=3 uid="uid://wk4gwx56fos7"]
 
 [ext_resource type="Script" path="res://entities/circle/sky_circle.gd" id="1_bxcij"]
 [ext_resource type="Texture2D" uid="uid://ce82egsrp5np0" path="res://entities/circle/backdrop1.PNG" id="2_dj3rx"]
+[ext_resource type="AudioStream" uid="uid://benwvc0lwh4sq" path="res://SFX/casting_sfx.wav" id="2_l1xu5"]
 [ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="3_kqcho"]
 
 [node name="SkyCircle" type="Node2D" node_paths=PackedStringArray("magic_circle")]
 script = ExtResource("1_bxcij")
 magic_circle = NodePath("MagicCircle")
+call_sfx = ExtResource("2_l1xu5")
 
 [node name="SkyBackdrop" type="Sprite2D" parent="."]
 z_index = -20
