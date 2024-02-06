@@ -22,12 +22,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xn5i"]
 
-[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer", "dialoguer") groups=["main_level"]]
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer", "dialoguer", "cast_texter") groups=["main_level"]]
 script = ExtResource("1_llerk")
 forests = [NodePath("Forest1"), NodePath("Forest2"), NodePath("Forest3"), NodePath("Forest4")]
 sky_circle = NodePath("SkyCircle")
 asteroid_timer = NodePath("AsteroidTimer")
 dialoguer = NodePath("Dialogue/DialogueLayer")
+cast_texter = NodePath("Dialogue/CastLayer")
 playing_music = ExtResource("2_yfn0k")
 
 [node name="Skies" type="Node2D" parent="."]
@@ -115,6 +116,7 @@ position = Vector2(959, 744)
 [node name="Dialogue" type="CanvasLayer" parent="."]
 
 [node name="DialogueLayer" type="Control" parent="Dialogue" node_paths=PackedStringArray("star_text")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,12 +168,14 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.352941)
 
-[node name="CastLayer" type="Control" parent="Dialogue"]
+[node name="CastLayer" type="Control" parent="Dialogue" node_paths=PackedStringArray("star_text")]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("18_uexvj")
+star_text = NodePath("StarText2")
 
 [node name="StarText2" type="RichTextLabel" parent="Dialogue/CastLayer"]
 clip_contents = false

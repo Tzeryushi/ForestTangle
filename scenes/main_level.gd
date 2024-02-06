@@ -9,6 +9,7 @@ extends Node2D
 @export var sky_circle : SkyCircle
 @export var asteroid_timer : Timer
 @export var dialoguer : DialogueLayer
+@export var cast_texter : CastLayer
 @export var playing_music : AudioStream
 
 var active_forest : Forest = null
@@ -117,57 +118,38 @@ func _on_sky_circle_grow_casted():
 	if active_forest:
 		active_forest.grow_thicket()
 		active_forest.grow_thicket()
-		sky_circle.deactivate_circle()
-		remove_active_forest()
-		if intro_done:
-			dialoguer.play_dialogue("GROW", 2.0)
-			await dialoguer.finished
+		end_cast("grow")
 
 func _on_sky_circle_attack_spikes_casted():
 	if active_forest:
 		active_forest.attack_spikes()
-		sky_circle.deactivate_circle()
-		remove_active_forest()
-		if intro_done:
-			dialoguer.play_dialogue("SPIKES", 2.0)
-			await dialoguer.finished
+		end_cast("spikes")
 
 func _on_sky_circle_attack_bears_casted():
 	if active_forest:
 		active_forest.attack_bears()
-		sky_circle.deactivate_circle()
-		remove_active_forest()
-		if intro_done:
-			dialoguer.play_dialogue("...BEARS?", 2.0)
-			await dialoguer.finished
+		end_cast("bears...?")
 
 func _on_sky_circle_attack_pods_casted():
 	if active_forest:
 		active_forest.attack_pods()
 		sky_circle.deactivate_circle()
-		remove_active_forest()
-		if intro_done:
-			dialoguer.play_dialogue("PODS", 2.0)
-			await dialoguer.finished
+		end_cast("pods")
 
 func _on_sky_circle_make_druid_casted():
 	if active_forest:
 		active_forest.make_druid()
-		sky_circle.deactivate_circle()
-		remove_active_forest()
-		if intro_done:
-			dialoguer.play_dialogue("NEW DRUID", 2.0)
-			await dialoguer.finished
+		end_cast("new druid")
 
 func _on_sky_circle_heal_casted():
 	if active_forest:
 		active_forest.heal_thickets(10.0)
-		sky_circle.deactivate_circle()
-		remove_active_forest()
-		if intro_done:
-			dialoguer.play_dialogue("HEAL", 2.0)
-			await dialoguer.finished
+		end_cast("heal")
 
+func end_cast(cast_text:String="no text", time:float=1.0) -> void:
+	sky_circle.deactivate_circle()
+	remove_active_forest()
+	cast_texter.play_text(cast_text, time)
 
 func _on_skyman_defeated():
 	game_win()
