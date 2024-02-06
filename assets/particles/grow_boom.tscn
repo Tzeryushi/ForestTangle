@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsfd3gwbt7gjh"]
+
+[ext_resource type="Script" path="res://assets/particles/explosive_particle.gd" id="1_jux1d"]
+[ext_resource type="Texture2D" uid="uid://deh3aog2fu2pm" path="res://assets/particles/Leaf.PNG" id="2_3v2pb"]
+
+[sub_resource type="Curve" id="Curve_fhw4t"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249267, 13.0854), 0.0, 0.0, 0, 0, Vector2(0.40176, 0), -43.5074, -43.5074, 0, 0, Vector2(1, 0), 33.7063, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_tn1lu"]
+curve = SubResource("Curve_fhw4t")
+
+[sub_resource type="Curve" id="Curve_5gcod"]
+_data = [Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.24915, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_onwwo"]
+curve = SubResource("Curve_5gcod")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yh124"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(240, 1, 1)
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 113.437
+flatness = 0.573
+initial_velocity_min = 150.0
+initial_velocity_max = 150.0
+angular_velocity_min = -300.0
+angular_velocity_max = 300.0
+gravity = Vector3(0, 50, 0)
+damping_min = 19.27
+damping_max = 19.27
+damping_curve = SubResource("CurveTexture_tn1lu")
+scale_min = 0.2
+scale_max = 0.34
+scale_curve = SubResource("CurveTexture_onwwo")
+
+[node name="GrowBoom" type="Node2D" node_paths=PackedStringArray("particles")]
+script = ExtResource("1_jux1d")
+particles = [NodePath("Leaves")]
+
+[node name="Leaves" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_yh124")
+texture = ExtResource("2_3v2pb")
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0

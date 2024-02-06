@@ -3,7 +3,7 @@ extends Node2D
 @export var particle_array : Array[PackedScene]
 
 func establish() -> void:
-	var particles : Array[BaseParticle]
+	var particles : Array[BaseParticle] = []
 	for scene in particle_array:
 		var new_part = scene.instantiate()
 		new_part = new_part as BaseParticle

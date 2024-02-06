@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c72cfpydhk88s"]
+[gd_scene load_steps=11 format=3 uid="uid://c72cfpydhk88s"]
 
 [ext_resource type="Script" path="res://entities/forest/thicket.gd" id="1_g6slc"]
 [ext_resource type="AudioStream" uid="uid://oeu5y0lcu50p" path="res://SFX/forest_destroyed.wav" id="2_gegbv"]
 [ext_resource type="Shader" path="res://entities/forest/thicket.gdshader" id="2_kc5aj"]
 [ext_resource type="PackedScene" uid="uid://bx7w8nobbmhoi" path="res://assets/particles/heal_particles.tscn" id="3_04bu8"]
 [ext_resource type="PackedScene" uid="uid://bjtc3w1ve8da6" path="res://assets/particles/small_heal_particles.tscn" id="3_5ggl7"]
+[ext_resource type="PackedScene" uid="uid://bsfd3gwbt7gjh" path="res://assets/particles/grow_boom.tscn" id="3_f83gg"]
 [ext_resource type="PackedScene" uid="uid://cn3ib0d6bduwl" path="res://assets/forest_hitbox.tscn" id="3_gufnx"]
 [ext_resource type="Texture2D" uid="uid://ci0b4a10v6s7n" path="res://entities/forest/trees2.png" id="4_qjiog"]
 [ext_resource type="PackedScene" uid="uid://c0dcs20ds5k6c" path="res://assets/health.tscn" id="4_x2ieo"]
@@ -27,6 +28,7 @@ script = ExtResource("1_g6slc")
 health = NodePath("Health")
 sprite = NodePath("TreeSprite")
 thicket_destruct_sfx = ExtResource("2_gegbv")
+leaf_particles = ExtResource("3_f83gg")
 heal_particles = ExtResource("3_04bu8")
 small_heal_particles = ExtResource("3_5ggl7")
 

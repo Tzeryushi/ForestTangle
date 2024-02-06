@@ -116,6 +116,7 @@ func game_lose() -> void:
 func _on_sky_circle_grow_casted():
 	if active_forest:
 		active_forest.grow_thicket()
+		active_forest.grow_thicket()
 		sky_circle.deactivate_circle()
 		remove_active_forest()
 		if intro_done:

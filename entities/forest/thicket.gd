@@ -7,6 +7,7 @@ extends Node2D
 @export var thicket_height : float = 45.0
 @export var damaged_color : Color = Color.CRIMSON
 @export var thicket_destruct_sfx : AudioStream
+@export var leaf_particles : PackedScene
 @export var heal_particles : PackedScene
 @export var small_heal_particles : PackedScene
 
@@ -14,6 +15,8 @@ extends Node2D
 
 var last_thicket : Thicket = null
 var next_thicket : Thicket = null
+##local position where the thicket will be after animations
+var true_position : Vector2 = Vector2.ZERO
 
 signal destructed(thicket_node:Thicket, last_thicket:Thicket)
 
@@ -23,8 +26,16 @@ func _ready() -> void:
 
 ##moves a new thicket into place with an animation
 func pop_up() -> void:
+	true_position = position - Vector2(0.0, thicket_height)
+	
+	var particles = leaf_particles.instantiate()
+	particles = particles as BaseParticle
+	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	particles.global_position = global_position - Vector2(0,thicket_height)
+	particles.play()
+	
 	var tween : Tween = create_tween()
-	tween.tween_property(self,"position", position-Vector2(0,thicket_height), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,"position", true_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func destruct() -> void:
 	#thicket dies and must crawl through chain to delete others before deleting itself

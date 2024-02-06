@@ -1,4 +1,4 @@
-class_name DialogueLayer
+class_name CastLayer
 extends Control
 
 @export var star_text : RichTextLabel

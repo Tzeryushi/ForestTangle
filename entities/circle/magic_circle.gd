@@ -36,6 +36,9 @@ func end_pathing() -> void:
 	#star_log.clear()
 	star_path.end_pathing()
 
+func extend_sigil() -> void:
+	star_path.make_end_copy()
+
 func overlap() -> void:
 	modulate.a = 1.0
 	z_index = 15

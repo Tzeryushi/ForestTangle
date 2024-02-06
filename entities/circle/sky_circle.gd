@@ -62,11 +62,13 @@ func deactivate_circle() -> void:
 
 func _on_magic_circle_stars_logged(stars_logged:Array[int]):
 	if book_of_stars.has(stars_logged):
+		magic_circle.extend_sigil()
 		book_of_stars[stars_logged].call()
 	else:
 		var reverse : Array = stars_logged.duplicate()
 		reverse.reverse()
 		if book_of_stars.has(reverse):
+			magic_circle.extend_sigil()
 			book_of_stars[reverse].call()
 
 func grow() -> void:

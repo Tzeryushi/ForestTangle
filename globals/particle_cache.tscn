@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd3t1tgnwyjd8"]
+[gd_scene load_steps=8 format=3 uid="uid://dd3t1tgnwyjd8"]
 
 [ext_resource type="Script" path="res://globals/particle_cache.gd" id="1_5noq4"]
 [ext_resource type="PackedScene" uid="uid://psj8iwupfkb3" path="res://assets/particles/asteroid_boom.tscn" id="2_ru0db"]
 [ext_resource type="PackedScene" uid="uid://bx7w8nobbmhoi" path="res://assets/particles/heal_particles.tscn" id="3_o1doc"]
 [ext_resource type="PackedScene" uid="uid://bjtc3w1ve8da6" path="res://assets/particles/small_heal_particles.tscn" id="4_anhal"]
 [ext_resource type="PackedScene" uid="uid://s7sjwdyw2elx" path="res://assets/particles/BaseParticle.tscn" id="5_re2nh"]
+[ext_resource type="PackedScene" uid="uid://bsfd3gwbt7gjh" path="res://assets/particles/grow_boom.tscn" id="6_7jg1t"]
+[ext_resource type="PackedScene" uid="uid://c0yl6yg6kopdy" path="res://assets/particles/seedpod_boom.tscn" id="7_gb17i"]
 
 [node name="ParticleCache" type="Node2D"]
 script = ExtResource("1_5noq4")
-particle_array = Array[PackedScene]([ExtResource("2_ru0db"), ExtResource("3_o1doc"), ExtResource("4_anhal"), ExtResource("5_re2nh")])
+particle_array = Array[PackedScene]([ExtResource("2_ru0db"), ExtResource("3_o1doc"), ExtResource("4_anhal"), ExtResource("5_re2nh"), ExtResource("6_7jg1t"), ExtResource("7_gb17i")])

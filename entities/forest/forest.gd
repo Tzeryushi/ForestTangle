@@ -53,7 +53,7 @@ func grow_thicket() -> void:
 		base_thicket = new_thicket
 		new_thicket.position = Vector2.ZERO
 	else:
-		new_thicket.position = top_thicket.position
+		new_thicket.position = top_thicket.true_position
 		top_thicket.next_thicket = new_thicket
 		new_thicket.last_thicket = top_thicket
 	thicket_array.append(new_thicket)
@@ -65,7 +65,6 @@ func grow_thicket() -> void:
 		new_thicket.position = new_thicket.position + Vector2(0.0, new_thicket.thicket_height)
 	forest_grown.emit(Vector2(new_thicket.position.x, new_thicket.position.y-new_thicket.thicket_height))
 	new_thicket.pop_up()
-	pass
 
 ##heal all thickets in the forest
 func heal_thickets(heal_amount:float, druid_heal:bool=false) -> void:

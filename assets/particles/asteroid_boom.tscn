@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://psj8iwupfkb3"]
 
 [ext_resource type="PackedScene" uid="uid://s7sjwdyw2elx" path="res://assets/particles/BaseParticle.tscn" id="1_hwx5o"]
-[ext_resource type="Script" path="res://assets/particles/asteroid_boom.gd" id="2_xvf3a"]
+[ext_resource type="Script" path="res://assets/particles/explosive_particle.gd" id="2_sbnyp"]
 [ext_resource type="Texture2D" uid="uid://tj62bugjgf6q" path="res://assets/particles/LongFleck.PNG" id="3_vd5sq"]
 [ext_resource type="Texture2D" uid="uid://c6u8fvh8t43jv" path="res://assets/particles/RoundFleck.PNG" id="4_pien7"]
 
@@ -27,7 +27,7 @@ scale_curve = SubResource("CurveTexture_y6olm")
 _data = [Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.24915, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_k1jdn"]
+[sub_resource type="CurveTexture" id="CurveTexture_vbqhi"]
 curve = SubResource("Curve_hrufe")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r5dni"]
@@ -40,10 +40,10 @@ damping_min = 100.0
 damping_max = 100.0
 scale_min = 0.5
 scale_max = 0.8
-scale_curve = SubResource("CurveTexture_k1jdn")
+scale_curve = SubResource("CurveTexture_vbqhi")
 
 [node name="AsteroidBoom" node_paths=PackedStringArray("particles") instance=ExtResource("1_hwx5o")]
-script = ExtResource("2_xvf3a")
+script = ExtResource("2_sbnyp")
 particles = [NodePath("Flecks"), NodePath("Bubbles")]
 
 [node name="Flecks" type="GPUParticles2D" parent="." index="0"]
