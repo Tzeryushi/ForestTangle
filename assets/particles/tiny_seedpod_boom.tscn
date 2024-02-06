@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkdrrbavofoek"]
+
+[ext_resource type="PackedScene" uid="uid://c0yl6yg6kopdy" path="res://assets/particles/seedpod_boom.tscn" id="1_50emm"]
+
+[node name="TinySeedpodBoom" instance=ExtResource("1_50emm")]
+
+[node name="Leaves" parent="." index="0"]
+amount = 4

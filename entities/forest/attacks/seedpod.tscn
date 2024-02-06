@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://byfqhdee3bti5"]
+[gd_scene load_steps=8 format=3 uid="uid://byfqhdee3bti5"]
 
 [ext_resource type="Script" path="res://entities/forest/attacks/seedpod.gd" id="1_7yxdb"]
 [ext_resource type="AudioStream" uid="uid://ditsk5kc5yewg" path="res://SFX/pod_shoot.wav" id="2_g550g"]
 [ext_resource type="Texture2D" uid="uid://prudqrfgtd0x" path="res://entities/forest/attacks/seed_pod.PNG" id="2_ss1g4"]
 [ext_resource type="AudioStream" uid="uid://b1bg0lhtetcdp" path="res://SFX/pod_hit.wav" id="3_lwavh"]
+[ext_resource type="PackedScene" uid="uid://c0yl6yg6kopdy" path="res://assets/particles/seedpod_boom.tscn" id="4_xdtg0"]
+[ext_resource type="PackedScene" uid="uid://dkdrrbavofoek" path="res://assets/particles/tiny_seedpod_boom.tscn" id="5_3eek1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i6nl1"]
 radius = 7.0
@@ -13,6 +15,8 @@ height = 28.0
 script = ExtResource("1_7yxdb")
 pod_spawn_sfx = ExtResource("2_g550g")
 pod_hit_sfx = ExtResource("3_lwavh")
+pod_particles = ExtResource("4_xdtg0")
+tiny_pod_particles = ExtResource("5_3eek1")
 
 [node name="PodSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_ss1g4")

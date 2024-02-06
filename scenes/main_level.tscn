@@ -172,8 +172,9 @@ color = Color(0, 0, 0, 0.352941)
 visible = false
 layout_mode = 3
 anchors_preset = 0
+offset_top = -41.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = -1.0
 script = ExtResource("18_uexvj")
 star_text = NodePath("StarText2")
 

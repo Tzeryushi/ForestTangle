@@ -36,11 +36,14 @@ scale_min = 0.2
 scale_max = 0.34
 scale_curve = SubResource("CurveTexture_trgcj")
 
-[node name="SeedpodBoom" type="Node2D"]
+[node name="SeedpodBoom" type="Node2D" node_paths=PackedStringArray("particles")]
 script = ExtResource("1_ibu4u")
+particles = [NodePath("Leaves")]
 
 [node name="Leaves" type="GPUParticles2D" parent="."]
+emitting = false
 process_material = SubResource("ParticleProcessMaterial_048if")
 texture = ExtResource("2_4nki8")
 lifetime = 1.5
+one_shot = true
 explosiveness = 1.0

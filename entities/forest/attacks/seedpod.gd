@@ -3,6 +3,8 @@ extends Node2D
 
 @export var pod_spawn_sfx : AudioStream
 @export var pod_hit_sfx : AudioStream
+@export var pod_particles : PackedScene
+@export var tiny_pod_particles : PackedScene
 @export var pod_damage : float = 5.0
 @export var acceleration : float = 0.1
 @export var top_speed : float = 6.0
@@ -12,7 +14,7 @@ var direction : Vector2 = Vector2.UP
 var velocity : Vector2 = Vector2.ZERO
 
 func _ready():
-	pass # Replace with function body.
+	rotation = Vector2.UP.angle()
 
 func _physics_process(_delta) -> void:
 	var shifted_acceleration = acceleration
@@ -43,6 +45,11 @@ func seek() -> void:
 
 func spawn(new_acceleration:float=acceleration) -> void:
 	SfxManager.play(pod_spawn_sfx,0.2)
+	var particles = tiny_pod_particles.instantiate()
+	particles = particles as BaseParticle
+	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	particles.global_position = global_position
+	particles.play()
 	acceleration = new_acceleration
 
 func clear_asteroid_ref() -> void:
@@ -50,6 +57,11 @@ func clear_asteroid_ref() -> void:
 
 func destruct() -> void:
 	SfxManager.play(pod_hit_sfx,0.05)
+	var particles = pod_particles.instantiate()
+	particles = particles as BaseParticle
+	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	particles.global_position = global_position
+	particles.play()
 	queue_free()
 
 func _on_pod_hurtbox_area_entered(area):
