@@ -3,6 +3,8 @@ extends Node2D
 @export var camera : MainCamera
 @export var asteroid_scene : PackedScene
 
+signal asteroid_spawned(asteroid_ref:Asteroid)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -19,6 +21,7 @@ func spawn_asteroid() -> void:
 	asteroid.global_position = spawn_coords
 	asteroid.spawn(direction)
 	add_child(asteroid)
+	asteroid_spawned.emit(asteroid)
 
 func get_destination() -> Vector2:
 	var x_point : float = randf_range(0.0, get_viewport_rect().size.x)

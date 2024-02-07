@@ -6,6 +6,7 @@ extends Node2D
 ##if another forest is selected, overrides the last one
 
 @export var forests : Array[Forest]
+@export var stats : PlayerStats
 @export var sky_circle : SkyCircle
 @export var asteroid_timer : Timer
 @export var dialoguer : DialogueLayer
@@ -16,8 +17,12 @@ var active_forest : Forest = null
 var forest_height : float = 0.0
 var danger_level : int = 0
 var intro_done : bool = false
+var end_state_triggered : bool = false
 
 const asteroid_wait_default : float = 10.0
+
+signal forest_level_changed(new_height:int)
+signal druid_added
 
 func _ready() -> void:
 	MusicManager.play(playing_music)
@@ -85,6 +90,7 @@ func set_forest_height(new_height:float) -> void:
 	forest_height = new_height
 	if int(forest_height/100) != danger_level:
 		danger_level = int(forest_height/100)
+		forest_level_changed.emit(danger_level)
 		asteroid_timer.wait_time = clampf(asteroid_wait_default - float(danger_level+2)*0.8, 0.12, asteroid_wait_default)
 	if forest_height > 1400:
 		game_win()
@@ -94,6 +100,9 @@ func druid_heal(heal_value:float) -> void:
 		forest.heal_thickets(heal_value, true)
 
 func game_win() -> void:
+	if end_state_triggered:
+		return
+	end_state_triggered = true
 	for asteroid in get_tree().get_nodes_in_group("asteroid"):
 		if asteroid is Asteroid:
 			asteroid.queue_free()
@@ -108,6 +117,9 @@ func game_win() -> void:
 	SceneManager.switch_scene("victory_screen")
 
 func game_lose() -> void:
+	if end_state_triggered:
+		return
+	end_state_triggered = true
 	dialoguer.play_dialogue("We must prevail.", 3.0)
 	await dialoguer.finished
 	dialoguer.play_dialogue("Try again.", 2.0)
@@ -139,6 +151,7 @@ func _on_sky_circle_attack_pods_casted():
 func _on_sky_circle_make_druid_casted():
 	if active_forest:
 		active_forest.make_druid()
+		druid_added.emit()
 		end_cast("new druid")
 
 func _on_sky_circle_heal_casted():
