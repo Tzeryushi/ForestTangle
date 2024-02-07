@@ -14,7 +14,7 @@ var direction : Vector2 = Vector2.ZERO
 var speed : float = 0.0
 var damage : float = 0.0
 
-signal destructed
+signal destructed(destruct_pos:Vector2)
 
 func _ready() -> void:
 	asteroid_sprite.texture = sprites.pick_random()
@@ -37,7 +37,7 @@ func destruct() -> void:
 	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
 	particles.global_position = global_position
 	particles.play()
-	destructed.emit()
+	destructed.emit(global_position)
 	queue_free()
 
 func _on_health_health_depleted():

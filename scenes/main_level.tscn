@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=25 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -18,7 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="12_br7i5"]
 [ext_resource type="Script" path="res://scenes/dialogue_layer.gd" id="13_qlqsy"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="14_g1n0c"]
-[ext_resource type="Script" path="res://scenes/ShardSystem.gd" id="15_r8uqf"]
+[ext_resource type="PackedScene" uid="uid://d2mkoxpw6ajn6" path="res://entities/shard_system/shard_system.tscn" id="15_fvj66"]
+[ext_resource type="PackedScene" uid="uid://bry24iy8yquhe" path="res://entities/shard_system/shard_collector.tscn" id="16_ejwxi"]
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="18_k6g82"]
 [ext_resource type="Script" path="res://scenes/cast_layer.gd" id="18_uexvj"]
 [ext_resource type="Script" path="res://scenes/level_hud.gd" id="21_mem4w"]
@@ -98,8 +99,10 @@ script = ExtResource("2_aoqv5")
 camera = NodePath("../MainCamera")
 asteroid_scene = ExtResource("3_tblxa")
 
-[node name="ShardSystem" type="Node2D" parent="."]
-script = ExtResource("15_r8uqf")
+[node name="ShardSystem" parent="." instance=ExtResource("15_fvj66")]
+
+[node name="ShardCollector" parent="ShardSystem" instance=ExtResource("16_ejwxi")]
+position = Vector2(960, 1140)
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("forest_array")]
 position = Vector2(960, 540)

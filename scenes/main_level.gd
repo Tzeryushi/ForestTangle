@@ -19,10 +19,10 @@ var danger_level : int = 0
 var intro_done : bool = false
 var end_state_triggered : bool = false
 
-const asteroid_wait_default : float = 10.0
+const asteroid_wait_default : float = 5.0
 
 signal forest_level_changed(new_height:int)
-signal druid_added
+signal druid_added()
 
 func _ready() -> void:
 	MusicManager.play(playing_music)
@@ -30,16 +30,16 @@ func _ready() -> void:
 		forest.forest_grown.connect(check_change_level)
 		forest.forest_receded.connect(check_change_level)
 		forest.forest_lost.connect(game_lose)
-	dialoguer.play_dialogue("Hell rains from the sky", 3.0)
-	await dialoguer.finished
-	dialoguer.play_dialogue("Should the treeline break, all will end", 4.0)
-	await dialoguer.finished
-	dialoguer.play_dialogue("Bolster the forest, grow to the heavens", 4.0)
-	await dialoguer.finished
-	dialoguer.play_dialogue("Hold 1, 2, 3, and 4 to target forests", 4.0)
-	await dialoguer.finished
-	dialoguer.play_dialogue("Draw upon the heavens with your mouse", 4.0)
-	await dialoguer.finished
+	#dialoguer.play_dialogue("Hell rains from the sky", 3.0)
+	#await dialoguer.finished
+	#dialoguer.play_dialogue("Should the treeline break, all will end", 4.0)
+	#await dialoguer.finished
+	#dialoguer.play_dialogue("Bolster the forest, grow to the heavens", 4.0)
+	#await dialoguer.finished
+	#dialoguer.play_dialogue("Hold 1, 2, 3, and 4 to target forests", 4.0)
+	#await dialoguer.finished
+	#dialoguer.play_dialogue("Draw upon the heavens with your mouse", 4.0)
+	#await dialoguer.finished
 	asteroid_timer.start()
 	dialoguer.play_dialogue("Follow the stars", 3.0)
 	await dialoguer.finished

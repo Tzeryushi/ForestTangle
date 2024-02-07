@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bry24iy8yquhe"]
+
+[ext_resource type="Script" path="res://entities/shard_system/shard_collector.gd" id="1_j3ome"]
+[ext_resource type="Texture2D" uid="uid://bixecb0yl8dpm" path="res://icon.svg" id="1_u5ae8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1imq2"]
+radius = 57.0088
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2p5y3"]
+
+[node name="ShardCollector" type="Node2D" node_paths=PackedStringArray("collection_radius", "attraction_radius")]
+script = ExtResource("1_j3ome")
+collection_radius = NodePath("CollectionRadius")
+attraction_radius = NodePath("AttractionRadius")
+
+[node name="CollectorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_u5ae8")
+
+[node name="CollectionRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollectionShape" type="CollisionShape2D" parent="CollectionRadius"]
+shape = SubResource("CircleShape2D_1imq2")
+
+[node name="AttractionRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttractionRadius"]
+shape = SubResource("CircleShape2D_2p5y3")
+
+[connection signal="area_entered" from="CollectionRadius" to="." method="_on_collection_radius_area_entered"]
+[connection signal="area_entered" from="AttractionRadius" to="." method="_on_attraction_radius_area_entered"]

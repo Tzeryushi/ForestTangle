@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2mkoxpw6ajn6"]
+
+[ext_resource type="Script" path="res://entities/shard_system/shard_system.gd" id="1_u66g4"]
+[ext_resource type="PackedScene" uid="uid://cxiw01nyawqtk" path="res://entities/shard_system/star_shard.tscn" id="2_vs0hw"]
+
+[node name="ShardSystem" type="Node2D"]
+script = ExtResource("1_u66g4")
+shard_scene = ExtResource("2_vs0hw")

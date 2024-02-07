@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @export var state_manager : StateManager
 
+static var druid_count : int = 0
+
 signal heal_sent(heal_value:float)
 
 const HEAL_STRENGTH : float = 0.5
@@ -12,6 +14,7 @@ func _ready() -> void:
 	var level_node = get_tree().get_first_node_in_group("main_level")
 	if level_node:
 		heal_sent.connect((level_node as MainLevel).druid_heal)
+	druid_count += 1
 
 func _unhandled_input(_event) -> void:
 	state_manager.process_input(_event)
@@ -21,6 +24,9 @@ func _process(_delta) -> void:
 
 func _physics_process(_delta) -> void:
 	state_manager.process_physics(_delta)
+
+func _exit_tree() -> void:
+	druid_count -= 1
 
 func send_heal() -> void:
 	heal_sent.emit(HEAL_STRENGTH)

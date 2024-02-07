@@ -84,6 +84,7 @@ pause={
 2d_physics/layer_4="Druids"
 2d_physics/layer_5="Stars"
 2d_physics/layer_6="Skyman"
+2d_physics/layer_7="Shards"
 
 [rendering]
 
