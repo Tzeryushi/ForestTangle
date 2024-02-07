@@ -19,16 +19,21 @@ signal attack_bears_casted
 signal heal_casted
 signal make_druid_casted
 signal make_two_druids_casted
+signal collect_casted
 
 ##dictionary of callables that sends signals for use by main level
 var book_of_stars : Dictionary = {
 	[0,1]:grow,
-	[12,19,6,14,15,0,8,9,2,17,11]:grow,
+	[4,18,20,17,9,8,0,15,14,19]:grow,
+	[12,19,6,14,15,0,8,9,2,17,11]:grow_two,
+	[16,19,13,6,14,15,0,8,9,2,10,17,20,18,4]:grow_three,
 	[1, 2, 17, 16, 19, 6, 7]:attack_spikes,
 	[20, 17, 16, 19, 12, 18, 11, 4]:attack_pods,
 	[8, 17, 18, 13, 6, 5, 4, 3, 2, 1, 0]:attack_bears,
 	[14, 6, 13, 10, 2, 9, 16, 20]:heal,
-	[15,7,14,6,13,5,12,4,11,3,10,2,9,1,8,0,16,17,18,19,20]:make_druid
+	[13, 5, 12, 18, 4, 3, 20, 7, 0, 16, 8, 1, 9]:make_druid,
+	[15,7,14,6,13,5,12,4,11,3,10,2,9,1,8,0,16,17,18,19,20]:make_two_druids,
+	[15, 14, 19, 20, 17, 16, 18, 11, 10]:collect,
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -81,6 +86,12 @@ func call_magic(callable:Callable) -> void:
 func grow() -> void:
 	grow_casted.emit()
 
+func grow_two() -> void:
+	grow_two_casted.emit()
+
+func grow_three() -> void:
+	grow_three_casted.emit()
+
 func attack_spikes() -> void:
 	attack_spikes_casted.emit()
 
@@ -95,3 +106,9 @@ func heal() -> void:
 
 func make_druid() -> void:
 	make_druid_casted.emit()
+
+func make_two_druids() -> void:
+	make_two_druids_casted.emit()
+
+func collect() -> void:
+	collect_casted.emit()

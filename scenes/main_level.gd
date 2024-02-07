@@ -129,8 +129,20 @@ func game_lose() -> void:
 func _on_sky_circle_grow_casted():
 	if active_forest:
 		active_forest.grow_thicket()
-		active_forest.grow_thicket()
 		end_cast("grow")
+
+func _on_sky_circle_grow_two_casted():
+	if active_forest:
+		active_forest.grow_thicket()
+		active_forest.grow_thicket()
+		end_cast("grow two")
+
+func _on_sky_circle_grow_three_casted():
+	if active_forest:
+		active_forest.grow_thicket()
+		active_forest.grow_thicket()
+		active_forest.grow_thicket()
+		end_cast("grow three")
 
 func _on_sky_circle_attack_spikes_casted():
 	if active_forest:
@@ -154,10 +166,20 @@ func _on_sky_circle_make_druid_casted():
 		druid_added.emit()
 		end_cast("new druid")
 
+func _on_sky_circle_make_two_druids_casted():
+	if active_forest:
+		active_forest.make_druid()
+		active_forest.make_druid()
+		druid_added.emit()
+		end_cast("two druids")
+
 func _on_sky_circle_heal_casted():
 	if active_forest:
 		active_forest.heal_thickets(10.0)
 		end_cast("heal")
+
+func _on_sky_circle_collect_casted():
+	pass # Replace with function body.
 
 func end_cast(cast_text:String="no text", time:float=1.0) -> void:
 	sky_circle.deactivate_circle()
