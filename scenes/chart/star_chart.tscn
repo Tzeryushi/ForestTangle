@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://da2vo1gjr6uh1"]
+
+[ext_resource type="Texture2D" uid="uid://bivy5amc8ue2l" path="res://scenes/chart/chart.png" id="1_swjl6"]
+
+[node name="StarChart" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -355.0
+offset_top = 170.0
+offset_right = 34.0
+offset_bottom = 1006.0
+texture = ExtResource("1_swjl6")

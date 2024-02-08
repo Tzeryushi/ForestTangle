@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=20 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dvry1a86ykyak" path="res://entities/asteroids/asteroid.tscn" id="3_tblxa"]
 [ext_resource type="PackedScene" uid="uid://cq5xuf5cf6d8f" path="res://entities/skyman/skyman.tscn" id="10_byidy"]
 [ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="12_br7i5"]
+[ext_resource type="PackedScene" uid="uid://da2vo1gjr6uh1" path="res://scenes/chart/star_chart.tscn" id="13_khf2j"]
 [ext_resource type="Script" path="res://scenes/dialogue_layer.gd" id="13_qlqsy"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="14_g1n0c"]
 [ext_resource type="PackedScene" uid="uid://d2mkoxpw6ajn6" path="res://entities/shard_system/shard_system.tscn" id="15_fvj66"]
@@ -86,6 +87,8 @@ polygon = PackedVector2Array(-40, 1100, 1968, 1100, 1968, 950, 2039, 950, 2034, 
 
 [node name="Druid" parent="." instance=ExtResource("12_br7i5")]
 position = Vector2(959, 744)
+
+[node name="StarChart" parent="." instance=ExtResource("13_khf2j")]
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
 

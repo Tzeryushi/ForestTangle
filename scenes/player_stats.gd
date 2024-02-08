@@ -16,7 +16,7 @@ func _ready() -> void:
 	change_druid_count(druid_count)
 
 func add_star(stars_to_add:int=1) -> void:
-	change_star_count(star_count+1)
+	change_star_count(star_count+stars_to_add)
 
 func change_star_count(new_value:int) -> void:
 	var old_value : int = star_count
