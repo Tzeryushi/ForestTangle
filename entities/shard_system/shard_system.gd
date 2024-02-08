@@ -6,6 +6,7 @@ extends Node2D
 ##references to all stars are stored within the system, which can call them in
 
 @export var shard_scene : PackedScene
+@export var shard_collector : ShardCollector
 
 var shard_list : Array[StarShard] = []
 
@@ -29,4 +30,11 @@ func _on_asteroid_destruct(destruct_pos:Vector2) -> void:
 
 func _on_shard_destructed(shard_ref:StarShard) -> void:
 	shard_list.erase(shard_ref)
-	
+
+func _on_main_level_collect_shards_called():
+	if shard_collector:
+		for shard in shard_list:
+			shard.start_collection(shard_collector.global_position, 2.0)
+
+func _on_shard_collector_shard_collected(number_of_shards):
+	shard_collected.emit(number_of_shards)

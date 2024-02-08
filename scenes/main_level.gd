@@ -23,6 +23,7 @@ const asteroid_wait_default : float = 5.0
 
 signal forest_level_changed(new_height:int)
 signal druid_added()
+signal collect_shards_called
 
 func _ready() -> void:
 	MusicManager.play(playing_music)
@@ -179,7 +180,9 @@ func _on_sky_circle_heal_casted():
 		end_cast("heal")
 
 func _on_sky_circle_collect_casted():
-	pass # Replace with function body.
+	if active_forest:
+		collect_shards_called.emit()
+		end_cast("collect shards")
 
 func end_cast(cast_text:String="no text", time:float=1.0) -> void:
 	sky_circle.deactivate_circle()

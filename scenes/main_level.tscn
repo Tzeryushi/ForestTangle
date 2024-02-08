@@ -1,25 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=19 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
 [ext_resource type="Script" path="res://scenes/main_level.gd" id="1_llerk"]
-[ext_resource type="Texture2D" uid="uid://baiq6qg4un23p" path="res://scenes/main_level assets/starry_sky/GrowthConst.PNG" id="2_7063h"]
 [ext_resource type="Script" path="res://scenes/main_level assets/asteroid_spawner.gd" id="2_aoqv5"]
 [ext_resource type="Script" path="res://scenes/main_level assets/main_camera.gd" id="2_vrnwh"]
 [ext_resource type="AudioStream" uid="uid://fpmha1ljf65e" path="res://music/TheForestGrows.wav" id="2_yfn0k"]
 [ext_resource type="Texture2D" uid="uid://c1v3n8drhqxdr" path="res://scenes/main_level assets/Hills.PNG" id="3_3u80s"]
-[ext_resource type="Texture2D" uid="uid://dwu21xmrurv52" path="res://scenes/main_level assets/starry_sky/PodsConst.PNG" id="3_mdkvm"]
 [ext_resource type="Script" path="res://scenes/player_stats.gd" id="3_nkcm1"]
 [ext_resource type="PackedScene" uid="uid://dvry1a86ykyak" path="res://entities/asteroids/asteroid.tscn" id="3_tblxa"]
-[ext_resource type="Texture2D" uid="uid://dffg6bk5kblo5" path="res://scenes/main_level assets/starry_sky/SpikesConst.PNG" id="4_xpta2"]
-[ext_resource type="Texture2D" uid="uid://kc6lq70qvcxa" path="res://scenes/main_level assets/starry_sky/DruidsConst.PNG" id="6_kyxke"]
-[ext_resource type="Texture2D" uid="uid://ix0jfryq1igp" path="res://scenes/main_level assets/starry_sky/HealConst.PNG" id="7_loqom"]
 [ext_resource type="PackedScene" uid="uid://cq5xuf5cf6d8f" path="res://entities/skyman/skyman.tscn" id="10_byidy"]
 [ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="12_br7i5"]
 [ext_resource type="Script" path="res://scenes/dialogue_layer.gd" id="13_qlqsy"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="14_g1n0c"]
 [ext_resource type="PackedScene" uid="uid://d2mkoxpw6ajn6" path="res://entities/shard_system/shard_system.tscn" id="15_fvj66"]
-[ext_resource type="PackedScene" uid="uid://bry24iy8yquhe" path="res://entities/shard_system/shard_collector.tscn" id="16_ejwxi"]
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="18_k6g82"]
 [ext_resource type="Script" path="res://scenes/cast_layer.gd" id="18_uexvj"]
 [ext_resource type="Script" path="res://scenes/level_hud.gd" id="21_mem4w"]
@@ -37,35 +31,6 @@ playing_music = ExtResource("2_yfn0k")
 
 [node name="PlayerStats" type="Node" parent="."]
 script = ExtResource("3_nkcm1")
-
-[node name="Skies" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0.254902)
-z_index = -15
-
-[node name="GrowthConst" type="Sprite2D" parent="Skies"]
-position = Vector2(293, 428)
-scale = Vector2(0.493197, 0.493197)
-texture = ExtResource("2_7063h")
-
-[node name="PodsConst" type="Sprite2D" parent="Skies"]
-position = Vector2(1549, 234)
-scale = Vector2(0.450253, 0.450253)
-texture = ExtResource("3_mdkvm")
-
-[node name="SpikesConst" type="Sprite2D" parent="Skies"]
-position = Vector2(1676, 564)
-scale = Vector2(0.45106, 0.45106)
-texture = ExtResource("4_xpta2")
-
-[node name="DruidsConst" type="Sprite2D" parent="Skies"]
-position = Vector2(1874, -18)
-scale = Vector2(0.521142, 0.521142)
-texture = ExtResource("6_kyxke")
-
-[node name="HealConst" type="Sprite2D" parent="Skies"]
-position = Vector2(39, 81)
-scale = Vector2(0.507282, 0.507282)
-texture = ExtResource("7_loqom")
 
 [node name="SkyCircle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_jirym")]
 camera = NodePath("../MainCamera")
@@ -100,9 +65,6 @@ camera = NodePath("../MainCamera")
 asteroid_scene = ExtResource("3_tblxa")
 
 [node name="ShardSystem" parent="." instance=ExtResource("15_fvj66")]
-
-[node name="ShardCollector" parent="ShardSystem" instance=ExtResource("16_ejwxi")]
-position = Vector2(960, 1140)
 
 [node name="MainCamera" type="Camera2D" parent="." node_paths=PackedStringArray("forest_array")]
 position = Vector2(960, 540)
@@ -364,6 +326,7 @@ theme_override_fonts/font = ExtResource("14_g1n0c")
 theme_override_font_sizes/font_size = 80
 text = "Quit"
 
+[connection signal="collect_shards_called" from="." to="ShardSystem" method="_on_main_level_collect_shards_called"]
 [connection signal="druid_added" from="." to="PlayerStats" method="_on_main_level_druid_added"]
 [connection signal="forest_level_changed" from="." to="PlayerStats" method="_on_main_level_forest_level_changed"]
 [connection signal="druid_count_changed" from="PlayerStats" to="HUD/HUDMainLayer" method="_on_player_stats_druid_count_changed"]
@@ -381,6 +344,7 @@ text = "Quit"
 [connection signal="make_two_druids_casted" from="SkyCircle" to="." method="_on_sky_circle_make_two_druids_casted"]
 [connection signal="defeated" from="Skyman" to="." method="_on_skyman_defeated"]
 [connection signal="asteroid_spawned" from="AsteroidSpawner" to="ShardSystem" method="_on_asteroid_spawner_asteroid_spawned"]
+[connection signal="shard_collected" from="ShardSystem" to="PlayerStats" method="_on_shard_system_shard_collected"]
 [connection signal="timeout" from="AsteroidTimer" to="AsteroidSpawner" method="_on_asteroid_timer_timeout"]
 [connection signal="pressed" from="Pause/PauseMenu/ColorRect/VBoxContainer/Resume" to="Pause/PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="Pause/PauseMenu/ColorRect/VBoxContainer/Menu" to="Pause/PauseMenu" method="_on_main_menu_pressed"]

@@ -1,3 +1,4 @@
+class_name ShardCollector
 extends Node2D
 
 @export var collection_radius : Area2D

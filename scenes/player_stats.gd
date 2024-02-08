@@ -38,3 +38,6 @@ func _on_main_level_forest_level_changed(new_height):
 
 func _on_main_level_druid_added():
 	change_druid_count(druid_count+1)
+
+func _on_shard_system_shard_collected(amount):
+	change_star_count(star_count+amount)
