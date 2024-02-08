@@ -217,6 +217,7 @@ offset_left = 22.0
 offset_top = 22.0
 offset_right = 357.0
 offset_bottom = 717.0
+mouse_filter = 2
 
 [node name="Level" type="RichTextLabel" parent="HUD/HUDMainLayer/VBoxContainer"]
 clip_contents = false

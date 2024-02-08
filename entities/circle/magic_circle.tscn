@@ -37,7 +37,7 @@ position = Vector2(0, 435)
 star_number = 4
 
 [node name="MagicStar5" parent="." instance=ExtResource("3_nfpt8")]
-position = Vector2(-308, 308)
+position = Vector2(-307, 307)
 star_number = 5
 
 [node name="MagicStar6" parent="." instance=ExtResource("3_nfpt8")]
@@ -45,7 +45,7 @@ position = Vector2(-434, 0)
 star_number = 6
 
 [node name="MagicStar7" parent="." instance=ExtResource("3_nfpt8")]
-position = Vector2(-308, -308)
+position = Vector2(-307, -308)
 star_number = 7
 
 [node name="MagicStar8" parent="." instance=ExtResource("3_nfpt8")]
@@ -65,7 +65,7 @@ position = Vector2(127, 308)
 star_number = 11
 
 [node name="MagicStar12" parent="." instance=ExtResource("3_nfpt8")]
-position = Vector2(-131, 304)
+position = Vector2(-127, 307)
 star_number = 12
 
 [node name="MagicStar13" parent="." instance=ExtResource("3_nfpt8")]
@@ -73,11 +73,11 @@ position = Vector2(-308, 126)
 star_number = 13
 
 [node name="MagicStar14" parent="." instance=ExtResource("3_nfpt8")]
-position = Vector2(-307, -128)
+position = Vector2(-307, -127)
 star_number = 14
 
 [node name="MagicStar15" parent="." instance=ExtResource("3_nfpt8")]
-position = Vector2(-131, -302)
+position = Vector2(-128, -307)
 star_number = 15
 
 [node name="MagicStar16" parent="." instance=ExtResource("3_nfpt8")]

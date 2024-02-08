@@ -1,19 +1,158 @@
-[gd_scene load_steps=2 format=3 uid="uid://da2vo1gjr6uh1"]
+[gd_scene load_steps=6 format=3 uid="uid://da2vo1gjr6uh1"]
 
+[ext_resource type="Script" path="res://scenes/chart/star_chart.gd" id="1_m74rf"]
 [ext_resource type="Texture2D" uid="uid://bivy5amc8ue2l" path="res://scenes/chart/chart.png" id="1_swjl6"]
+[ext_resource type="FontFile" uid="uid://cnb0jluob5lp2" path="res://fonts/IrishUncialfabeta-Bold.ttf" id="2_wkagq"]
+[ext_resource type="Texture2D" uid="uid://cum58elipn6bf" path="res://entities/circle/Star.PNG" id="4_nvr4q"]
 
-[node name="StarChart" type="CanvasLayer"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qgda"]
+size = Vector2(71, 62)
 
-[node name="Control" type="Control" parent="."]
+[node name="StarChart" type="CanvasLayer" node_paths=PackedStringArray("chart")]
+script = ExtResource("1_m74rf")
+chart = NodePath("ChartControl")
+
+[node name="ChartControl" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -357.0
+offset_top = -395.0
+offset_right = -2.0
+offset_bottom = 487.0
+grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-layout_mode = 0
-offset_left = -355.0
-offset_top = 170.0
-offset_right = 34.0
-offset_bottom = 1006.0
+[node name="TextureRect" type="TextureRect" parent="ChartControl"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -418.0
+offset_right = 424.0
+offset_bottom = 418.0
+grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("1_swjl6")
+
+[node name="ChartTab" type="Area2D" parent="ChartControl/TextureRect"]
+position = Vector2(389, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChartControl/TextureRect/ChartTab"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_1qgda")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChartControl"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 124.0
+offset_right = 320.0
+offset_bottom = 827.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ChartControl/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.64
+theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
+theme_override_fonts/normal_font = ExtResource("2_wkagq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Discover Constellation"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="ChartControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_wkagq")
+theme_override_font_sizes/font_size = 20
+text = "1/10"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ChartControl/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_nvr4q")
+expand_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.64
+theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
+theme_override_fonts/normal_font = ExtResource("2_wkagq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Grow: adds a row of trees"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("4_nvr4q")
+expand_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.64
+theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
+theme_override_fonts/normal_font = ExtResource("2_wkagq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Grow: adds a row of trees"
+fit_content = true
+scroll_active = false
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+texture = ExtResource("4_nvr4q")
+expand_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer3"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.64
+theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
+theme_override_fonts/normal_font = ExtResource("2_wkagq")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Grow: adds a row of trees"
+fit_content = true
+scroll_active = false
+
+[node name="Button" type="Button" parent="ChartControl"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "wakawaka"
+
+[connection signal="input_event" from="ChartControl/TextureRect/ChartTab" to="." method="_on_chart_tab_input_event"]
+[connection signal="pressed" from="ChartControl/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
