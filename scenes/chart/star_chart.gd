@@ -1,26 +1,43 @@
 extends CanvasLayer
 
+@export var star_dict : Dictionary
 @export var chart : Control
+@export var guide_scene : PackedScene
+@export var guide_container : VBoxContainer
+@export var constellations_ordered : Array[String]
+@export var upgrade_thresholds : Array[int]
+@export var upgrade_button : Button
+@export var stats : PlayerStats
 
 var is_out : bool = false
 
 const out_position : Vector2 = Vector2(0, 145)
 const in_position : Vector2 = Vector2(-357, 145)
 
-# Called when the node enters the scene tree for the first time.
+var move_tween : Tween
+
 func _ready():
-	pass # Replace with function body.
+	spawn_guide("grow1")
+	spawn_guide("spikes")
+	spawn_guide("collect")
 
+func spawn_guide(guide_key:String) -> void:
+	var new_guide = guide_scene.instantiate()
+	guide_container.add_child(new_guide)
+	new_guide.change_texture(star_dict[guide_key].image)
+	new_guide.set_text("[center]" + star_dict[guide_key].text)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func set_button_text(current_shards:int, needed_shards:int) -> void:
+	upgrade_button.text = str(current_shards) + "/" + str(needed_shards)
 
 func swap_positions() -> void:
+	if move_tween:
+		move_tween.kill()
+	move_tween = create_tween()
 	if is_out:
-		chart.position = in_position
+		move_tween.tween_property(chart, "position", in_position, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	else:
-		chart.position = out_position
+		move_tween.tween_property(chart, "position", out_position, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	is_out = !is_out
 
 func _on_chart_tab_input_event(viewport, event, shape_idx):
@@ -28,4 +45,12 @@ func _on_chart_tab_input_event(viewport, event, shape_idx):
 		swap_positions()
 
 func _on_button_pressed():
-	print("working")
+	if stats.star_count >= upgrade_thresholds[0]:
+		var upgrade_amount : int = upgrade_thresholds.pop_front()
+		spawn_guide(constellations_ordered.pop_front())
+		stats.change_star_count(stats.star_count-upgrade_amount)
+
+func _on_player_stats_star_count_changed(new_value, _old_value):
+	#TODO change button text
+	set_button_text(new_value, upgrade_thresholds[0])
+	pass

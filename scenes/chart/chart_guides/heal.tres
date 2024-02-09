@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://deyu3p582e44f"]
+
+[ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="1_0o55r"]
+[ext_resource type="Texture2D" uid="uid://bd48b7g2be2vc" path="res://scenes/chart/constellations/heal_book_const.png" id="1_mfaku"]
+
+[resource]
+script = ExtResource("1_0o55r")
+title = "heal"
+image = ExtResource("1_mfaku")
+text = "heal: heals all thickets in a column."

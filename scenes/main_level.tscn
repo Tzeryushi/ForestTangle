@@ -88,7 +88,8 @@ polygon = PackedVector2Array(-40, 1100, 1968, 1100, 1968, 950, 2039, 950, 2034, 
 [node name="Druid" parent="." instance=ExtResource("12_br7i5")]
 position = Vector2(959, 744)
 
-[node name="StarChart" parent="." instance=ExtResource("13_khf2j")]
+[node name="StarChart" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("13_khf2j")]
+stats = NodePath("../PlayerStats")
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
 
@@ -335,6 +336,7 @@ text = "Quit"
 [connection signal="forest_level_changed" from="." to="PlayerStats" method="_on_main_level_forest_level_changed"]
 [connection signal="druid_count_changed" from="PlayerStats" to="HUD/HUDMainLayer" method="_on_player_stats_druid_count_changed"]
 [connection signal="forest_level_changed" from="PlayerStats" to="HUD/HUDMainLayer" method="_on_player_stats_forest_level_changed"]
+[connection signal="star_count_changed" from="PlayerStats" to="StarChart" method="_on_player_stats_star_count_changed"]
 [connection signal="star_count_changed" from="PlayerStats" to="HUD/HUDMainLayer" method="_on_player_stats_star_count_changed"]
 [connection signal="attack_bears_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_bears_casted"]
 [connection signal="attack_pods_casted" from="SkyCircle" to="." method="_on_sky_circle_attack_pods_casted"]

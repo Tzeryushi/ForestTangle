@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://4e24mx7r8qwd"]
+
+[ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="1_x31jn"]
+[ext_resource type="Texture2D" uid="uid://dj0chrbnnf83r" path="res://scenes/chart/constellations/pods_book_const.png" id="1_xt8nf"]
+
+[resource]
+script = ExtResource("1_x31jn")
+title = "pods"
+image = ExtResource("1_xt8nf")
+text = "seedpods: summon seedpods that seek asteroids."

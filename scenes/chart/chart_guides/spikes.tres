@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://vkk30nta2acf"]
+
+[ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="1_1d5gc"]
+[ext_resource type="Texture2D" uid="uid://cdrf334ms7guw" path="res://scenes/chart/constellations/spikes_book_const.png" id="1_5ownn"]
+
+[resource]
+script = ExtResource("1_1d5gc")
+title = "spikes"
+image = ExtResource("1_5ownn")
+text = "spikes: create a pillar of spikes to destroy asteroids."

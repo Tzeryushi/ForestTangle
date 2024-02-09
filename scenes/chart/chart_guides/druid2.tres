@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://blk1mfp35rr81"]
+
+[ext_resource type="Texture2D" uid="uid://cfc6ya3dw88bu" path="res://scenes/chart/constellations/druid2_book_const.png" id="1_3htci"]
+[ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="1_fu6cj"]
+
+[resource]
+script = ExtResource("1_fu6cj")
+title = "druid2"
+image = ExtResource("1_3htci")
+text = "induct 2 druids: spawns 2 druids."

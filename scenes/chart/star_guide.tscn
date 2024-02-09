@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0edv6fafa3ag"]
+
+[ext_resource type="Script" path="res://scenes/chart/star_guide.gd" id="1_28vgr"]
+[ext_resource type="Texture2D" uid="uid://c74k4ounjdojd" path="res://scenes/chart/constellations/grow1_book_const.png" id="1_062ar"]
+[ext_resource type="FontFile" uid="uid://cnb0jluob5lp2" path="res://fonts/IrishUncialfabeta-Bold.ttf" id="2_r3kbe"]
+
+[node name="StarChart" type="VBoxContainer"]
+script = ExtResource("1_28vgr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_062ar")
+expand_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.64
+theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
+theme_override_fonts/normal_font = ExtResource("2_r3kbe")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Grow: adds a row of trees"
+fit_content = true
+scroll_active = false

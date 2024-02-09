@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://dtslnq3iddhre"]
+
+[ext_resource type="Texture2D" uid="uid://cbp4beps5kpgo" path="res://scenes/chart/constellations/druid1_book_const.png" id="1_v6osr"]
+[ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="1_x547i"]
+
+[resource]
+script = ExtResource("1_x547i")
+title = "druid1"
+image = ExtResource("1_v6osr")
+text = "induct druid: creates a druid, which can attack and heal."

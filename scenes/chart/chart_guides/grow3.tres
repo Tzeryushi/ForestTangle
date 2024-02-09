@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://flhtd2sl2pts"]
+
+[ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="1_4glsl"]
+[ext_resource type="Texture2D" uid="uid://dbwpi2pc8l82h" path="res://scenes/chart/constellations/grow3_book_const.png" id="1_7e533"]
+
+[resource]
+script = ExtResource("1_4glsl")
+title = "grow3"
+image = ExtResource("1_7e533")
+text = "grow 3: adds 3 rows to a forest."

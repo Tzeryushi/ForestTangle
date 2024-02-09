@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://dn63nqls1jekl"]
+
+[ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="1_gjvct"]
+[ext_resource type="Texture2D" uid="uid://c74k4ounjdojd" path="res://scenes/chart/constellations/grow1_book_const.png" id="1_pwx10"]
+
+[resource]
+script = ExtResource("1_gjvct")
+title = "grow1"
+image = ExtResource("1_pwx10")
+text = "grow: add a row of trees to a forest."

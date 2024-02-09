@@ -1,11 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://da2vo1gjr6uh1"]
+[gd_scene load_steps=18 format=3 uid="uid://da2vo1gjr6uh1"]
 
 [ext_resource type="Script" path="res://scenes/chart/star_chart.gd" id="1_m74rf"]
 [ext_resource type="Texture2D" uid="uid://bivy5amc8ue2l" path="res://scenes/chart/chart.png" id="1_swjl6"]
+[ext_resource type="Resource" uid="uid://dn63nqls1jekl" path="res://scenes/chart/chart_guides/grow1.tres" id="2_10do4"]
 [ext_resource type="FontFile" uid="uid://cnb0jluob5lp2" path="res://fonts/IrishUncialfabeta-Bold.ttf" id="2_wkagq"]
-[ext_resource type="Texture2D" uid="uid://c74k4ounjdojd" path="res://scenes/chart/constellations/grow1_book_const.png" id="4_wmjrb"]
-[ext_resource type="Texture2D" uid="uid://cdrf334ms7guw" path="res://scenes/chart/constellations/spikes_book_const.png" id="5_dsy36"]
-[ext_resource type="Texture2D" uid="uid://b5t40ix8dkmx5" path="res://scenes/chart/constellations/collect_book_const.png" id="6_ligvd"]
+[ext_resource type="Resource" uid="uid://da0byo106c0qy" path="res://scenes/chart/chart_guides/bears.tres" id="3_uva3g"]
+[ext_resource type="Resource" uid="uid://b7lrghgjx8anx" path="res://scenes/chart/chart_guides/collect.tres" id="4_mpdsi"]
+[ext_resource type="PackedScene" uid="uid://d0edv6fafa3ag" path="res://scenes/chart/star_guide.tscn" id="4_ypp3d"]
+[ext_resource type="Resource" uid="uid://dtslnq3iddhre" path="res://scenes/chart/chart_guides/druid1.tres" id="5_8f2vd"]
+[ext_resource type="Resource" uid="uid://blk1mfp35rr81" path="res://scenes/chart/chart_guides/druid2.tres" id="6_4j8rv"]
+[ext_resource type="Resource" uid="uid://ce6my5ub8d0ei" path="res://scenes/chart/chart_guides/grow2.tres" id="7_kth27"]
+[ext_resource type="Resource" uid="uid://flhtd2sl2pts" path="res://scenes/chart/chart_guides/grow3.tres" id="8_jixag"]
+[ext_resource type="Resource" uid="uid://deyu3p582e44f" path="res://scenes/chart/chart_guides/heal.tres" id="9_v18bs"]
+[ext_resource type="Resource" uid="uid://4e24mx7r8qwd" path="res://scenes/chart/chart_guides/pods.tres" id="10_f64af"]
+[ext_resource type="Resource" uid="uid://vkk30nta2acf" path="res://scenes/chart/chart_guides/spikes.tres" id="11_kchqu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qgda"]
 size = Vector2(71, 62)
@@ -14,9 +22,26 @@ size = Vector2(71, 62)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ilwnu"]
 
-[node name="StarChart" type="CanvasLayer" node_paths=PackedStringArray("chart")]
+[node name="StarChart" type="CanvasLayer" node_paths=PackedStringArray("chart", "guide_container", "upgrade_button")]
 script = ExtResource("1_m74rf")
+star_dict = {
+"bears": ExtResource("3_uva3g"),
+"collect": ExtResource("4_mpdsi"),
+"druid1": ExtResource("5_8f2vd"),
+"druid2": ExtResource("6_4j8rv"),
+"grow1": ExtResource("2_10do4"),
+"grow2": ExtResource("7_kth27"),
+"grow3": ExtResource("8_jixag"),
+"heal": ExtResource("9_v18bs"),
+"pods": ExtResource("10_f64af"),
+"spikes": ExtResource("11_kchqu")
+}
 chart = NodePath("ChartControl")
+guide_scene = ExtResource("4_ypp3d")
+guide_container = NodePath("ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer")
+constellations_ordered = Array[String](["pods", "druid1", "grow2", "heal", "bears", "grow3", "druid2"])
+upgrade_thresholds = Array[int]([10, 15, 20, 25, 30, 40, 50, 9999])
+upgrade_button = NodePath("ChartControl/VBoxContainer/HBoxContainer/Button")
 
 [node name="ChartControl" type="Control" parent="."]
 layout_mode = 3
@@ -102,76 +127,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_ilwnu")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("4_wmjrb")
-expand_mode = 5
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 4.64
-theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
-theme_override_fonts/normal_font = ExtResource("2_wkagq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Grow: adds a row of trees"
-fit_content = true
-scroll_active = false
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("5_dsy36")
-expand_mode = 5
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2"]
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 4.64
-theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
-theme_override_fonts/normal_font = ExtResource("2_wkagq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Spikes: attack asteroids above forest"
-fit_content = true
-scroll_active = false
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3"]
-layout_mode = 2
-texture = ExtResource("6_ligvd")
-expand_mode = 5
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3"]
-clip_contents = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 4.64
-theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
-theme_override_fonts/normal_font = ExtResource("2_wkagq")
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]collect: attract all star shards on screen"
-fit_content = true
-scroll_active = false
-
-[node name="PanelContainer" type="PanelContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="VSeparator2" type="VSeparator" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer"]
 layout_mode = 2
