@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://da2vo1gjr6uh1"]
+[gd_scene load_steps=10 format=3 uid="uid://da2vo1gjr6uh1"]
 
 [ext_resource type="Script" path="res://scenes/chart/star_chart.gd" id="1_m74rf"]
 [ext_resource type="Texture2D" uid="uid://bivy5amc8ue2l" path="res://scenes/chart/chart.png" id="1_swjl6"]
 [ext_resource type="FontFile" uid="uid://cnb0jluob5lp2" path="res://fonts/IrishUncialfabeta-Bold.ttf" id="2_wkagq"]
-[ext_resource type="Texture2D" uid="uid://cum58elipn6bf" path="res://entities/circle/Star.PNG" id="4_nvr4q"]
+[ext_resource type="Texture2D" uid="uid://c74k4ounjdojd" path="res://scenes/chart/constellations/grow1_book_const.png" id="4_wmjrb"]
+[ext_resource type="Texture2D" uid="uid://cdrf334ms7guw" path="res://scenes/chart/constellations/spikes_book_const.png" id="5_dsy36"]
+[ext_resource type="Texture2D" uid="uid://b5t40ix8dkmx5" path="res://scenes/chart/constellations/collect_book_const.png" id="6_ligvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qgda"]
 size = Vector2(71, 62)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ltmep"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ilwnu"]
 
 [node name="StarChart" type="CanvasLayer" node_paths=PackedStringArray("chart")]
 script = ExtResource("1_m74rf")
@@ -44,9 +50,9 @@ shape = SubResource("RectangleShape2D_1qgda")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChartControl"]
 layout_mode = 0
-offset_left = 33.0
+offset_left = 20.0
 offset_top = 124.0
-offset_right = 320.0
+offset_right = 333.0
 offset_bottom = 827.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ChartControl/VBoxContainer"]
@@ -62,7 +68,7 @@ theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
 theme_override_fonts/normal_font = ExtResource("2_wkagq")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "Discover Constellation"
+text = "Discover Constellation:"
 fit_content = true
 scroll_active = false
 
@@ -73,24 +79,40 @@ theme_override_fonts/font = ExtResource("2_wkagq")
 theme_override_font_sizes/font_size = 20
 text = "1/10"
 
+[node name="HSeparator" type="HSeparator" parent="ChartControl/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ltmep")
+
 [node name="ScrollContainer" type="ScrollContainer" parent="ChartControl/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ilwnu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_nvr4q")
+texture = ExtResource("4_wmjrb")
 expand_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -104,15 +126,15 @@ text = "[center]Grow: adds a row of trees"
 fit_content = true
 scroll_active = false
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("4_nvr4q")
+texture = ExtResource("5_dsy36")
 expand_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer2"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -122,19 +144,19 @@ theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
 theme_override_fonts/normal_font = ExtResource("2_wkagq")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "[center]Grow: adds a row of trees"
+text = "[center]Spikes: attack asteroids above forest"
 fit_content = true
 scroll_active = false
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="VBoxContainer3" type="VBoxContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer3"]
+[node name="TextureRect" type="TextureRect" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
-texture = ExtResource("4_nvr4q")
+texture = ExtResource("6_ligvd")
 expand_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3"]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -144,15 +166,17 @@ theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
 theme_override_fonts/normal_font = ExtResource("2_wkagq")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "[center]Grow: adds a row of trees"
+text = "[center]collect: attract all star shards on screen"
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="Button" parent="ChartControl"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "wakawaka"
+[node name="PanelContainer" type="PanelContainer" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="ChartControl/VBoxContainer/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ilwnu")
 
 [connection signal="input_event" from="ChartControl/TextureRect/ChartTab" to="." method="_on_chart_tab_input_event"]
 [connection signal="pressed" from="ChartControl/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
