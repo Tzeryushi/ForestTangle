@@ -20,20 +20,21 @@ signal heal_casted
 signal make_druid_casted
 signal make_two_druids_casted
 signal collect_casted
+signal magic_casted(identifier:Globals.MAGIC)
 
 ##dictionary of callables that sends signals for use by main level
 var book_of_stars : Dictionary = {
-	[0,1]:grow,
-	[4,18,20,17,9,8,0,15,14,19]:grow,
-	[12,19,6,14,15,0,8,9,2,17,11]:grow_two,
-	[16,19,13,6,14,15,0,8,9,2,10,17,20,18,4]:grow_three,
-	[1, 2, 17, 16, 19, 6, 7]:attack_spikes,
-	[20, 17, 16, 19, 12, 18, 11, 4]:attack_pods,
-	[8, 17, 18, 13, 6, 5, 4, 3, 2, 1, 0]:attack_bears,
-	[14, 6, 13, 10, 2, 9, 16, 20]:heal,
-	[13, 5, 12, 18, 4, 3, 20, 7, 0, 16, 8, 1, 9]:make_druid,
-	[15,7,14,6,13,5,12,4,11,3,10,2,9,1,8,0,16,17,18,19,20]:make_two_druids,
-	[15, 14, 19, 20, 17, 16, 18, 11, 10]:collect,
+	[0,1]:Globals.MAGIC.GROW1,
+	[4,18,20,17,9,8,0,15,14,19]:Globals.MAGIC.GROW1,
+	[12,19,6,14,15,0,8,9,2,17,11]:Globals.MAGIC.GROW2,
+	[16,19,13,6,14,15,0,8,9,2,10,17,20,18,4]:Globals.MAGIC.GROW3,
+	[1, 2, 17, 16, 19, 6, 7]:Globals.MAGIC.SPIKES,
+	[20, 17, 16, 19, 12, 18, 11, 4]:Globals.MAGIC.PODS,
+	[8, 17, 18, 13, 6, 5, 4, 3, 2, 1, 0]:Globals.MAGIC.BEARS,
+	[14, 6, 13, 10, 2, 9, 16, 20]:Globals.MAGIC.HEAL,
+	[13, 5, 12, 18, 4, 3, 20, 7, 0, 16, 8, 1, 9]:Globals.MAGIC.DRUIDS1,
+	[15,7,14,6,13,5,12,4,11,3,10,2,9,1,8,0,16,17,18,19,20]:Globals.MAGIC.DRUIDS2,
+	[15, 14, 19, 20, 17, 16, 18, 11, 10]:Globals.MAGIC.COLLECT,
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -78,37 +79,7 @@ func _on_magic_circle_stars_logged(stars_logged:Array[int]):
 		if book_of_stars.has(reverse):
 			call_magic(book_of_stars[reverse])
 
-func call_magic(callable:Callable) -> void:
+func call_magic(identifier:Globals.MAGIC) -> void:
 	magic_circle.extend_sigil()
 	SfxManager.play(call_sfx, 0.5)
-	callable.call()
-
-func grow() -> void:
-	grow_casted.emit()
-
-func grow_two() -> void:
-	grow_two_casted.emit()
-
-func grow_three() -> void:
-	grow_three_casted.emit()
-
-func attack_spikes() -> void:
-	attack_spikes_casted.emit()
-
-func attack_pods() -> void:
-	attack_pods_casted.emit()
-
-func attack_bears() -> void:
-	attack_bears_casted.emit()
-
-func heal() -> void:
-	heal_casted.emit()
-
-func make_druid() -> void:
-	make_druid_casted.emit()
-
-func make_two_druids() -> void:
-	make_two_druids_casted.emit()
-
-func collect() -> void:
-	collect_casted.emit()
+	magic_casted.emit(identifier)

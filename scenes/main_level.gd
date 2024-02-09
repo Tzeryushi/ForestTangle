@@ -18,6 +18,18 @@ var forest_height : float = 0.0
 var danger_level : int = 0
 var intro_done : bool = false
 var end_state_triggered : bool = false
+var constellation_unlocks : Dictionary = {
+	Globals.MAGIC.GROW1:{"unlock":true, "call":cast_grow1},
+	Globals.MAGIC.GROW2:{"unlock":false, "call":cast_grow2},
+	Globals.MAGIC.GROW3:{"unlock":false, "call":cast_grow3},
+	Globals.MAGIC.BEARS:{"unlock":false, "call":cast_bears},
+	Globals.MAGIC.SPIKES:{"unlock":true, "call":cast_spikes},
+	Globals.MAGIC.PODS:{"unlock":false, "call":cast_pods},
+	Globals.MAGIC.DRUIDS1:{"unlock":false, "call":cast_druids1},
+	Globals.MAGIC.DRUIDS2:{"unlock":false, "call":cast_druids2},
+	Globals.MAGIC.HEAL:{"unlock":false, "call":cast_heal},
+	Globals.MAGIC.COLLECT:{"unlock":true, "call":cast_collect},
+}
 
 const asteroid_wait_default : float = 5.0
 
@@ -127,62 +139,59 @@ func game_lose() -> void:
 	await dialoguer.finished
 	SceneManager.restart_scene()
 
-func _on_sky_circle_grow_casted():
-	if active_forest:
-		active_forest.grow_thicket()
-		end_cast("grow")
+func cast_magic(identifier:Globals.MAGIC) -> void:
+	if constellation_unlocks.has(identifier):
+		if constellation_unlocks[identifier]["unlock"] and active_forest:
+			constellation_unlocks[identifier]["call"].call()
+		elif active_forest:
+			end_cast("not unlocked...")
 
-func _on_sky_circle_grow_two_casted():
-	if active_forest:
-		active_forest.grow_thicket()
-		active_forest.grow_thicket()
-		end_cast("grow two")
+func cast_grow1():
+	active_forest.grow_thicket()
+	end_cast("grow")
 
-func _on_sky_circle_grow_three_casted():
-	if active_forest:
-		active_forest.grow_thicket()
-		active_forest.grow_thicket()
-		active_forest.grow_thicket()
-		end_cast("grow three")
+func cast_grow2():
+	active_forest.grow_thicket()
+	active_forest.grow_thicket()
+	end_cast("grow two")
 
-func _on_sky_circle_attack_spikes_casted():
-	if active_forest:
-		active_forest.attack_spikes()
-		end_cast("spikes")
+func cast_grow3():
+	active_forest.grow_thicket()
+	active_forest.grow_thicket()
+	active_forest.grow_thicket()
+	end_cast("grow three")
 
-func _on_sky_circle_attack_bears_casted():
-	if active_forest:
-		active_forest.attack_bears()
-		end_cast("bears...?")
+func cast_spikes():
+	active_forest.attack_spikes()
+	end_cast("spikes")
 
-func _on_sky_circle_attack_pods_casted():
-	if active_forest:
-		active_forest.attack_pods()
-		sky_circle.deactivate_circle()
-		end_cast("pods")
+func cast_bears():
+	active_forest.attack_bears()
+	end_cast("bears...?")
 
-func _on_sky_circle_make_druid_casted():
-	if active_forest:
-		active_forest.make_druid()
-		druid_added.emit()
-		end_cast("new druid")
+func cast_pods():
+	active_forest.attack_pods()
+	sky_circle.deactivate_circle()
+	end_cast("pods")
 
-func _on_sky_circle_make_two_druids_casted():
-	if active_forest:
-		active_forest.make_druid()
-		active_forest.make_druid()
-		druid_added.emit()
-		end_cast("two druids")
+func cast_druids1():
+	active_forest.make_druid()
+	druid_added.emit()
+	end_cast("new druid")
 
-func _on_sky_circle_heal_casted():
-	if active_forest:
-		active_forest.heal_thickets(10.0)
-		end_cast("heal")
+func cast_druids2():
+	active_forest.make_druid()
+	active_forest.make_druid()
+	druid_added.emit()
+	end_cast("two druids")
 
-func _on_sky_circle_collect_casted():
-	if active_forest:
-		collect_shards_called.emit()
-		end_cast("collect shards")
+func cast_heal():
+	active_forest.heal_thickets(10.0)
+	end_cast("heal")
+
+func cast_collect():
+	collect_shards_called.emit()
+	end_cast("collect shards")
 
 func end_cast(cast_text:String="no text", time:float=1.0) -> void:
 	sky_circle.deactivate_circle()
