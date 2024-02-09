@@ -16,12 +16,15 @@ const in_position : Vector2 = Vector2(-357, 145)
 
 var move_tween : Tween
 
+signal constellation_unlocked(identifier:Globals.MAGIC)
+
 func _ready():
 	spawn_guide("grow1")
 	spawn_guide("spikes")
 	spawn_guide("collect")
 
 func spawn_guide(guide_key:String) -> void:
+	
 	var new_guide = guide_scene.instantiate()
 	guide_container.add_child(new_guide)
 	new_guide.change_texture(star_dict[guide_key].image)
@@ -45,8 +48,11 @@ func _on_chart_tab_input_event(viewport, event, shape_idx):
 		swap_positions()
 
 func _on_button_pressed():
+	if constellations_ordered.is_empty():
+		return
 	if stats.star_count >= upgrade_thresholds[0]:
 		var upgrade_amount : int = upgrade_thresholds.pop_front()
+		constellation_unlocked.emit(Globals.magic_translation[constellations_ordered[0]])
 		spawn_guide(constellations_ordered.pop_front())
 		stats.change_star_count(stats.star_count-upgrade_amount)
 

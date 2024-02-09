@@ -200,3 +200,6 @@ func end_cast(cast_text:String="no text", time:float=1.0) -> void:
 
 func _on_skyman_defeated():
 	game_win()
+
+func _on_star_chart_constellation_unlocked(identifier):
+	constellation_unlocks[identifier]["unlock"] = true
