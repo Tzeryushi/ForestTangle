@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_7f1i1")
-title = "bears"
+title = "Bears"
 image = ExtResource("1_3iykm")
 text = "bears: transforms druid to attack asteroids."

@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_x547i")
-title = "druid1"
+title = "Induct Druid"
 image = ExtResource("1_v6osr")
 text = "induct druid: creates a druid, which can attack and heal."

@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_x31jn")
-title = "pods"
+title = "Seedpods"
 image = ExtResource("1_xt8nf")
 text = "seedpods: summon seedpods that seek asteroids."

@@ -34,7 +34,7 @@ func _on_shard_destructed(shard_ref:StarShard) -> void:
 func _on_main_level_collect_shards_called():
 	if shard_collector:
 		for shard in shard_list:
-			shard.start_collection(shard_collector.global_position, 2.0)
+			shard.start_collection(shard_collector.global_position, randf_range(1.5,2.2))
 
 func _on_shard_collector_shard_collected(number_of_shards):
 	shard_collected.emit(number_of_shards)

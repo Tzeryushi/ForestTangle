@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_gjvct")
-title = "grow1"
+title = "Grow"
 image = ExtResource("1_pwx10")
 text = "grow: add a row of trees to a forest."

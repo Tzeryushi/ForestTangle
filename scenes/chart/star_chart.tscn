@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://da2vo1gjr6uh1"]
+[gd_scene load_steps=20 format=3 uid="uid://da2vo1gjr6uh1"]
 
 [ext_resource type="Script" path="res://scenes/chart/star_chart.gd" id="1_m74rf"]
 [ext_resource type="Texture2D" uid="uid://bivy5amc8ue2l" path="res://scenes/chart/chart.png" id="1_swjl6"]
@@ -14,6 +14,8 @@
 [ext_resource type="Resource" uid="uid://deyu3p582e44f" path="res://scenes/chart/chart_guides/heal.tres" id="9_v18bs"]
 [ext_resource type="Resource" uid="uid://4e24mx7r8qwd" path="res://scenes/chart/chart_guides/pods.tres" id="10_f64af"]
 [ext_resource type="Resource" uid="uid://vkk30nta2acf" path="res://scenes/chart/chart_guides/spikes.tres" id="11_kchqu"]
+[ext_resource type="AudioStream" uid="uid://cqmulbli0q7q5" path="res://SFX/drums.wav" id="13_ichef"]
+[ext_resource type="FontFile" uid="uid://vcxdt5phcc0d" path="res://fonts/LEVEFD__.ttf" id="16_yvtpt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qgda"]
 size = Vector2(71, 62)
@@ -22,7 +24,7 @@ size = Vector2(71, 62)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ilwnu"]
 
-[node name="StarChart" type="CanvasLayer" node_paths=PackedStringArray("chart", "guide_container", "upgrade_button")]
+[node name="StarChart" type="CanvasLayer" node_paths=PackedStringArray("chart", "guide_container", "magic_notice", "upgrade_button")]
 script = ExtResource("1_m74rf")
 star_dict = {
 "bears": ExtResource("3_uva3g"),
@@ -39,9 +41,11 @@ star_dict = {
 chart = NodePath("ChartControl")
 guide_scene = ExtResource("4_ypp3d")
 guide_container = NodePath("ChartControl/VBoxContainer/ScrollContainer/HBoxContainer/VBoxContainer")
+magic_notice = NodePath("Control/CastText")
 constellations_ordered = Array[String](["pods", "druid1", "grow2", "heal", "bears", "grow3", "druid2"])
 upgrade_thresholds = Array[int]([10, 15, 20, 25, 30, 40, 50, 9999])
 upgrade_button = NodePath("ChartControl/VBoxContainer/HBoxContainer/Button")
+upgrade_sfx = ExtResource("13_ichef")
 
 [node name="ChartControl" type="Control" parent="."]
 layout_mode = 3
@@ -134,6 +138,59 @@ theme_override_constants/separation = 15
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ilwnu")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CastText" type="RichTextLabel" parent="Control"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -867.0
+offset_top = -281.0
+offset_right = 867.0
+offset_bottom = -187.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.435294, 1)
+theme_override_colors/font_outline_color = Color(0.247059, 0.247059, 0.247059, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("16_yvtpt")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center][wave amp=30.0 freq=6
+
+.0]⚝ New Constellation - Grow ⚝"
+fit_content = true
+scroll_active = false
+
+[node name="ColorRect" type="ColorRect" parent="Control/CastText"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1570.0
+offset_top = -59.0
+offset_right = 1570.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.282353)
 
 [connection signal="input_event" from="ChartControl/TextureRect/ChartTab" to="." method="_on_chart_tab_input_event"]
 [connection signal="pressed" from="ChartControl/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

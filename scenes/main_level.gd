@@ -181,6 +181,7 @@ func cast_druids1():
 
 func cast_druids2():
 	active_forest.make_druid()
+	druid_added.emit()
 	active_forest.make_druid()
 	druid_added.emit()
 	end_cast("two druids")

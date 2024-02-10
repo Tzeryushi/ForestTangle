@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_jrkwt")
-title = "collect"
+title = "Collect"
 image = ExtResource("1_7jvh3")
 text = "collect: gather all star shards."

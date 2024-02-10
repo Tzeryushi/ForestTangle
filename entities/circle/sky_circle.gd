@@ -4,22 +4,13 @@ extends Node2D
 @export var camera : MainCamera
 @export var magic_circle : MagicCircle
 @export var call_sfx : AudioStream
+@export var sfx_dict : Dictionary
 
 const FOLLOW_SPEED = 3.0
 
 var is_circle_activated : bool = false
 var is_circle_pathing : bool = false
 
-signal grow_casted
-signal grow_two_casted
-signal grow_three_casted
-signal attack_spikes_casted
-signal attack_pods_casted
-signal attack_bears_casted
-signal heal_casted
-signal make_druid_casted
-signal make_two_druids_casted
-signal collect_casted
 signal magic_casted(identifier:Globals.MAGIC)
 
 ##dictionary of callables that sends signals for use by main level
@@ -82,4 +73,6 @@ func _on_magic_circle_stars_logged(stars_logged:Array[int]):
 func call_magic(identifier:Globals.MAGIC) -> void:
 	magic_circle.extend_sigil()
 	SfxManager.play(call_sfx, 0.5)
+	if sfx_dict.has(identifier):
+		SfxManager.play(sfx_dict[identifier], 0.1)
 	magic_casted.emit(identifier)
