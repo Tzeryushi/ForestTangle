@@ -57,7 +57,7 @@ func swap_positions() -> void:
 		move_tween.tween_property(chart, "position", out_position, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	is_out = !is_out
 
-func _on_chart_tab_input_event(viewport, event, shape_idx):
+func _on_chart_tab_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("mouse_select"):
 		swap_positions()
 
