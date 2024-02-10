@@ -81,6 +81,7 @@ offset_right = 333.0
 offset_bottom = 827.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ChartControl/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ChartControl/VBoxContainer/HBoxContainer"]
@@ -88,7 +89,7 @@ clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-size_flags_stretch_ratio = 4.64
+size_flags_stretch_ratio = 2.0
 theme_override_colors/default_color = Color(0.603922, 0.596078, 0.494118, 1)
 theme_override_fonts/normal_font = ExtResource("2_wkagq")
 theme_override_font_sizes/normal_font_size = 20
@@ -101,8 +102,8 @@ scroll_active = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_wkagq")
-theme_override_font_sizes/font_size = 20
-text = "1/10"
+theme_override_font_sizes/font_size = 25
+text = "9999/9999"
 
 [node name="HSeparator" type="HSeparator" parent="ChartControl/VBoxContainer"]
 custom_minimum_size = Vector2(0, 15)

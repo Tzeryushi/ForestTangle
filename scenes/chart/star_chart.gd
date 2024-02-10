@@ -27,6 +27,7 @@ func spawn_guide(guide_key:String) -> void:
 	
 	var new_guide = guide_scene.instantiate()
 	guide_container.add_child(new_guide)
+	guide_container.move_child(new_guide, 0)
 	new_guide.change_texture(star_dict[guide_key].image)
 	new_guide.set_text("[center]" + star_dict[guide_key].text)
 
@@ -58,5 +59,5 @@ func _on_button_pressed():
 
 func _on_player_stats_star_count_changed(new_value, _old_value):
 	#TODO change button text
+	upgrade_button.disabled = stats.star_count < upgrade_thresholds[0]
 	set_button_text(new_value, upgrade_thresholds[0])
-	pass
