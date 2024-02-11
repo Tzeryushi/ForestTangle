@@ -35,7 +35,11 @@ var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.WAVE:{"unlock":true, "call":cast_collect}
 }
 
-const asteroid_wait_default : float = 5.0
+var danger_timers : Array[float] = [
+	6.0,4.0,3.0
+]
+
+const asteroid_wait_default : float = 8.0
 
 signal forest_level_changed(new_height:int)
 signal druid_added()
@@ -60,6 +64,7 @@ func _ready() -> void:
 	#await dialoguer.finished
 	#dialoguer.play_dialogue("Draw upon the heavens with your mouse", 4.0)
 	#await dialoguer.finished
+	asteroid_timer.wait_time = asteroid_wait_default
 	asteroid_timer.start()
 	dialoguer.play_dialogue("Follow the stars", 3.0)
 	await dialoguer.finished
@@ -111,7 +116,7 @@ func set_forest_height(new_height:float) -> void:
 	if int(forest_height/100) != danger_level:
 		danger_level = int(forest_height/100)
 		forest_level_changed.emit(danger_level)
-		asteroid_timer.wait_time = clampf(asteroid_wait_default - float(danger_level+2)*0.8, 0.12, asteroid_wait_default)
+		asteroid_timer.wait_time = clampf(asteroid_wait_default, 0.12, asteroid_wait_default)
 	if forest_height > 1400:
 		game_win()
 
