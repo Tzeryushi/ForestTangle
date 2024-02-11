@@ -30,6 +30,9 @@ var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.DRUIDS2:{"unlock":false, "call":cast_druids2},
 	Globals.MAGIC.HEAL:{"unlock":false, "call":cast_heal},
 	Globals.MAGIC.COLLECT:{"unlock":true, "call":cast_collect},
+	Globals.MAGIC.SPIRIT:{"unlock":true, "call":cast_collect},
+	Globals.MAGIC.NEEDLES:{"unlock":true, "call":cast_collect},
+	Globals.MAGIC.WAVE:{"unlock":true, "call":cast_collect}
 }
 
 const asteroid_wait_default : float = 5.0

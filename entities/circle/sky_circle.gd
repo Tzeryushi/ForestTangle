@@ -26,7 +26,8 @@ var book_of_stars : Dictionary = {
 	[13, 5, 12, 18, 4, 3, 20, 7, 0, 16, 8, 1, 9]:Globals.MAGIC.DRUIDS1,
 	[15,7,14,6,13,5,12,4,11,3,10,2,9,1,8,0,16,17,18,19,20]:Globals.MAGIC.DRUIDS2,
 	[15, 14, 19, 20, 17, 16, 18, 11, 10]:Globals.MAGIC.COLLECT,
-	
+	[8, 0, 15, 16, 20, 17, 19, 18, 11, 4, 12]:Globals.MAGIC.SPIRIT,
+	[8, 9, 1, 20, 16, 19, 18, 17, 10, 11, 12, 13, 14, 15]:Globals.MAGIC.NEEDLES,
 	[1,8,0,15,7,14,13,6,19,16,20,18,17,2,9,10,3,11,4,12,5]:Globals.MAGIC.WAVE
 }
 
