@@ -12,6 +12,7 @@ extends Node2D
 @export var dialoguer : DialogueLayer
 @export var cast_texter : CastLayer
 @export var playing_music : AudioStream
+@export var starspace : Starspace
 
 var active_forest : Forest = null
 var forest_height : float = 0.0
@@ -43,6 +44,9 @@ func _ready() -> void:
 		forest.forest_grown.connect(check_change_level)
 		forest.forest_receded.connect(check_change_level)
 		forest.forest_lost.connect(game_lose)
+	for key in constellation_unlocks:
+		if constellation_unlocks[key]["unlock"]:
+			starspace.unlock(key)
 	#dialoguer.play_dialogue("Hell rains from the sky", 3.0)
 	#await dialoguer.finished
 	#dialoguer.play_dialogue("Should the treeline break, all will end", 4.0)
@@ -204,3 +208,4 @@ func _on_skyman_defeated():
 
 func _on_star_chart_constellation_unlocked(identifier):
 	constellation_unlocks[identifier]["unlock"] = true
+	starspace.unlock(identifier)

@@ -23,6 +23,7 @@ shader_parameter/heightOffset = null
 shader_parameter/offset = 0.0
 
 [node name="Forest" type="Node2D" node_paths=PackedStringArray("base_thicket", "selector")]
+z_index = -5
 script = ExtResource("1_ofoyq")
 base_thicket = NodePath("Thicket")
 thicket_scene = ExtResource("2_8al58")

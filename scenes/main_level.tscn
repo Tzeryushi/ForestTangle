@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=32 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="12_br7i5"]
 [ext_resource type="PackedScene" uid="uid://da2vo1gjr6uh1" path="res://scenes/chart/star_chart.tscn" id="13_khf2j"]
 [ext_resource type="Script" path="res://scenes/dialogue_layer.gd" id="13_qlqsy"]
+[ext_resource type="PackedScene" uid="uid://b5rm5sn2b2ueo" path="res://scenes/starspace/starspace.tscn" id="13_xjvqh"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="14_g1n0c"]
 [ext_resource type="Resource" uid="uid://dn63nqls1jekl" path="res://scenes/chart/chart_guides/grow1.tres" id="14_tvnsf"]
 [ext_resource type="PackedScene" uid="uid://d2mkoxpw6ajn6" path="res://entities/shard_system/shard_system.tscn" id="15_fvj66"]
@@ -28,18 +29,20 @@
 [ext_resource type="Resource" uid="uid://vkk30nta2acf" path="res://scenes/chart/chart_guides/spikes.tres" id="21_w8ynw"]
 [ext_resource type="Resource" uid="uid://dtslnq3iddhre" path="res://scenes/chart/chart_guides/druid1.tres" id="22_bvyp5"]
 [ext_resource type="Resource" uid="uid://blk1mfp35rr81" path="res://scenes/chart/chart_guides/druid2.tres" id="23_a048q"]
-[ext_resource type="FontFile" uid="uid://c4rloggh6vtn7" path="res://fonts/Penelope.ttf" id="27_qdnhd"]
+[ext_resource type="FontFile" uid="uid://vcxdt5phcc0d" path="res://fonts/LEVEFD__.ttf" id="27_00uue"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xn5i"]
 
-[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "sky_circle", "asteroid_timer", "dialoguer", "cast_texter") groups=["main_level"]]
+[node name="MainLevel" type="Node2D" node_paths=PackedStringArray("forests", "stats", "sky_circle", "asteroid_timer", "dialoguer", "cast_texter", "starspace") groups=["main_level"]]
 script = ExtResource("1_llerk")
 forests = [NodePath("Forest1"), NodePath("Forest2"), NodePath("Forest3"), NodePath("Forest4")]
+stats = NodePath("PlayerStats")
 sky_circle = NodePath("SkyCircle")
 asteroid_timer = NodePath("AsteroidTimer")
 dialoguer = NodePath("Dialogue/DialogueLayer")
 cast_texter = NodePath("Dialogue/CastLayer")
 playing_music = ExtResource("2_yfn0k")
+starspace = NodePath("Starspace")
 
 [node name="PlayerStats" type="Node" parent="."]
 script = ExtResource("3_nkcm1")
@@ -98,6 +101,10 @@ polygon = PackedVector2Array(-40, 1100, 1968, 1100, 1968, 950, 2039, 950, 2034, 
 
 [node name="Druid" parent="." instance=ExtResource("12_br7i5")]
 position = Vector2(959, 744)
+
+[node name="Starspace" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("13_xjvqh")]
+z_index = -15
+camera = NodePath("../MainCamera")
 
 [node name="StarChart" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("13_khf2j")]
 star_dict = {
@@ -198,7 +205,7 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 0.435294, 1)
 theme_override_colors/font_outline_color = Color(0.247059, 0.247059, 0.247059, 1)
 theme_override_constants/outline_size = 12
-theme_override_fonts/normal_font = ExtResource("27_qdnhd")
+theme_override_fonts/normal_font = ExtResource("27_00uue")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[center][wave amp=20.0 freq=2.0]⚝ Grow ⚝"
@@ -214,9 +221,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -1570.0
-offset_top = -43.0
+offset_top = -39.0
 offset_right = 1570.0
-offset_bottom = 43.0
+offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2

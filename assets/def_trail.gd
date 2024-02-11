@@ -9,6 +9,7 @@ func _ready():
 func _physics_process(_delta) -> void:
 	global_position = Vector2.ZERO
 	global_rotation = 0
+	global_scale = Vector2(1,1)
 	var point : Vector2 = get_parent().global_position
 	add_point(point)
 	while get_point_count() > trail_length:

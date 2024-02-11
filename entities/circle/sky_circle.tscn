@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://entities/circle/sky_circle.gd" id="1_bxcij"]
 [ext_resource type="Texture2D" uid="uid://ce82egsrp5np0" path="res://entities/circle/backdrop1.PNG" id="2_dj3rx"]
 [ext_resource type="AudioStream" uid="uid://benwvc0lwh4sq" path="res://SFX/casting_sfx.wav" id="2_l1xu5"]
-[ext_resource type="AudioStream" uid="uid://bifs70vjebvht" path="res://SFX/druid_summon.wav" id="3_5cc0y"]
+[ext_resource type="AudioStream" uid="uid://b6t0i3p3nhrch" path="res://SFX/druid_spawn.wav" id="3_esfj0"]
 [ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="3_kqcho"]
 [ext_resource type="AudioStream" uid="uid://kde1myck3uwo" path="res://SFX/bear_spawn.wav" id="4_v133o"]
 
@@ -13,8 +13,8 @@ magic_circle = NodePath("MagicCircle")
 call_sfx = ExtResource("2_l1xu5")
 sfx_dict = {
 4: ExtResource("4_v133o"),
-8: ExtResource("3_5cc0y"),
-9: ExtResource("3_5cc0y")
+8: ExtResource("3_esfj0"),
+9: ExtResource("3_esfj0")
 }
 
 [node name="SkyBackdrop" type="Sprite2D" parent="."]

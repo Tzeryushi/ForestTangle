@@ -7,6 +7,7 @@ extends Node2D
 
 @export var shard_scene : PackedScene
 @export var shard_collector : ShardCollector
+@export var collect_sfx : AudioStream
 
 var shard_list : Array[StarShard] = []
 
@@ -37,4 +38,5 @@ func _on_main_level_collect_shards_called():
 			shard.start_collection(shard_collector.global_position, randf_range(1.5,2.2))
 
 func _on_shard_collector_shard_collected(number_of_shards):
+	SfxManager.play(collect_sfx, 0.1)
 	shard_collected.emit(number_of_shards)

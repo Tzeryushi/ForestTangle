@@ -1,19 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxiw01nyawqtk"]
+[gd_scene load_steps=8 format=3 uid="uid://cxiw01nyawqtk"]
 
 [ext_resource type="Script" path="res://entities/shard_system/star_shard.gd" id="1_380un"]
 [ext_resource type="Texture2D" uid="uid://83b7y31n2bu5" path="res://entities/circle/Star1.PNG" id="2_s1tp8"]
 [ext_resource type="Script" path="res://entities/shard_system/shard_hitbox.gd" id="3_mm6mm"]
+[ext_resource type="Script" path="res://assets/def_trail.gd" id="4_xfc61"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pfbff"]
-radius = 21.2132
+radius = 15.0
 
-[node name="StarShard" type="Node2D"]
+[sub_resource type="Curve" id="Curve_sj1c4"]
+_data = [Vector2(0, 0), 0.0, 2.59295, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_mhx4p"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[node name="StarShard" type="Node2D" node_paths=PackedStringArray("sprite")]
+modulate = Color(1, 1, 0.376471, 1)
+z_index = -2
 script = ExtResource("1_380un")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_s1tp8")
 
 [node name="ShardHitbox" type="Area2D" parent="." node_paths=PackedStringArray("star_shard") groups=["shard"]]
+visible = false
 collision_layer = 64
 collision_mask = 0
 script = ExtResource("3_mm6mm")
@@ -25,3 +38,13 @@ shape = SubResource("CircleShape2D_pfbff")
 [node name="Lifespan" type="Timer" parent="."]
 wait_time = 15.0
 autostart = true
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+width_curve = SubResource("Curve_sj1c4")
+gradient = SubResource("Gradient_mhx4p")
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("4_xfc61")
+trail_length = 10
