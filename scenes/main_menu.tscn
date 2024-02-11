@@ -1,17 +1,50 @@
-[gd_scene load_steps=12 format=3 uid="uid://b72txff18tomj"]
+[gd_scene load_steps=28 format=3 uid="uid://b72txff18tomj"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_0kkvv"]
 [ext_resource type="AudioStream" uid="uid://d0m8kelugfkm2" path="res://music/Keepers.wav" id="2_4b8u0"]
 [ext_resource type="Texture2D" uid="uid://xl28he42a63p" path="res://scenes/main_level assets/DruidMain.PNG" id="3_h82kd"]
-[ext_resource type="PackedScene" uid="uid://b5ebmudovtofl" path="res://entities/circle/magic_circle.tscn" id="4_tv4xe"]
+[ext_resource type="Texture2D" uid="uid://dmbtkuwcphfn7" path="res://scenes/chart/constellations/star_chart_Bears_Const.png" id="4_fm8hj"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="4_v3tel"]
-[ext_resource type="Texture2D" uid="uid://baiq6qg4un23p" path="res://scenes/main_level assets/starry_sky/GrowthConst.PNG" id="6_hg2be"]
-[ext_resource type="Texture2D" uid="uid://dwu21xmrurv52" path="res://scenes/main_level assets/starry_sky/PodsConst.PNG" id="7_f8ekx"]
-[ext_resource type="Texture2D" uid="uid://dffg6bk5kblo5" path="res://scenes/main_level assets/starry_sky/SpikesConst.PNG" id="8_5dcmu"]
-[ext_resource type="Texture2D" uid="uid://kc6lq70qvcxa" path="res://scenes/main_level assets/starry_sky/DruidsConst.PNG" id="9_cdsop"]
-[ext_resource type="Texture2D" uid="uid://ix0jfryq1igp" path="res://scenes/main_level assets/starry_sky/HealConst.PNG" id="10_vo2g8"]
+[ext_resource type="Texture2D" uid="uid://cx36v74xht1q8" path="res://scenes/chart/constellations/star_chart_Collect_Const.png" id="5_uudpg"]
+[ext_resource type="Texture2D" uid="uid://buanj2asnsyn6" path="res://scenes/chart/constellations/star_chart_Druid_Const.png" id="6_41vyu"]
+[ext_resource type="Texture2D" uid="uid://c8vyhcgtj84hf" path="res://scenes/chart/constellations/star_chart_Druid2_Const.png" id="7_p7jjl"]
+[ext_resource type="Texture2D" uid="uid://c7bi0ueuurop0" path="res://scenes/chart/constellations/star_chart_Grow1_Const.png" id="8_8fj8f"]
+[ext_resource type="Texture2D" uid="uid://ckq5ws7goq2rd" path="res://scenes/chart/constellations/star_chart_Pods_Const.png" id="9_vhs36"]
+[ext_resource type="Texture2D" uid="uid://c241ba4ai4jwj" path="res://scenes/chart/constellations/star_chart_Spikes_Const.png" id="10_bygdm"]
+[ext_resource type="Texture2D" uid="uid://byc03g5ikmdw8" path="res://scenes/chart/constellations/star_chart_Grow2_Const.png" id="11_1c6ck"]
+[ext_resource type="Texture2D" uid="uid://c0qx4gmg5tf2f" path="res://scenes/chart/constellations/star_chart_Grow3_Const.png" id="12_byybq"]
+[ext_resource type="Texture2D" uid="uid://f8xwoyqvskpy" path="res://scenes/chart/constellations/star_chart_Heal_Const.png" id="13_xoreu"]
+[ext_resource type="FontFile" uid="uid://vcxdt5phcc0d" path="res://fonts/LEVEFD__.ttf" id="14_fmuvj"]
+[ext_resource type="Texture2D" uid="uid://b4lbmuq8t3ewm" path="res://assets/styles/box_unchecked.png" id="16_nl32b"]
+[ext_resource type="Texture2D" uid="uid://bennkjrcvhky6" path="res://assets/styles/box_checked.png" id="17_vlhap"]
+[ext_resource type="Texture2D" uid="uid://520tcf6ap8ju" path="res://assets/styles/slide_rest.png" id="18_d706s"]
+[ext_resource type="Texture2D" uid="uid://yk8q3ql2ml1l" path="res://assets/styles/slide_hover.png" id="19_dn5ua"]
+[ext_resource type="Texture2D" uid="uid://sajkuk17i02t" path="res://assets/styles/slider.png" id="20_qxfbl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r887p"]
+bg_color = Color(0.980392, 0.933333, 0.827451, 1)
+border_color = Color(0.509804, 0.501961, 0.4, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 7
+shadow_offset = Vector2(0, 10)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_etj37"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_kipmn"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_pi2v5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m80ed"]
+texture = ExtResource("20_qxfbl")
+texture_margin_top = 9.0
+texture_margin_bottom = 9.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_larhv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8hdh"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_0kkvv")
@@ -21,38 +54,58 @@ title_music = ExtResource("2_4b8u0")
 position = Vector2(960, 540)
 texture = ExtResource("3_h82kd")
 
-[node name="MagicCircle" parent="." instance=ExtResource("4_tv4xe")]
-modulate = Color(1, 1, 1, 0.141176)
-z_index = 0
-position = Vector2(960, 540)
-
 [node name="Skies" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0.254902)
 
-[node name="GrowthConst" type="Sprite2D" parent="Skies"]
-position = Vector2(314, 406)
-scale = Vector2(0.358448, 0.358448)
-texture = ExtResource("6_hg2be")
+[node name="StarChartBearsConst" type="Sprite2D" parent="Skies"]
+position = Vector2(138, 92)
+scale = Vector2(0.377546, 0.377546)
+texture = ExtResource("4_fm8hj")
 
-[node name="PodsConst" type="Sprite2D" parent="Skies"]
-position = Vector2(1508, 217)
-scale = Vector2(0.450253, 0.450253)
-texture = ExtResource("7_f8ekx")
+[node name="StarChartBearsConst2" type="Sprite2D" parent="Skies"]
+position = Vector2(248, 437)
+scale = Vector2(0.211806, 0.211806)
+texture = ExtResource("5_uudpg")
 
-[node name="SpikesConst" type="Sprite2D" parent="Skies"]
-position = Vector2(1684, 462)
-scale = Vector2(0.364932, 0.364932)
-texture = ExtResource("8_5dcmu")
+[node name="StarChartBearsConst3" type="Sprite2D" parent="Skies"]
+position = Vector2(635, 328)
+scale = Vector2(0.285359, 0.285359)
+texture = ExtResource("6_41vyu")
 
-[node name="DruidsConst" type="Sprite2D" parent="Skies"]
-position = Vector2(1872, 103)
-scale = Vector2(0.413168, 0.413168)
-texture = ExtResource("9_cdsop")
+[node name="StarChartBearsConst4" type="Sprite2D" parent="Skies"]
+position = Vector2(1774, 361)
+scale = Vector2(0.324421, 0.324421)
+texture = ExtResource("7_p7jjl")
 
-[node name="HealConst" type="Sprite2D" parent="Skies"]
-position = Vector2(39, 211)
-scale = Vector2(0.395057, 0.395057)
-texture = ExtResource("10_vo2g8")
+[node name="StarChartBearsConst5" type="Sprite2D" parent="Skies"]
+position = Vector2(1388, 365)
+scale = Vector2(0.220457, 0.220457)
+texture = ExtResource("8_8fj8f")
+
+[node name="StarChartBearsConst6" type="Sprite2D" parent="Skies"]
+position = Vector2(1406, 15)
+scale = Vector2(0.373192, 0.373192)
+texture = ExtResource("9_vhs36")
+
+[node name="StarChartBearsConst7" type="Sprite2D" parent="Skies"]
+position = Vector2(509, 79)
+scale = Vector2(0.167372, 0.167372)
+texture = ExtResource("10_bygdm")
+
+[node name="StarChartBearsConst8" type="Sprite2D" parent="Skies"]
+position = Vector2(813, 125)
+scale = Vector2(0.216292, 0.216292)
+texture = ExtResource("11_1c6ck")
+
+[node name="StarChartBearsConst9" type="Sprite2D" parent="Skies"]
+position = Vector2(1882, 29)
+scale = Vector2(0.242405, 0.242405)
+texture = ExtResource("12_byybq")
+
+[node name="StarChartBearsConst10" type="Sprite2D" parent="Skies"]
+position = Vector2(1075, 264)
+scale = Vector2(0.242405, 0.242405)
+texture = ExtResource("13_xoreu")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -63,6 +116,21 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PanelContainer" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -40.0
+offset_right = 280.0
+offset_bottom = 476.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r887p")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
@@ -99,6 +167,88 @@ theme_override_fonts/font = ExtResource("4_v3tel")
 theme_override_font_sizes/font_size = 80
 text = "END"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 311.0
+offset_top = 425.0
+offset_right = 503.0
+offset_bottom = 477.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StarText" type="RichTextLabel" parent="Control/HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("14_fmuvj")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Fullscreen"
+fit_content = true
+scroll_active = false
+
+[node name="CheckBox" type="CheckBox" parent="Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/outline_size = 4
+theme_override_icons/checked = ExtResource("16_nl32b")
+theme_override_icons/unchecked = ExtResource("17_vlhap")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = 404.0
+offset_right = -317.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StarText" type="RichTextLabel" parent="Control/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("14_fmuvj")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Volume
+"
+fit_content = true
+scroll_active = false
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer2"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("18_d706s")
+theme_override_icons/grabber_highlight = ExtResource("19_dn5ua")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_kipmn")
+theme_override_icons/tick = SubResource("ImageTexture_pi2v5")
+theme_override_styles/slider = SubResource("StyleBoxTexture_m80ed")
+theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_larhv")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_w8hdh")
+max_value = 1.5
+step = 0.05
+value = 0.7
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StarText" type="RichTextLabel" parent="CanvasLayer"]
@@ -118,7 +268,7 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
 theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
 theme_override_constants/outline_size = 12
-theme_override_fonts/normal_font = ExtResource("4_v3tel")
+theme_override_fonts/normal_font = ExtResource("14_fmuvj")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
 text = "[center][wave amp=20.0 freq=2.0]Paint the Stars"
@@ -143,3 +293,5 @@ color = Color(0, 0, 0, 0.352941)
 
 [connection signal="pressed" from="Control/VBoxContainer/Begin" to="." method="_on_begin_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/End" to="." method="_on_end_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="value_changed" from="Control/VBoxContainer2/HSlider" to="." method="_on_h_slider_value_changed"]
