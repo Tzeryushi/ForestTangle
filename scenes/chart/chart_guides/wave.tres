@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://df86qed6swoo"]
 
-[ext_resource type="Texture2D" uid="uid://cnf1mi4g0l2n0" path="res://scenes/chart/constellations/bears_book_const.png" id="1_43dvx"]
+[ext_resource type="Texture2D" uid="uid://bwho5dti3j2uf" path="res://scenes/chart/constellations/wave_book_const.png" id="1_1s3s0"]
 [ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="2_c0mu5"]
 
 [resource]
 script = ExtResource("2_c0mu5")
-title = "Bears"
-image = ExtResource("1_43dvx")
-text = "bears: transforms druid to attack asteroids."
+title = "Star Wave"
+image = ExtResource("1_1s3s0")
+text = "star wave: for 100 shards, slices through asteroids"

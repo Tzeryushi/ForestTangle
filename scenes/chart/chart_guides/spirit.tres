@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://bp77ltre27n6f"]
 
-[ext_resource type="Texture2D" uid="uid://cnf1mi4g0l2n0" path="res://scenes/chart/constellations/bears_book_const.png" id="1_ifmyj"]
+[ext_resource type="Texture2D" uid="uid://bxbdd8klvbnl7" path="res://scenes/chart/constellations/spirit_book_const.png" id="1_uoql0"]
 [ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="2_e11ff"]
 
 [resource]
 script = ExtResource("2_e11ff")
-title = "Bears"
-image = ExtResource("1_ifmyj")
-text = "bears: transforms druid to attack asteroids."
+title = "Entreat Spirit"
+image = ExtResource("1_uoql0")
+text = "entreat spirit: coaxes a spirit to the top of a forest to collect shards"

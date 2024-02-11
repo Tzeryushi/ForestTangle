@@ -1,7 +1,7 @@
 class_name PlayerStats
 extends Node
 
-var star_count : int = 50
+var star_count : int = 1000
 var forest_level : int = 0
 var druid_count : int = 1
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=22 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -15,20 +15,10 @@
 [ext_resource type="Script" path="res://scenes/dialogue_layer.gd" id="13_qlqsy"]
 [ext_resource type="PackedScene" uid="uid://b5rm5sn2b2ueo" path="res://scenes/starspace/starspace.tscn" id="13_xjvqh"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="14_g1n0c"]
-[ext_resource type="Resource" uid="uid://dn63nqls1jekl" path="res://scenes/chart/chart_guides/grow1.tres" id="14_tvnsf"]
 [ext_resource type="PackedScene" uid="uid://d2mkoxpw6ajn6" path="res://entities/shard_system/shard_system.tscn" id="15_fvj66"]
-[ext_resource type="Resource" uid="uid://da0byo106c0qy" path="res://scenes/chart/chart_guides/bears.tres" id="15_ok8nl"]
-[ext_resource type="Resource" uid="uid://b7lrghgjx8anx" path="res://scenes/chart/chart_guides/collect.tres" id="16_pa0pt"]
-[ext_resource type="Resource" uid="uid://ce6my5ub8d0ei" path="res://scenes/chart/chart_guides/grow2.tres" id="17_8pqk1"]
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="18_k6g82"]
 [ext_resource type="Script" path="res://scenes/cast_layer.gd" id="18_uexvj"]
-[ext_resource type="Resource" uid="uid://flhtd2sl2pts" path="res://scenes/chart/chart_guides/grow3.tres" id="18_ydgkw"]
-[ext_resource type="Resource" uid="uid://deyu3p582e44f" path="res://scenes/chart/chart_guides/heal.tres" id="19_yln8l"]
-[ext_resource type="Resource" uid="uid://4e24mx7r8qwd" path="res://scenes/chart/chart_guides/pods.tres" id="20_8qjvs"]
 [ext_resource type="Script" path="res://scenes/level_hud.gd" id="21_mem4w"]
-[ext_resource type="Resource" uid="uid://vkk30nta2acf" path="res://scenes/chart/chart_guides/spikes.tres" id="21_w8ynw"]
-[ext_resource type="Resource" uid="uid://dtslnq3iddhre" path="res://scenes/chart/chart_guides/druid1.tres" id="22_bvyp5"]
-[ext_resource type="Resource" uid="uid://blk1mfp35rr81" path="res://scenes/chart/chart_guides/druid2.tres" id="23_a048q"]
 [ext_resource type="FontFile" uid="uid://vcxdt5phcc0d" path="res://fonts/LEVEFD__.ttf" id="27_00uue"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xn5i"]
@@ -48,6 +38,7 @@ starspace = NodePath("Starspace")
 script = ExtResource("3_nkcm1")
 
 [node name="SkyCircle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_jirym")]
+position = Vector2(960, -400)
 camera = NodePath("../MainCamera")
 
 [node name="Hills" type="Sprite2D" parent="."]
@@ -104,22 +95,10 @@ position = Vector2(959, 744)
 
 [node name="Starspace" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("13_xjvqh")]
 z_index = -15
+position = Vector2(960, 540)
 camera = NodePath("../MainCamera")
 
 [node name="StarChart" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("13_khf2j")]
-star_dict = {
-"bears": ExtResource("15_ok8nl"),
-"collect": ExtResource("16_pa0pt"),
-"druids1": ExtResource("22_bvyp5"),
-"druids2": ExtResource("23_a048q"),
-"grow1": ExtResource("14_tvnsf"),
-"grow2": ExtResource("17_8pqk1"),
-"grow3": ExtResource("18_ydgkw"),
-"heal": ExtResource("19_yln8l"),
-"pods": ExtResource("20_8qjvs"),
-"spikes": ExtResource("21_w8ynw")
-}
-constellations_ordered = Array[String](["pods", "druids1", "grow2", "heal", "bears", "grow3", "druids2"])
 stats = NodePath("../PlayerStats")
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
