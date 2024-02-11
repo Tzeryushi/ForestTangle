@@ -24,6 +24,8 @@ func _ready() -> void:
 		unlock_dictionary[key].modulate.a = 0.0
 
 func unlock(key:Globals.MAGIC) -> void:
+	if !unlock_dictionary.has(key):
+		return
 	var constellation = unlock_dictionary[key]
 	constellation.show()
 	var expose_tween : Tween = create_tween()
