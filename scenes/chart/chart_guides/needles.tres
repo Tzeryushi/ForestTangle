@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StarGuideData" load_steps=3 format=3 uid="uid://c1pxhfnaot7av"]
+
+[ext_resource type="Texture2D" uid="uid://cnf1mi4g0l2n0" path="res://scenes/chart/constellations/bears_book_const.png" id="1_qt3jq"]
+[ext_resource type="Script" path="res://scenes/chart/chart_guides/star_guide_data.gd" id="2_7wd0q"]
+
+[resource]
+script = ExtResource("2_7wd0q")
+title = "Bears"
+image = ExtResource("1_qt3jq")
+text = "bears: transforms druid to attack asteroids."
