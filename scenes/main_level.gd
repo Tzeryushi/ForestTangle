@@ -20,7 +20,7 @@ var danger_level : int = 0
 var intro_done : bool = false
 var end_state_triggered : bool = false
 var constellation_unlocks : Dictionary = {
-	Globals.MAGIC.GROW1:{"unlock":true, "call":cast_grow1},
+	Globals.MAGIC.GROW1:{"unlock":false, "call":cast_grow1},
 	Globals.MAGIC.GROW2:{"unlock":false, "call":cast_grow2},
 	Globals.MAGIC.GROW3:{"unlock":false, "call":cast_grow3},
 	Globals.MAGIC.BEARS:{"unlock":false, "call":cast_bears},

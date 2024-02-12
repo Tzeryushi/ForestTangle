@@ -23,7 +23,7 @@ signal constellation_unlocked(identifier:Globals.MAGIC)
 
 func _ready():
 	magic_notice.hide()
-	spawn_guide("grow1")
+	#spawn_guide("grow1")
 	spawn_guide("spikes")
 	spawn_guide("collect")
 

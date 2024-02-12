@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://benl0vmma6lcc"
-path="res://.godot/imported/Needles.PNG-8dc03fbf08df109610a4632c1ea57cd2.ctex"
+uid="uid://bwkwm2dtq5gmm"
+path="res://.godot/imported/Needler0003.png-76e1fe2fac1cbeafc65d373c29c172f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/needler/Needles.PNG"
-dest_files=["res://.godot/imported/Needles.PNG-8dc03fbf08df109610a4632c1ea57cd2.ctex"]
+source_file="res://entities/needler/images/Needler0003.png"
+dest_files=["res://.godot/imported/Needler0003.png-76e1fe2fac1cbeafc65d373c29c172f2.ctex"]
 
 [params]
 

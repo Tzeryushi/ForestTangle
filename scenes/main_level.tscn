@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=23 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://scenes/pause_menu.gd" id="18_k6g82"]
 [ext_resource type="Script" path="res://scenes/cast_layer.gd" id="18_uexvj"]
 [ext_resource type="Script" path="res://scenes/level_hud.gd" id="21_mem4w"]
+[ext_resource type="PackedScene" uid="uid://c0hlyruxpja31" path="res://entities/needler/needler.tscn" id="21_qc7fs"]
 [ext_resource type="FontFile" uid="uid://vcxdt5phcc0d" path="res://fonts/LEVEFD__.ttf" id="27_00uue"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xn5i"]
@@ -342,6 +343,9 @@ theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
 theme_override_fonts/font = ExtResource("14_g1n0c")
 theme_override_font_sizes/font_size = 80
 text = "Quit"
+
+[node name="Needler" parent="." instance=ExtResource("21_qc7fs")]
+position = Vector2(676, 973)
 
 [connection signal="collect_shards_called" from="." to="ShardSystem" method="_on_main_level_collect_shards_called"]
 [connection signal="druid_added" from="." to="PlayerStats" method="_on_main_level_druid_added"]

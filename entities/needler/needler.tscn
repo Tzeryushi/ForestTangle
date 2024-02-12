@@ -1,0 +1,96 @@
+[gd_scene load_steps=15 format=3 uid="uid://c0hlyruxpja31"]
+
+[ext_resource type="Script" path="res://entities/needler/needler.gd" id="1_f6bfu"]
+[ext_resource type="Texture2D" uid="uid://b1fqxf1t73cqw" path="res://entities/needler/images/Needler0000.png" id="1_l81f2"]
+[ext_resource type="Texture2D" uid="uid://bwkwm2dtq5gmm" path="res://entities/needler/images/Needler0003.png" id="2_cx8go"]
+[ext_resource type="AudioStream" uid="uid://bswk7gmk0kcxq" path="res://SFX/spirit_summon.wav" id="2_riv72"]
+[ext_resource type="Texture2D" uid="uid://bbgjy5p3acxue" path="res://entities/needler/images/Needler0001.png" id="3_6tvfo"]
+[ext_resource type="Texture2D" uid="uid://eqacajyd57gr" path="res://entities/needler/images/Needler0002.png" id="4_hliu2"]
+[ext_resource type="Script" path="res://entities/base_state_manager.gd" id="5_amsac"]
+[ext_resource type="Script" path="res://entities/needler/needler_walk_state.gd" id="6_0wh8o"]
+[ext_resource type="Script" path="res://entities/needler/needler_fall_state.gd" id="7_kii2p"]
+[ext_resource type="Script" path="res://entities/needler/needler_shoot_state.gd" id="8_ep5sf"]
+[ext_resource type="AudioStream" uid="uid://c2dqy82eueg46" path="res://SFX/wood_hit.wav" id="9_gp25q"]
+[ext_resource type="PackedScene" uid="uid://b5ersgiyl8lfx" path="res://entities/needler/needler_thorns.tscn" id="10_5koed"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkbi1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l81f2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cx8go")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6tvfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_l81f2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hliu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_l81f2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_niyhk"]
+radius = 15.0
+height = 46.0
+
+[node name="Needler" type="CharacterBody2D" node_paths=PackedStringArray("state_manager")]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_f6bfu")
+state_manager = NodePath("StateManager")
+spawn_sfx = ExtResource("2_riv72")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -40)
+sprite_frames = SubResource("SpriteFrames_rkbi1")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -23)
+shape = SubResource("CapsuleShape2D_niyhk")
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("first_state", "animation")]
+script = ExtResource("5_amsac")
+first_state = NodePath("WalkState")
+animation = NodePath("../Sprite2D")
+
+[node name="WalkState" type="Node" parent="StateManager" node_paths=PackedStringArray("fall_state", "shoot_state", "sprite")]
+script = ExtResource("6_0wh8o")
+fall_state = NodePath("../FallState")
+shoot_state = NodePath("../ShootState")
+sprite = NodePath("../../Sprite2D")
+animation_type = "walk"
+
+[node name="FallState" type="Node" parent="StateManager" node_paths=PackedStringArray("walk_state")]
+script = ExtResource("7_kii2p")
+walk_state = NodePath("../WalkState")
+animation_type = "idle"
+
+[node name="ShootState" type="Node" parent="StateManager" node_paths=PackedStringArray("walk_state", "fall_state")]
+script = ExtResource("8_ep5sf")
+walk_state = NodePath("../WalkState")
+fall_state = NodePath("../FallState")
+shoot_sfx = ExtResource("9_gp25q")
+shoot_scene = ExtResource("10_5koed")
+animation_type = "shoot"
