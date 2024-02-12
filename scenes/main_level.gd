@@ -30,7 +30,7 @@ var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.DRUIDS2:{"unlock":false, "call":cast_druids2},
 	Globals.MAGIC.HEAL:{"unlock":false, "call":cast_heal},
 	Globals.MAGIC.COLLECT:{"unlock":true, "call":cast_collect},
-	Globals.MAGIC.SPIRIT:{"unlock":true, "call":cast_collect},
+	Globals.MAGIC.SPIRIT:{"unlock":true, "call":cast_spirit},
 	Globals.MAGIC.NEEDLES:{"unlock":true, "call":cast_collect},
 	Globals.MAGIC.WAVE:{"unlock":true, "call":cast_collect}
 }
@@ -51,6 +51,7 @@ func _ready() -> void:
 		forest.forest_grown.connect(check_change_level)
 		forest.forest_receded.connect(check_change_level)
 		forest.forest_lost.connect(game_lose)
+		forest.not_enough_druids.connect(cast_bears_warn)
 	for key in constellation_unlocks:
 		if constellation_unlocks[key]["unlock"]:
 			starspace.unlock(key)
@@ -206,10 +207,17 @@ func cast_collect():
 	collect_shards_called.emit()
 	end_cast("collect shards")
 
+func cast_spirit():
+	active_forest.make_spirit()
+	end_cast("entreated spirit")
+
 func end_cast(cast_text:String="no text", time:float=1.0) -> void:
 	sky_circle.deactivate_circle()
 	remove_active_forest()
 	cast_texter.play_text(cast_text, time)
+
+func cast_bears_warn() -> void:
+	dialoguer.play_dialogue("Not enough druids", 1.0)
 
 func _on_skyman_defeated():
 	game_win()

@@ -28,7 +28,6 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yct22"]
-radius = 15.0333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ccilk"]
 radius = 422.171
@@ -42,7 +41,6 @@ autoplay = "default"
 frame_progress = 0.71127
 
 [node name="SpritelessShardCollector" parent="." instance=ExtResource("4_r4q5a")]
-visible = false
 position = Vector2(0, -25)
 
 [node name="CollectionShape" parent="SpritelessShardCollector/CollectionRadius" index="0"]

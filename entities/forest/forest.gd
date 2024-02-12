@@ -19,6 +19,7 @@ signal not_enough_druids
 @export var pod_scene : PackedScene
 @export var druid_scene : PackedScene
 @export var bear_scene : PackedScene
+@export var spirit_scene : PackedScene
 @export var heal_sfx : AudioStream
 @export var selector : Sprite2D
 @export var forest_call : String = "forest1"
@@ -122,6 +123,17 @@ func make_druid() -> void:
 		new_druid.global_position = top_thicket.global_position
 	else:
 		new_druid.global_position = global_position
+
+func make_spirit() -> void:
+	var new_spirit = spirit_scene.instantiate()
+	get_tree().get_first_node_in_group("spawnspace").add_child(new_spirit)
+	if top_thicket:
+		new_spirit.global_position = top_thicket.global_position
+	else:
+		new_spirit.global_position = global_position
+	var tween : Tween = create_tween()
+	var move_position : Vector2 = Vector2(randf_range(-70,70), randf_range(-180, -70))
+	tween.tween_property(new_spirit, "position", new_spirit.position+move_position, 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 
 func get_top_location() -> Vector2:
 	if top_thicket == null:
