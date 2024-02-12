@@ -61,7 +61,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vj75p"]
 height = 42.0
 
-[node name="Druid" type="CharacterBody2D" node_paths=PackedStringArray("state_manager")]
+[node name="Druid" type="CharacterBody2D" node_paths=PackedStringArray("state_manager") groups=["druid"]]
 z_index = 3
 collision_layer = 8
 collision_mask = 6

@@ -1,9 +1,11 @@
 class_name PlayerStats
 extends Node
 
+@export var starter_druid : Druid
+
 var star_count : int = 1000
 var forest_level : int = 0
-var druid_count : int = 1
+var druid_count : int = 0
 var druid_stack : Array[Druid]
 
 signal star_count_changed(new_value:int, old_value:int)
@@ -15,6 +17,8 @@ func _ready() -> void:
 	change_star_count(star_count)
 	change_forest_level(forest_level)
 	change_druid_count(druid_count)
+	druid_stack = starter_druid.druid_array
+	change_druid_count(druid_stack.size())
 
 func add_star(stars_to_add:int=1) -> void:
 	change_star_count(star_count+stars_to_add)

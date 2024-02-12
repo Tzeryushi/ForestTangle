@@ -3,6 +3,7 @@ extends BaseState
 @export var walk_state : BaseState
 @export var fall_state : BaseState
 @export var idle_state : BaseState
+@export var roar_timer : Timer
 
 @export var roar_sfx : AudioStream
 @export var roar_scene : PackedScene
@@ -19,6 +20,10 @@ func on_enter() -> void:
 	roar()
 	await get_tree().create_timer(0.5).timeout
 	should_swap = true
+
+func on_exit() -> void:
+	super()
+	roar_timer.wait_time = randf_range(5.0,12.0)
 
 func process_input(_event:InputEvent) -> BaseState:
 	return null
@@ -37,6 +42,6 @@ func process_physics(_delta:float) -> BaseState:
 	return null
 
 func roar() -> void:
-	SfxManager.play(roar_sfx,0.08)
+	SfxManager.play(roar_sfx,0.05)
 	var new_roar = roar_scene.instantiate()
 	body.add_child(new_roar)

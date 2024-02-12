@@ -28,6 +28,7 @@ func _physics_process(_delta) -> void:
 	state_manager.process_physics(_delta)
 
 func _exit_tree() -> void:
+	druid_array.erase(self)
 	druid_count -= 1
 
 func send_heal() -> void:

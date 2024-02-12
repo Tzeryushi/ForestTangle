@@ -35,8 +35,9 @@ cast_texter = NodePath("Dialogue/CastLayer")
 playing_music = ExtResource("2_yfn0k")
 starspace = NodePath("Starspace")
 
-[node name="PlayerStats" type="Node" parent="." groups=["stats"]]
+[node name="PlayerStats" type="Node" parent="." node_paths=PackedStringArray("starter_druid") groups=["stats"]]
 script = ExtResource("3_nkcm1")
+starter_druid = NodePath("../Druid")
 
 [node name="SkyCircle" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_jirym")]
 position = Vector2(960, -400)

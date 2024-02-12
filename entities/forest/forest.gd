@@ -11,12 +11,14 @@ signal forest_lost(lost_forest:Forest)
 signal forest_grown(position:Vector2)
 signal forest_receded(position:Vector2)
 signal druid_made(druid_ref:Druid)
+signal not_enough_druids
 
 @export var base_thicket : Thicket
 @export var thicket_scene : PackedScene
 @export var spike_scene : PackedScene
 @export var pod_scene : PackedScene
 @export var druid_scene : PackedScene
+@export var bear_scene : PackedScene
 @export var heal_sfx : AudioStream
 @export var selector : Sprite2D
 @export var forest_call : String = "forest1"
@@ -24,10 +26,15 @@ signal druid_made(druid_ref:Druid)
 @onready var top_thicket : Thicket = base_thicket
 @onready var thicket_array : Array[Thicket] = [base_thicket]
 
+static var druid_array : Array[Druid] = []
+
 var is_activated : bool = false
 
-func ready() -> void:
-	pass
+func _ready() -> void:
+	await get_tree().process_frame
+	var druid_node = get_tree().get_first_node_in_group("druid")
+	if druid_node:
+		druid_array = druid_node.druid_array
 
 ##activates forest for drawing
 func activate() -> void:
@@ -93,8 +100,20 @@ func attack_pods() -> void:
 	new_podmaker.call_pods()
 
 func attack_bears() -> void:
-	print("make bears!")
-	pass
+	if druid_array.is_empty():
+		not_enough_druids.emit()
+		return
+	var target_druid = druid_array.pick_random()
+	#TODO: visuals
+	target_druid.queue_free()
+	get_tree().get_first_node_in_group("stats").change_druid_count(druid_array.size())
+	var new_bear = bear_scene.instantiate()
+	if top_thicket:
+		top_thicket.add_child(new_bear)
+		new_bear.global_position = top_thicket.global_position + Vector2(0, -50)
+	else:
+		add_child(new_bear)
+		new_bear.global_position = global_position + Vector2(0, -50)
 
 ##spawns a new druid at top thicket
 func make_druid() -> void:
@@ -104,7 +123,6 @@ func make_druid() -> void:
 		new_druid.global_position = top_thicket.global_position
 	else:
 		new_druid.global_position = global_position
-	pass
 
 func get_top_location() -> Vector2:
 	if top_thicket == null:

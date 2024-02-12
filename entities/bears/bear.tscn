@@ -51,13 +51,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cgoxi"]
-radius = 22.0
-height = 66.0
+radius = 13.0
+height = 44.0
 
 [node name="Bear" type="CharacterBody2D" node_paths=PackedStringArray("state_manager")]
-z_index = -1
 collision_layer = 8
-collision_mask = 128
+collision_mask = 132
 script = ExtResource("1_q8fu1")
 state_manager = NodePath("StateManager")
 spawn_sfx = ExtResource("2_lm5wx")
@@ -68,7 +67,7 @@ sprite_frames = SubResource("SpriteFrames_ptp5g")
 animation = &"roar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -22)
+position = Vector2(0, -13)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_cgoxi")
 
@@ -98,11 +97,12 @@ idle_state = NodePath("../IdleState")
 roar_timer = NodePath("../RoarTimer")
 animation_type = "idle"
 
-[node name="RoarState" type="Node" parent="StateManager" node_paths=PackedStringArray("walk_state", "fall_state", "idle_state")]
+[node name="RoarState" type="Node" parent="StateManager" node_paths=PackedStringArray("walk_state", "fall_state", "idle_state", "roar_timer")]
 script = ExtResource("9_typqb")
 walk_state = NodePath("../WalkState")
 fall_state = NodePath("../FallState")
 idle_state = NodePath("../IdleState")
+roar_timer = NodePath("../RoarTimer")
 roar_sfx = ExtResource("12_uvy3n")
 roar_scene = ExtResource("13_vdfye")
 animation_type = "roar"

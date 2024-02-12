@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfpu2ir1bjh1v"]
+[gd_scene load_steps=11 format=3 uid="uid://bfpu2ir1bjh1v"]
 
 [ext_resource type="Script" path="res://entities/forest/forest.gd" id="1_ofoyq"]
 [ext_resource type="PackedScene" uid="uid://c72cfpydhk88s" path="res://entities/forest/thicket.tscn" id="2_8al58"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://qb1vv12307ev" path="res://entities/forest/attacks/podmaker.tscn" id="4_m8ide"]
 [ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="5_ax5j4"]
 [ext_resource type="AudioStream" uid="uid://xlqwjxjaseu3" path="res://SFX/heal.wav" id="5_va1ck"]
+[ext_resource type="PackedScene" uid="uid://dpppr2kbl6y45" path="res://entities/bears/bear.tscn" id="6_3t2y1"]
 [ext_resource type="Texture2D" uid="uid://8c6eqy78tos3" path="res://entities/forest/Selector.PNG" id="6_fpogv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e4anr"]
@@ -30,6 +31,7 @@ thicket_scene = ExtResource("2_8al58")
 spike_scene = ExtResource("3_dvfja")
 pod_scene = ExtResource("4_m8ide")
 druid_scene = ExtResource("5_ax5j4")
+bear_scene = ExtResource("6_3t2y1")
 heal_sfx = ExtResource("5_va1ck")
 selector = NodePath("Selector")
 

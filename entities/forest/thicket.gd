@@ -10,6 +10,7 @@ extends Node2D
 @export var leaf_particles : PackedScene
 @export var heal_particles : PackedScene
 @export var small_heal_particles : PackedScene
+@export var floor_collision : CollisionPolygon2D
 
 @onready var sprite_shader : ShaderMaterial = sprite.material
 
@@ -26,6 +27,7 @@ func _ready() -> void:
 
 ##moves a new thicket into place with an animation
 func pop_up() -> void:
+	floor_collision.disabled = true
 	true_position = position - Vector2(0.0, thicket_height)
 	
 	var particles = leaf_particles.instantiate()
@@ -36,6 +38,8 @@ func pop_up() -> void:
 	
 	var tween : Tween = create_tween()
 	tween.tween_property(self,"position", true_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	floor_collision.disabled = false
 
 func destruct() -> void:
 	#thicket dies and must crawl through chain to delete others before deleting itself
