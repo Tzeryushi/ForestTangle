@@ -90,7 +90,9 @@ func heal_thickets(heal_amount:float, druid_heal:bool=false) -> void:
 func attack_spikes() -> void:
 	var new_spikes = spike_scene.instantiate()
 	new_spikes = new_spikes as Spikes
-	get_tree().get_first_node_in_group("spawnspace").add_child(new_spikes)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(new_spikes)
 	new_spikes.global_position = top_thicket.global_position
 	new_spikes.spawn()
 
@@ -121,7 +123,9 @@ func attack_bears() -> void:
 ##spawns a new druid at top thicket
 func make_druid() -> void:
 	var new_druid = druid_scene.instantiate()
-	get_tree().get_first_node_in_group("spawnspace").add_child(new_druid)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(new_druid)
 	if top_thicket:
 		new_druid.global_position = top_thicket.global_position
 	else:
@@ -133,7 +137,9 @@ func make_druid() -> void:
 
 func make_spirit() -> void:
 	var new_spirit = spirit_scene.instantiate()
-	get_tree().get_first_node_in_group("spawnspace").add_child(new_spirit)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(new_spirit)
 	if top_thicket:
 		new_spirit.global_position = top_thicket.global_position
 	else:
@@ -145,7 +151,9 @@ func make_spirit() -> void:
 
 func make_needles() -> void:
 	var new_needler = needler_scene.instantiate()
-	get_tree().get_first_node_in_group("spawnspace").add_child(new_needler)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(new_needler)
 	if top_thicket:
 		new_needler.global_position = top_thicket.global_position
 	else:

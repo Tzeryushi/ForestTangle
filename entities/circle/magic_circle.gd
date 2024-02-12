@@ -53,5 +53,5 @@ func recede() -> void:
 
 func log_star(star_number:int) -> void:
 	star_log.append(star_number)
-	print(star_log)
+	#print(star_log)
 	stars_logged.emit(star_log)

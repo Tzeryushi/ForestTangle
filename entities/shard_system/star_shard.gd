@@ -40,7 +40,9 @@ func move_to_position(position_ref:Node2D, time:float=1.5) -> void:
 
 func pop_sprite() -> void:
 	var copy = sprite.duplicate(15)
-	get_tree().get_first_node_in_group("spawnspace").add_child(copy)
+	var space = get_tree().get_first_node_in_group("spritespace")
+	if space:
+		space.add_child(copy)
 	copy.z_index = -3
 	copy.global_position = global_position
 	copy.global_scale = global_scale

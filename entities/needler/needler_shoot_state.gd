@@ -41,5 +41,7 @@ func process_physics(_delta:float) -> BaseState:
 func shoot() -> void:
 	SfxManager.play(shoot_sfx,0.3)
 	var new_shoot = shoot_scene.instantiate()
-	get_tree().get_first_node_in_group("spawnspace").add_child(new_shoot)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(new_shoot)
 	new_shoot.global_position = body.global_position

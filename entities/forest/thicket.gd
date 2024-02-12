@@ -32,7 +32,9 @@ func pop_up() -> void:
 	
 	var particles = leaf_particles.instantiate()
 	particles = particles as BaseParticle
-	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(particles)
 	particles.global_position = global_position - Vector2(0,thicket_height)
 	particles.play()
 	
@@ -46,7 +48,9 @@ func destruct() -> void:
 	SfxManager.play(thicket_destruct_sfx, 0.4)
 	var particles = leaf_particles.instantiate()
 	particles = particles as BaseParticle
-	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(particles)
 	particles.global_position = global_position - Vector2(0,thicket_height)
 	particles.play()
 	if next_thicket != null:
@@ -69,6 +73,8 @@ func _on_health_gained_life(_life:float):
 		use_particles = small_heal_particles
 	var particles = use_particles.instantiate()
 	particles = particles as BaseParticle
-	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(particles)
 	particles.global_position = global_position + Vector2(0,-20)
 	particles.play()

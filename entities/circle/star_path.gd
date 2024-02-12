@@ -22,7 +22,9 @@ func make_end_copy(type:int=0) -> void:
 	if !(type == 1 or type == 0):
 		return
 	var copy = self.duplicate(15)
-	get_tree().get_first_node_in_group("spawnspace").add_child(copy)
+	var space = get_tree().get_first_node_in_group("spritespace")
+	if space:
+		space.add_child(copy)
 	copy.z_index = 12
 	copy.global_position = global_position
 	copy.global_scale = global_scale

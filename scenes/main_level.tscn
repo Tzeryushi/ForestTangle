@@ -51,7 +51,7 @@ texture = ExtResource("3_3u80s")
 
 [node name="Skyman" parent="." instance=ExtResource("10_byidy")]
 z_index = -6
-position = Vector2(960, -1000)
+position = Vector2(960, -1148)
 
 [node name="Forest1" parent="." instance=ExtResource("1_0cunq")]
 position = Vector2(240, 1080)
@@ -85,6 +85,8 @@ forest_array = [NodePath("../Forest1"), NodePath("../Forest2"), NodePath("../For
 wait_time = 8.0
 
 [node name="SpawnSpace" type="Node2D" parent="." groups=["spawnspace"]]
+
+[node name="SpriteSpace" type="Node2D" parent="." groups=["spritespace"]]
 
 [node name="Floor" type="StaticBody2D" parent="."]
 collision_layer = 4

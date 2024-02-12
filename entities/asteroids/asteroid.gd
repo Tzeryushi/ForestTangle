@@ -34,7 +34,9 @@ func destruct() -> void:
 	SfxManager.play(boom_sfx, 0.1)
 	var particles = boom_particles.instantiate()
 	particles = particles as BaseParticle
-	get_tree().get_first_node_in_group("spawnspace").add_child(particles)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(particles)
 	particles.global_position = global_position
 	particles.play()
 	destructed.emit(global_position)

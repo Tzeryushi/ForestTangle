@@ -18,6 +18,8 @@ func call_pods() -> void:
 func spawn_pod() -> void:
 	var new_pod = pod_scene.instantiate()
 	new_pod = new_pod as Seedpod
-	get_tree().get_first_node_in_group("spawnspace").add_child(new_pod)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(new_pod)
 	new_pod.global_position = global_position
 	new_pod.spawn()

@@ -38,7 +38,7 @@ var constellation_unlocks : Dictionary = {
 }
 
 var danger_timers : Array[float] = [
-	6.0,4.0,3.0
+	10.0,6.0,4.0,2.8,2.0,1.4,1,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.15
 ]
 
 const asteroid_wait_default : float = 10.0
@@ -119,7 +119,7 @@ func set_forest_height(new_height:float) -> void:
 	if int(forest_height/100) != danger_level:
 		danger_level = int(forest_height/100)
 		forest_level_changed.emit(danger_level)
-		asteroid_timer.wait_time = clampf(asteroid_wait_default, 0.12, asteroid_wait_default)
+		asteroid_timer.wait_time = clampf(danger_timers[danger_level], 0.12, asteroid_wait_default)
 
 func druid_heal(heal_value:float) -> void:
 	for forest in forests:
@@ -219,8 +219,10 @@ func cast_wave() -> void:
 	if stats.star_count >= 100:
 		stats.change_star_count(stats.star_count-100)
 		var new_wave = wave_scene.instantiate()
-		get_tree().get_first_node_in_group("spawnspace").add_child(new_wave)
-		new_wave.global_position = Vector2(1920/2, 1080)
+		var space = get_tree().get_first_node_in_group("spawnspace")
+		if space:
+			space.add_child(new_wave)
+		new_wave.global_position = Vector2(1920.0/2.0, 1080.0)
 		end_cast("star wave")
 	else:
 		end_cast("Not enough shards")

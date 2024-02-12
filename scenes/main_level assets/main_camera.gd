@@ -20,10 +20,10 @@ func _process(_delta) -> void:
 	position = base_position + forest_offset/2 + (get_local_mouse_position()*move_ratio).limit_length(100.0)
 	
 func check_change_camera(forest_position:Vector2) -> void:
-	if (forest_position.y+45) < forest_offset.y:
+	if (forest_position.y) < forest_offset.y:
 		set_forest_offset(min(forest_position.y, 0.0))
 		return
-	elif (forest_position.y+45 > forest_offset.y):
+	elif (forest_position.y > forest_offset.y):
 		for forest in forest_array:
 			if forest.get_top_location().y < forest_position.y:
 				return

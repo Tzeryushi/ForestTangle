@@ -44,6 +44,8 @@ func process_physics(_delta:float) -> DruidState:
 func send_pod() -> void:
 	var new_pod = pod_scene.instantiate()
 	new_pod = new_pod as Seedpod
-	get_tree().get_first_node_in_group("spawnspace").add_child(new_pod)
+	var space = get_tree().get_first_node_in_group("spawnspace")
+	if space:
+		space.add_child(new_pod)
 	new_pod.global_position = druid.global_position
 	new_pod.spawn()
