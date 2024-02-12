@@ -15,6 +15,9 @@ var should_swap : bool = false
 func on_enter() -> void:
 	super()
 	should_swap = false
+	var stat_ref = get_tree().get_first_node_in_group("stats")
+	if stat_ref:
+		stat_ref.change_star_count(stat_ref.star_count-1)
 	shoot()
 	await get_tree().create_timer(0.3).timeout
 	should_swap = true

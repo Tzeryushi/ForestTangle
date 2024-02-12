@@ -31,7 +31,7 @@ var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.HEAL:{"unlock":false, "call":cast_heal},
 	Globals.MAGIC.COLLECT:{"unlock":true, "call":cast_collect},
 	Globals.MAGIC.SPIRIT:{"unlock":true, "call":cast_spirit},
-	Globals.MAGIC.NEEDLES:{"unlock":true, "call":cast_collect},
+	Globals.MAGIC.NEEDLES:{"unlock":true, "call":cast_needles},
 	Globals.MAGIC.WAVE:{"unlock":true, "call":cast_collect}
 }
 
@@ -159,57 +159,61 @@ func cast_magic(identifier:Globals.MAGIC) -> void:
 		elif active_forest:
 			end_cast("not unlocked...")
 
-func cast_grow1():
+func cast_grow1() -> void:
 	active_forest.grow_thicket()
 	end_cast("grow")
 
-func cast_grow2():
+func cast_grow2() -> void:
 	active_forest.grow_thicket()
 	active_forest.grow_thicket()
 	end_cast("grow two")
 
-func cast_grow3():
+func cast_grow3() -> void:
 	active_forest.grow_thicket()
 	active_forest.grow_thicket()
 	active_forest.grow_thicket()
 	end_cast("grow three")
 
-func cast_spikes():
+func cast_spikes() -> void:
 	active_forest.attack_spikes()
 	end_cast("spikes")
 
-func cast_bears():
+func cast_bears() -> void:
 	active_forest.attack_bears()
 	end_cast("bears...?")
 
-func cast_pods():
+func cast_pods() -> void:
 	active_forest.attack_pods()
 	sky_circle.deactivate_circle()
 	end_cast("pods")
 
-func cast_druids1():
+func cast_druids1() -> void:
 	active_forest.make_druid()
 	druid_added.emit()
 	end_cast("new druid")
 
-func cast_druids2():
+func cast_druids2() -> void:
 	active_forest.make_druid()
 	druid_added.emit()
 	active_forest.make_druid()
 	druid_added.emit()
 	end_cast("two druids")
 
-func cast_heal():
+func cast_heal() -> void:
 	active_forest.heal_thickets(10.0)
 	end_cast("heal")
 
-func cast_collect():
+func cast_collect() -> void:
 	collect_shards_called.emit()
 	end_cast("collect shards")
 
-func cast_spirit():
+func cast_spirit() -> void:
 	active_forest.make_spirit()
 	end_cast("entreated spirit")
+
+func cast_needles() -> void:
+	active_forest.make_needles()
+	end_cast("ent formed")
 
 func end_cast(cast_text:String="no text", time:float=1.0) -> void:
 	sky_circle.deactivate_circle()
