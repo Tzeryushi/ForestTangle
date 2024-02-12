@@ -1,12 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://bry24iy8yquhe"]
 
 [ext_resource type="Script" path="res://entities/shard_system/shard_collector.gd" id="1_j3ome"]
-[ext_resource type="Texture2D" uid="uid://bixecb0yl8dpm" path="res://icon.svg" id="1_u5ae8"]
+[ext_resource type="Texture2D" uid="uid://pj2ni4swmbc3" path="res://entities/shard_system/CollectionStone.PNG" id="2_egqme"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1imq2"]
-radius = 57.0088
+radius = 13.3417
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2p5y3"]
+radius = 7.07107
 
 [node name="ShardCollector" type="Node2D" node_paths=PackedStringArray("collection_radius", "attraction_radius")]
 script = ExtResource("1_j3ome")
@@ -14,7 +15,8 @@ collection_radius = NodePath("CollectionRadius")
 attraction_radius = NodePath("AttractionRadius")
 
 [node name="CollectorSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_u5ae8")
+position = Vector2(0, 25)
+texture = ExtResource("2_egqme")
 
 [node name="CollectionRadius" type="Area2D" parent="."]
 collision_layer = 0

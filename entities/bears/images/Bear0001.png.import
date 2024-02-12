@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjbtfpfa0mikj"
-path="res://.godot/imported/Bear0001.png-00166b4d0725833a1dba4f08eae941e9.ctex"
+path="res://.godot/imported/Bear0001.png-4127d2878c88fd81dff43ccfda4b7076.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/bear/Bear0001.png"
-dest_files=["res://.godot/imported/Bear0001.png-00166b4d0725833a1dba4f08eae941e9.ctex"]
+source_file="res://entities/bears/images/Bear0001.png"
+dest_files=["res://.godot/imported/Bear0001.png-4127d2878c88fd81dff43ccfda4b7076.ctex"]
 
 [params]
 

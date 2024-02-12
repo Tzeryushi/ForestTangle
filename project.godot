@@ -90,6 +90,7 @@ mouse_select={
 2d_physics/layer_5="Stars"
 2d_physics/layer_6="Skyman"
 2d_physics/layer_7="Shards"
+2d_physics/layer_8="Thickets"
 
 [rendering]
 

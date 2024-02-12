@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://omfsj58kt7n4"]
+
+[ext_resource type="Script" path="res://entities/bears/bear_roar.gd" id="1_ey6m1"]
+[ext_resource type="Texture2D" uid="uid://7kn7ykrn4xja" path="res://entities/bears/bear_roar.png" id="2_xrno0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b586f"]
+radius = 342.231
+
+[node name="BearRoar" type="Node2D"]
+modulate = Color(1, 1, 1, 0.411765)
+script = ExtResource("1_ey6m1")
+
+[node name="RoarArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoarArea"]
+shape = SubResource("CircleShape2D_b586f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xrno0")
+
+[connection signal="area_entered" from="RoarArea" to="." method="_on_roar_area_area_entered"]

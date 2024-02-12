@@ -10,6 +10,7 @@ extends Node2D
 signal forest_lost(lost_forest:Forest)
 signal forest_grown(position:Vector2)
 signal forest_receded(position:Vector2)
+signal druid_made(druid_ref:Druid)
 
 @export var base_thicket : Thicket
 @export var thicket_scene : PackedScene
@@ -25,10 +26,8 @@ signal forest_receded(position:Vector2)
 
 var is_activated : bool = false
 
-#func _unhandled_input(event) -> void:
-	#if is_activated:
-		#if Input.is_action_just_pressed("ui_up"):
-			#grow_thicket()
+func ready() -> void:
+	pass
 
 ##activates forest for drawing
 func activate() -> void:

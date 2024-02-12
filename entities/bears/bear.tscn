@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=3 uid="uid://dpppr2kbl6y45"]
+
+[ext_resource type="Texture2D" uid="uid://dsqjaan8llfpk" path="res://entities/bears/images/Bear0000.png" id="1_12m3r"]
+[ext_resource type="Script" path="res://entities/bears/bear.gd" id="1_q8fu1"]
+[ext_resource type="AudioStream" uid="uid://kde1myck3uwo" path="res://SFX/bear_spawn.wav" id="2_lm5wx"]
+[ext_resource type="Texture2D" uid="uid://dr4l2yf82c6l7" path="res://entities/bears/images/Bear0003.png" id="2_tl2j8"]
+[ext_resource type="Texture2D" uid="uid://cjbtfpfa0mikj" path="res://entities/bears/images/Bear0001.png" id="3_xe1em"]
+[ext_resource type="Texture2D" uid="uid://vplj2ruldbsd" path="res://entities/bears/images/Bear0002.png" id="4_mmbmc"]
+[ext_resource type="Script" path="res://entities/base_state_manager.gd" id="5_04fr0"]
+[ext_resource type="Script" path="res://entities/bears/states/bear_idle_state.gd" id="6_ndm1k"]
+[ext_resource type="Script" path="res://entities/bears/states/bear_walk_state.gd" id="7_egoee"]
+[ext_resource type="Script" path="res://entities/bears/states/bear_fall_state.gd" id="8_mddtp"]
+[ext_resource type="Script" path="res://entities/bears/states/bear_roar_state.gd" id="9_typqb"]
+[ext_resource type="AudioStream" uid="uid://csw87rs2lball" path="res://SFX/bear_roar.wav" id="12_uvy3n"]
+[ext_resource type="PackedScene" uid="uid://omfsj58kt7n4" path="res://entities/bears/bear_roar.tscn" id="13_vdfye"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ptp5g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_12m3r")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tl2j8")
+}],
+"loop": true,
+"name": &"roar",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xe1em")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_12m3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mmbmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_12m3r")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cgoxi"]
+radius = 22.0
+height = 66.0
+
+[node name="Bear" type="CharacterBody2D" node_paths=PackedStringArray("state_manager")]
+z_index = -1
+collision_layer = 8
+collision_mask = 128
+script = ExtResource("1_q8fu1")
+state_manager = NodePath("StateManager")
+spawn_sfx = ExtResource("2_lm5wx")
+
+[node name="BearSprites" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -49)
+sprite_frames = SubResource("SpriteFrames_ptp5g")
+animation = &"roar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -22)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_cgoxi")
+
+[node name="StateManager" type="Node" parent="." node_paths=PackedStringArray("first_state", "animation")]
+script = ExtResource("5_04fr0")
+first_state = NodePath("IdleState")
+animation = NodePath("../BearSprites")
+
+[node name="IdleState" type="Node" parent="StateManager" node_paths=PackedStringArray("walk_state", "fall_state", "roar_state")]
+script = ExtResource("6_ndm1k")
+walk_state = NodePath("../WalkState")
+fall_state = NodePath("../FallState")
+roar_state = NodePath("../RoarState")
+animation_type = "idle"
+
+[node name="WalkState" type="Node" parent="StateManager" node_paths=PackedStringArray("idle_state", "fall_state", "roar_state", "sprite")]
+script = ExtResource("7_egoee")
+idle_state = NodePath("../IdleState")
+fall_state = NodePath("../FallState")
+roar_state = NodePath("../RoarState")
+sprite = NodePath("../../BearSprites")
+animation_type = "walk"
+
+[node name="FallState" type="Node" parent="StateManager" node_paths=PackedStringArray("idle_state", "roar_timer")]
+script = ExtResource("8_mddtp")
+idle_state = NodePath("../IdleState")
+roar_timer = NodePath("../RoarTimer")
+animation_type = "idle"
+
+[node name="RoarState" type="Node" parent="StateManager" node_paths=PackedStringArray("walk_state", "fall_state", "idle_state")]
+script = ExtResource("9_typqb")
+walk_state = NodePath("../WalkState")
+fall_state = NodePath("../FallState")
+idle_state = NodePath("../IdleState")
+roar_sfx = ExtResource("12_uvy3n")
+roar_scene = ExtResource("13_vdfye")
+animation_type = "roar"
+
+[node name="RoarTimer" type="Timer" parent="StateManager"]
+wait_time = 8.0
+autostart = true
+
+[connection signal="timeout" from="StateManager/RoarTimer" to="StateManager/IdleState" method="_on_roar_timer_timeout"]
+[connection signal="timeout" from="StateManager/RoarTimer" to="StateManager/WalkState" method="_on_roar_timer_timeout"]

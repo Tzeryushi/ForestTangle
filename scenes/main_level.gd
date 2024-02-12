@@ -39,7 +39,7 @@ var danger_timers : Array[float] = [
 	6.0,4.0,3.0
 ]
 
-const asteroid_wait_default : float = 8.0
+const asteroid_wait_default : float = 10.0
 
 signal forest_level_changed(new_height:int)
 signal druid_added()

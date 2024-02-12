@@ -4,6 +4,7 @@ extends Node
 var star_count : int = 1000
 var forest_level : int = 0
 var druid_count : int = 1
+var druid_stack : Array[Druid]
 
 signal star_count_changed(new_value:int, old_value:int)
 signal forest_level_changed(new_value:int, old_value:int)

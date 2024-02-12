@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var state_manager : StateManager
 
+static var druid_array : Array[Druid] = []
 static var druid_count : int = 0
 
 signal heal_sent(heal_value:float)
@@ -14,6 +15,7 @@ func _ready() -> void:
 	var level_node = get_tree().get_first_node_in_group("main_level")
 	if level_node:
 		heal_sent.connect((level_node as MainLevel).druid_heal)
+	druid_array.append(self)
 	druid_count += 1
 
 func _unhandled_input(_event) -> void:
