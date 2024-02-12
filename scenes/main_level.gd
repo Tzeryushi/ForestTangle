@@ -30,9 +30,9 @@ var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.DRUIDS2:{"unlock":false, "call":cast_druids2},
 	Globals.MAGIC.HEAL:{"unlock":false, "call":cast_heal},
 	Globals.MAGIC.COLLECT:{"unlock":true, "call":cast_collect},
-	Globals.MAGIC.SPIRIT:{"unlock":true, "call":cast_spirit},
-	Globals.MAGIC.NEEDLES:{"unlock":true, "call":cast_needles},
-	Globals.MAGIC.WAVE:{"unlock":true, "call":cast_collect}
+	Globals.MAGIC.SPIRIT:{"unlock":false, "call":cast_spirit},
+	Globals.MAGIC.NEEDLES:{"unlock":false, "call":cast_needles},
+	Globals.MAGIC.WAVE:{"unlock":false, "call":cast_collect}
 }
 
 var danger_timers : Array[float] = [
