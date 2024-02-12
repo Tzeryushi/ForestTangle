@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2u1en2prfchs"]
+
+[ext_resource type="Texture2D" uid="uid://clmtdrfh12d7b" path="res://entities/spirit/images/Spirit0000.png" id="1_m4ghx"]
+[ext_resource type="Texture2D" uid="uid://b4mahtxl57mi3" path="res://entities/spirit/images/Spirit0001.png" id="2_odego"]
+[ext_resource type="Texture2D" uid="uid://wp51qodoinrn" path="res://entities/spirit/images/Spirit0002.png" id="3_fny12"]
+[ext_resource type="PackedScene" uid="uid://b6ker7xkgk7c2" path="res://entities/shard_system/spriteless_shard_collector.tscn" id="4_r4q5a"]
+[ext_resource type="Texture2D" uid="uid://6djsfk71havm" path="res://entities/spirit/collection_area.png" id="5_bp886"]
+[ext_resource type="Script" path="res://entities/spirit/sprite_spin.gd" id="6_sadsm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_12upk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m4ghx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_odego")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fny12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_odego")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yct22"]
+radius = 15.0333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ccilk"]
+radius = 422.171
+
+[node name="Spirit" type="Node2D"]
+
+[node name="SpiritSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -25)
+sprite_frames = SubResource("SpriteFrames_12upk")
+autoplay = "default"
+frame_progress = 0.71127
+
+[node name="SpritelessShardCollector" parent="." instance=ExtResource("4_r4q5a")]
+visible = false
+position = Vector2(0, -25)
+
+[node name="CollectionShape" parent="SpritelessShardCollector/CollectionRadius" index="0"]
+shape = SubResource("CircleShape2D_yct22")
+
+[node name="CollisionShape2D" parent="SpritelessShardCollector/AttractionRadius" index="0"]
+shape = SubResource("CircleShape2D_ccilk")
+
+[node name="AreaSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.0784314)
+z_index = -7
+position = Vector2(0, -25)
+scale = Vector2(1.05486, 1.05486)
+texture = ExtResource("5_bp886")
+script = ExtResource("6_sadsm")
+
+[editable path="SpritelessShardCollector"]

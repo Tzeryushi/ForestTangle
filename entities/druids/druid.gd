@@ -29,6 +29,7 @@ func _physics_process(_delta) -> void:
 
 func _exit_tree() -> void:
 	druid_array.erase(self)
+	get_tree().get_first_node_in_group("stats").change_druid_count(druid_array.size())
 	druid_count -= 1
 
 func send_heal() -> void:

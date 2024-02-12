@@ -106,7 +106,6 @@ func attack_bears() -> void:
 	var target_druid = druid_array.pick_random()
 	#TODO: visuals
 	target_druid.queue_free()
-	get_tree().get_first_node_in_group("stats").change_druid_count(druid_array.size())
 	var new_bear = bear_scene.instantiate()
 	if top_thicket:
 		top_thicket.add_child(new_bear)

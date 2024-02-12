@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=24 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scenes/cast_layer.gd" id="18_uexvj"]
 [ext_resource type="Script" path="res://scenes/level_hud.gd" id="21_mem4w"]
 [ext_resource type="PackedScene" uid="uid://dpppr2kbl6y45" path="res://entities/bears/bear.tscn" id="21_pk0p5"]
+[ext_resource type="PackedScene" uid="uid://d2u1en2prfchs" path="res://entities/spirit/spirit.tscn" id="22_td200"]
 [ext_resource type="FontFile" uid="uid://vcxdt5phcc0d" path="res://fonts/LEVEFD__.ttf" id="27_00uue"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3xn5i"]
@@ -346,6 +347,9 @@ text = "Quit"
 
 [node name="Bear" parent="." instance=ExtResource("21_pk0p5")]
 position = Vector2(773, 527)
+
+[node name="Spirit" parent="." instance=ExtResource("22_td200")]
+position = Vector2(1441, 598)
 
 [connection signal="collect_shards_called" from="." to="ShardSystem" method="_on_main_level_collect_shards_called"]
 [connection signal="druid_added" from="." to="PlayerStats" method="_on_main_level_druid_added"]

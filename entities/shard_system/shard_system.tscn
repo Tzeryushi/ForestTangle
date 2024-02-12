@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dd2evvptag382" path="res://SFX/shard_pickup2.wav" id="3_77opl"]
 [ext_resource type="PackedScene" uid="uid://bry24iy8yquhe" path="res://entities/shard_system/shard_collector.tscn" id="3_v1ux8"]
 
-[node name="ShardSystem" type="Node2D" node_paths=PackedStringArray("shard_collector")]
+[node name="ShardSystem" type="Node2D" node_paths=PackedStringArray("shard_collector") groups=["shard_system"]]
 script = ExtResource("1_u66g4")
 shard_scene = ExtResource("2_vs0hw")
 shard_collector = NodePath("ShardCollector")
