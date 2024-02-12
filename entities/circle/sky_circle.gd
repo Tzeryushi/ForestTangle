@@ -15,7 +15,7 @@ signal magic_casted(identifier:Globals.MAGIC)
 
 ##dictionary of callables that sends signals for use by main level
 var book_of_stars : Dictionary = {
-	[0,1]:Globals.MAGIC.GROW1,
+	[1,2]:Globals.MAGIC.GROW3,
 	[4,18,20,17,9,8,0,15,14,19]:Globals.MAGIC.GROW1,
 	[12,19,6,14,15,0,8,9,2,17,11]:Globals.MAGIC.GROW2,
 	[16,19,13,6,14,15,0,8,9,2,10,17,20,18,4]:Globals.MAGIC.GROW3,

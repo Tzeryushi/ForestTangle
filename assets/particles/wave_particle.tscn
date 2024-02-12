@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://sq5m6sn1hkkw"]
+
+[ext_resource type="Script" path="res://assets/particles/wave_particle.gd" id="1_gf4vq"]
+[ext_resource type="Texture2D" uid="uid://dic81dec2bkh3" path="res://assets/particles/spawn_images/star_sym.png" id="2_ajhpb"]
+
+[sub_resource type="Curve" id="Curve_xx2o8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0527859, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.16401, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3xt1u"]
+curve = SubResource("Curve_xx2o8")
+
+[sub_resource type="Curve" id="Curve_u203j"]
+_data = [Vector2(0, 1), 0.0, 0.00852106, 0, 0, Vector2(0.844575, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.35947, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_np6vj"]
+curve = SubResource("Curve_u203j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kdvbb"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(820, 1, 1)
+gravity = Vector3(0, 200, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_np6vj")
+alpha_curve = SubResource("CurveTexture_3xt1u")
+
+[node name="WaveParticle" type="Node2D" node_paths=PackedStringArray("particles", "particles2")]
+script = ExtResource("1_gf4vq")
+particles = NodePath("Stars")
+particles2 = NodePath("Stars2")
+
+[node name="Stars" type="GPUParticles2D" parent="."]
+position = Vector2(809, 43)
+rotation = 0.0698132
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_kdvbb")
+texture = ExtResource("2_ajhpb")
+lifetime = 3.0
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)
+
+[node name="Stars2" type="GPUParticles2D" parent="."]
+position = Vector2(-809, 43)
+rotation = -0.0698132
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_kdvbb")
+texture = ExtResource("2_ajhpb")
+lifetime = 3.0
+visibility_rect = Rect2(-2000, -2000, 4000, 4000)

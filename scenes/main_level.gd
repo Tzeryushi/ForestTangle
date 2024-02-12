@@ -14,6 +14,8 @@ extends Node2D
 @export var playing_music : AudioStream
 @export var starspace : Starspace
 
+@export var wave_scene : PackedScene
+
 var active_forest : Forest = null
 var forest_height : float = 0.0
 var danger_level : int = 0
@@ -32,7 +34,7 @@ var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.COLLECT:{"unlock":true, "call":cast_collect},
 	Globals.MAGIC.SPIRIT:{"unlock":false, "call":cast_spirit},
 	Globals.MAGIC.NEEDLES:{"unlock":false, "call":cast_needles},
-	Globals.MAGIC.WAVE:{"unlock":false, "call":cast_collect}
+	Globals.MAGIC.WAVE:{"unlock":false, "call":cast_wave}
 }
 
 var danger_timers : Array[float] = [
@@ -118,8 +120,6 @@ func set_forest_height(new_height:float) -> void:
 		danger_level = int(forest_height/100)
 		forest_level_changed.emit(danger_level)
 		asteroid_timer.wait_time = clampf(asteroid_wait_default, 0.12, asteroid_wait_default)
-	if forest_height > 1400:
-		game_win()
 
 func druid_heal(heal_value:float) -> void:
 	for forest in forests:
@@ -214,6 +214,16 @@ func cast_spirit() -> void:
 func cast_needles() -> void:
 	active_forest.make_needles()
 	end_cast("ent formed")
+
+func cast_wave() -> void:
+	if stats.star_count >= 100:
+		stats.change_star_count(stats.star_count-100)
+		var new_wave = wave_scene.instantiate()
+		get_tree().get_first_node_in_group("spawnspace").add_child(new_wave)
+		new_wave.global_position = Vector2(1920/2, 1080)
+		end_cast("star wave")
+	else:
+		end_cast("Not enough shards")
 
 func end_cast(cast_text:String="no text", time:float=1.0) -> void:
 	sky_circle.deactivate_circle()
