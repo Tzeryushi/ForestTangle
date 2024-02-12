@@ -14,4 +14,4 @@ func _ready() -> void:
 func _on_attraction_radius_area_entered(area):
 	if area is ShardHitbox:
 		if !area.get_is_collecting():
-			area.move_shard(global_position)
+			area.move_shard(self)

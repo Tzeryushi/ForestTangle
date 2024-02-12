@@ -22,19 +22,21 @@ func spawn() -> void:
 	var tween : Tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ONE, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 
-func start_collection(new_position:Vector2, time:float=1.5) -> void:
+func start_collection(position_ref:Node2D, time:float=1.5) -> void:
 	#TODO: Make trail propagate
 	is_being_collected = true
 	sprite.scale = Vector2(1,1)
 	pop_sprite()
-	move_to_position(new_position, time)
+	move_to_position(position_ref, time)
 
-func move_to_position(new_position:Vector2, time:float=1.5) -> void:
-	var tween : Tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(self, "modulate", Color(1.0,1.0,1.0,1.0), 0.4).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
-	tween.tween_property(self, "scale", Vector2(0.3,0.3), time).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
-	tween.tween_property(self, "global_position", new_position, time).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
+func move_to_position(position_ref:Node2D, time:float=1.5) -> void:
+	while(!is_queued_for_deletion()):
+		var tween : Tween = create_tween()
+		tween.set_parallel(true)
+		tween.tween_property(self, "modulate", Color(1.0,1.0,1.0,1.0), 0.4).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
+		tween.tween_property(self, "scale", Vector2(0.3,0.3), time).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
+		tween.tween_property(self, "global_position", position_ref.global_position, time).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
+		await tween.finished
 
 func pop_sprite() -> void:
 	var copy = sprite.duplicate(15)
