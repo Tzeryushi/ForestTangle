@@ -21,6 +21,7 @@ signal not_enough_druids
 @export var bear_scene : PackedScene
 @export var spirit_scene : PackedScene
 @export var needler_scene : PackedScene
+@export var spawn_part_scene : PackedScene
 @export var heal_sfx : AudioStream
 @export var selector : Sprite2D
 @export var forest_call : String = "forest1"
@@ -115,6 +116,7 @@ func attack_bears() -> void:
 	else:
 		add_child(new_bear)
 		new_bear.global_position = global_position + Vector2(0, -50)
+	play_spawn_particles(new_bear)
 
 ##spawns a new druid at top thicket
 func make_druid() -> void:
@@ -124,6 +126,7 @@ func make_druid() -> void:
 		new_druid.global_position = top_thicket.global_position
 	else:
 		new_druid.global_position = global_position
+	play_spawn_particles(new_druid)
 	var tween : Tween = create_tween()
 	var move_position : Vector2 = Vector2(randf_range(-70,70), randf_range(-180, -70))
 	tween.tween_property(new_druid, "position", new_druid.position+move_position, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
@@ -135,6 +138,7 @@ func make_spirit() -> void:
 		new_spirit.global_position = top_thicket.global_position
 	else:
 		new_spirit.global_position = global_position
+	play_spawn_particles(new_spirit)
 	var tween : Tween = create_tween()
 	var move_position : Vector2 = Vector2(randf_range(-70,70), randf_range(-180, -70))
 	tween.tween_property(new_spirit, "position", new_spirit.position+move_position, 2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
@@ -146,9 +150,16 @@ func make_needles() -> void:
 		new_needler.global_position = top_thicket.global_position
 	else:
 		new_needler.global_position = global_position
+	play_spawn_particles(new_needler)
 	var tween : Tween = create_tween()
 	var move_position : Vector2 = Vector2(randf_range(-70,70), randf_range(-180, -70))
 	tween.tween_property(new_needler, "position", new_needler.position+move_position, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+
+func play_spawn_particles(node:Node2D) -> void:
+	var new_parts = spawn_part_scene.instantiate()
+	new_parts = new_parts as BaseParticle
+	node.add_child(new_parts)
+	new_parts.play()
 
 func get_top_location() -> Vector2:
 	if top_thicket == null:

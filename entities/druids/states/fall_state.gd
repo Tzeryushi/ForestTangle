@@ -2,9 +2,9 @@ extends DruidState
 
 @export var idle_state : DruidState
 
-const FALL_GRAVITY : float = 8
+const FALL_GRAVITY : float = 2
 const DECELERATION : float = 20
-const TERMINAL_VELOCITY : float = 400.0
+const TERMINAL_VELOCITY : float = 600.0
 
 #druids will choose to enter one of the three states (heal, shoot, move)
 #from idle. This is random.

@@ -1,0 +1,174 @@
+[gd_scene load_steps=26 format=3 uid="uid://07n3pbvgre3"]
+
+[ext_resource type="Script" path="res://assets/particles/explosive_particle.gd" id="1_slupx"]
+[ext_resource type="Texture2D" uid="uid://dv33v8htwp6q1" path="res://assets/particles/spawn_images/plant_sym.png" id="2_ajm5g"]
+[ext_resource type="Texture2D" uid="uid://0fre44wvujx5" path="res://assets/particles/spawn_images/druid_sym.png" id="3_sxaxg"]
+[ext_resource type="Texture2D" uid="uid://bhd6qrip1p5h3" path="res://assets/particles/spawn_images/blackthorn_sym.png" id="4_0iwjo"]
+[ext_resource type="Texture2D" uid="uid://dic81dec2bkh3" path="res://assets/particles/spawn_images/star_sym.png" id="5_cidij"]
+
+[sub_resource type="Curve" id="Curve_wbx1x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.560117, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0262589, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_s6hxc"]
+curve = SubResource("Curve_wbx1x")
+
+[sub_resource type="Curve" id="Curve_bvitc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.111437, 1), 0.0, 0.0, 0, 0, Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.758312), -2.24915, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_csj5i"]
+curve = SubResource("Curve_bvitc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_riabq"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 157.29
+initial_velocity_max = 157.29
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_csj5i")
+alpha_curve = SubResource("CurveTexture_s6hxc")
+hue_variation_min = -0.56
+hue_variation_max = -0.22
+
+[sub_resource type="Curve" id="Curve_g1uhv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.560117, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0262589, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bruik"]
+curve = SubResource("Curve_g1uhv")
+
+[sub_resource type="Curve" id="Curve_xkeyn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.111437, 1), 0.0, 0.0, 0, 0, Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.758312), -2.24915, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bmtb1"]
+curve = SubResource("Curve_xkeyn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rpcqm"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 157.29
+initial_velocity_max = 157.29
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_bmtb1")
+color = Color(0.529412, 0.529412, 0.529412, 1)
+alpha_curve = SubResource("CurveTexture_bruik")
+hue_variation_min = -1.0
+hue_variation_max = -0.79
+
+[sub_resource type="Curve" id="Curve_51l6d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.560117, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0262589, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qdhsg"]
+curve = SubResource("Curve_51l6d")
+
+[sub_resource type="Curve" id="Curve_lf2en"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.111437, 1), 0.0, 0.0, 0, 0, Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.758312), -2.24915, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_v35qq"]
+curve = SubResource("Curve_lf2en")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2i37y"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 157.29
+initial_velocity_max = 157.29
+orbit_velocity_min = -0.312
+orbit_velocity_max = -0.146
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_v35qq")
+alpha_curve = SubResource("CurveTexture_qdhsg")
+hue_variation_min = 0.05
+hue_variation_max = 0.22
+
+[sub_resource type="Curve" id="Curve_pf1q6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.560117, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.0262589, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7q6vv"]
+curve = SubResource("Curve_pf1q6")
+
+[sub_resource type="Curve" id="Curve_n5bnl"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.111437, 1), 0.0, 0.0, 0, 0, Vector2(0.639296, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.758312), -2.24915, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7fb31"]
+curve = SubResource("Curve_n5bnl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1pr60"]
+particle_flag_disable_z = true
+angle_min = -720.0
+spread = 180.0
+initial_velocity_min = 157.29
+initial_velocity_max = 157.29
+angular_velocity_min = -330.0
+angular_velocity_max = 307.5
+orbit_velocity_min = 0.216
+orbit_velocity_max = 0.375
+damping_min = 100.0
+damping_max = 100.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_7fb31")
+alpha_curve = SubResource("CurveTexture_7q6vv")
+hue_variation_min = 0.19
+hue_variation_max = 0.37
+
+[node name="SpawnBoom" type="Node2D" node_paths=PackedStringArray("particles")]
+modulate = Color(0.741176, 0.741176, 0.741176, 1)
+z_index = -5
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_slupx")
+particles = [NodePath("Plants"), NodePath("Druids"), NodePath("Thorns"), NodePath("Stars")]
+
+[node name="Plants" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_riabq")
+texture = ExtResource("2_ajm5g")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+
+[node name="Druids" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_rpcqm")
+texture = ExtResource("3_sxaxg")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+
+[node name="Thorns" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_2i37y")
+texture = ExtResource("4_0iwjo")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+
+[node name="Stars" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_1pr60")
+texture = ExtResource("5_cidij")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = true
