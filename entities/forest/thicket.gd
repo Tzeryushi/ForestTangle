@@ -18,6 +18,7 @@ var last_thicket : Thicket = null
 var next_thicket : Thicket = null
 ##local position where the thicket will be after animations
 var true_position : Vector2 = Vector2.ZERO
+var transfer_nodes : Array[Node]
 
 signal destructed(thicket_node:Thicket, last_thicket:Thicket)
 
@@ -46,6 +47,9 @@ func pop_up() -> void:
 func destruct() -> void:
 	#thicket dies and must crawl through chain to delete others before deleting itself
 	SfxManager.play(thicket_destruct_sfx, 0.4)
+	if last_thicket != null:
+		for node in transfer_nodes:
+			last_thicket.call_deferred("reparent_transferable_child", node)
 	var particles = leaf_particles.instantiate()
 	particles = particles as BaseParticle
 	var space = get_tree().get_first_node_in_group("spawnspace")
@@ -57,7 +61,16 @@ func destruct() -> void:
 		next_thicket.destruct()
 		await next_thicket.destructed
 	destructed.emit(self, last_thicket)
+	await get_tree().process_frame
 	queue_free()
+
+func add_transferable_child(node:Node) -> void:
+	add_child(node)
+	transfer_nodes.append(node)
+
+func reparent_transferable_child(node:Node) -> void:
+	node.reparent(self)
+	transfer_nodes.append(node)
 
 func _on_health_health_depleted():
 	Shake.add_trauma(0.5)

@@ -15,7 +15,10 @@ var test_sprite : Sprite2D
 	Globals.MAGIC.DRUIDS1:$Druids1,
 	Globals.MAGIC.DRUIDS2:$Druids2,
 	Globals.MAGIC.HEAL:$Heal,
-	Globals.MAGIC.COLLECT:$Collect
+	Globals.MAGIC.COLLECT:$Collect,
+	Globals.MAGIC.NEEDLES:$Needles,
+	Globals.MAGIC.SPIRIT:$Spirit,
+	Globals.MAGIC.WAVE:$Wave
 }
 
 func _ready() -> void:

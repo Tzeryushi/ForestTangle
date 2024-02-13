@@ -38,7 +38,7 @@ var constellation_unlocks : Dictionary = {
 }
 
 var danger_timers : Array[float] = [
-	10.0,6.0,4.0,2.8,2.0,1.4,1,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.15
+	8.0,6.0,4.0,2.8,2.0,1.4,1.0,0.8,0.7,0.65,0.6,0.55,0.5,0.4,0.2,0.15
 ]
 
 const asteroid_wait_default : float = 10.0
@@ -119,7 +119,8 @@ func set_forest_height(new_height:float) -> void:
 	if int(forest_height/100) != danger_level:
 		danger_level = int(forest_height/100)
 		forest_level_changed.emit(danger_level)
-		asteroid_timer.wait_time = clampf(danger_timers[danger_level], 0.12, asteroid_wait_default)
+		if danger_timers.size() > danger_level:
+			asteroid_timer.wait_time = clampf(danger_timers[danger_level], 0.12, asteroid_wait_default)
 
 func druid_heal(heal_value:float) -> void:
 	for forest in forests:

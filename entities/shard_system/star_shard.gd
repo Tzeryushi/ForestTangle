@@ -47,7 +47,7 @@ func pop_sprite() -> void:
 	copy.global_position = global_position
 	copy.global_scale = global_scale
 	copy.modulate.a = 0.5
-	var tween : Tween = create_tween()
+	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(copy, "scale", copy.scale*2, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.parallel().tween_property(copy, "modulate:a", 0.0, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.tween_callback(copy.queue_free)
@@ -60,3 +60,9 @@ func destruct() -> void:
 	destructed.emit(self)
 	await get_tree().process_frame
 	queue_free()
+
+func _on_lifespan_timeout():
+	if !is_being_collected:
+		var tween : Tween = create_tween()
+		tween.tween_property(self, "scale", Vector2.ZERO, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+		destruct()

@@ -113,7 +113,7 @@ func attack_bears() -> void:
 	target_druid.queue_free()
 	var new_bear = bear_scene.instantiate()
 	if top_thicket:
-		top_thicket.add_child(new_bear)
+		top_thicket.add_transferable_child(new_bear)
 		new_bear.global_position = top_thicket.global_position + Vector2(0, -50)
 	else:
 		add_child(new_bear)

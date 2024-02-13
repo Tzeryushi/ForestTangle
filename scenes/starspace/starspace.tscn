@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b5rm5sn2b2ueo"]
+[gd_scene load_steps=16 format=3 uid="uid://b5rm5sn2b2ueo"]
 
 [ext_resource type="Script" path="res://scenes/starspace/starspace.gd" id="1_2e0x2"]
 [ext_resource type="Texture2D" uid="uid://c6jqmlra1lp0a" path="res://scenes/starspace/stars/spikes_const.png" id="1_73xv2"]
@@ -12,18 +12,21 @@
 [ext_resource type="Texture2D" uid="uid://rykt0encabqf" path="res://scenes/starspace/stars/grow3_const.png" id="9_hxi50"]
 [ext_resource type="Texture2D" uid="uid://b2a1a5j6wsfym" path="res://scenes/starspace/stars/druid2_const.png" id="10_0lka4"]
 [ext_resource type="Texture2D" uid="uid://b4o00c42kktvi" path="res://entities/circle/Circle2.png" id="11_s2fkf"]
+[ext_resource type="Texture2D" uid="uid://bpl2en3rryxd5" path="res://scenes/starspace/stars/needles_const.png" id="12_rlr8f"]
+[ext_resource type="Texture2D" uid="uid://cdl5ybf6gralf" path="res://scenes/starspace/stars/spirit_const.png" id="13_dh67y"]
+[ext_resource type="Texture2D" uid="uid://dhecg11bcaldp" path="res://scenes/starspace/stars/wave_const.png" id="14_6x0p3"]
 
 [node name="Starspace" type="Node2D"]
 modulate = Color(1, 1, 1, 0.447059)
 script = ExtResource("1_2e0x2")
 
 [node name="Spikes" type="Sprite2D" parent="."]
-position = Vector2(-508, -396)
+position = Vector2(-505, -414)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_73xv2")
 
 [node name="Collect" type="Sprite2D" parent="."]
-position = Vector2(644, -50)
+position = Vector2(660, -158)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_0pcp8")
 
@@ -33,7 +36,7 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_mrgiy")
 
 [node name="Pods" type="Sprite2D" parent="."]
-position = Vector2(-569.3, -101.6)
+position = Vector2(-542, -198)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_yvdfu")
 
@@ -43,12 +46,12 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("10_0lka4")
 
 [node name="Grow2" type="Sprite2D" parent="."]
-position = Vector2(-778, 82)
+position = Vector2(-669, -16)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("6_x7op7")
 
 [node name="Heal" type="Sprite2D" parent="."]
-position = Vector2(759.7, -263.6)
+position = Vector2(809, -329)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("7_nx40o")
 
@@ -63,9 +66,24 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("9_hxi50")
 
 [node name="Druids1" type="Sprite2D" parent="."]
-position = Vector2(-806, -244)
+position = Vector2(-787, -307)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_gx3os")
+
+[node name="Needles" type="Sprite2D" parent="."]
+position = Vector2(888, -115)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_rlr8f")
+
+[node name="Spirit" type="Sprite2D" parent="."]
+position = Vector2(559, 5)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("13_dh67y")
+
+[node name="Wave" type="Sprite2D" parent="."]
+position = Vector2(-863, 165)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("14_6x0p3")
 
 [node name="Circle2" type="Sprite2D" parent="."]
 visible = false
