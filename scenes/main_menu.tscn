@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://b72txff18tomj"]
+[gd_scene load_steps=31 format=3 uid="uid://b72txff18tomj"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_0kkvv"]
 [ext_resource type="AudioStream" uid="uid://d0m8kelugfkm2" path="res://music/Keepers.wav" id="2_4b8u0"]
 [ext_resource type="Texture2D" uid="uid://xl28he42a63p" path="res://scenes/main_level assets/DruidMain.PNG" id="3_h82kd"]
+[ext_resource type="Resource" uid="uid://dard3s4wdo72b" path="res://globals/main_flags.tres" id="3_rbyy7"]
 [ext_resource type="Texture2D" uid="uid://dmbtkuwcphfn7" path="res://scenes/chart/constellations/star_chart_Bears_Const.png" id="4_fm8hj"]
 [ext_resource type="Texture2D" uid="uid://cx36v74xht1q8" path="res://scenes/chart/constellations/star_chart_Collect_Const.png" id="5_uudpg"]
 [ext_resource type="Texture2D" uid="uid://buanj2asnsyn6" path="res://scenes/chart/constellations/star_chart_Druid_Const.png" id="6_41vyu"]
@@ -48,9 +49,11 @@ texture_margin_bottom = 9.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8hdh"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("tutorial_button")]
 script = ExtResource("1_0kkvv")
 title_music = ExtResource("2_4b8u0")
+flags = ExtResource("3_rbyy7")
+tutorial_button = NodePath("Control/HBoxContainer2/TutCheckBox")
 
 [node name="DruidMain" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
@@ -134,6 +137,27 @@ offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="StarText2" type="RichTextLabel" parent="Control"]
+clip_contents = false
+layout_mode = 2
+offset_left = 454.0
+offset_top = 835.0
+offset_right = 642.0
+offset_bottom = 917.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("14_fmuvj")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]A game by
+Tzeryushi"
+fit_content = true
+scroll_active = false
+
 [node name="PanelContainer" type="Panel" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -184,6 +208,44 @@ theme_override_fonts/font = ExtResource("14_fmuvj")
 theme_override_font_sizes/font_size = 100
 text = "End"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 311.0
+offset_top = 370.0
+offset_right = 503.0
+offset_bottom = 422.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StarText" type="RichTextLabel" parent="Control/HBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("14_fmuvj")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "\"Tutorial\""
+fit_content = true
+scroll_active = false
+
+[node name="TutCheckBox" type="CheckBox" parent="Control/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/outline_size = 4
+theme_override_icons/checked = ExtResource("16_nl32b")
+theme_override_icons/unchecked = ExtResource("17_vlhap")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -230,9 +292,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -576.0
-offset_top = 404.0
+offset_top = 398.0
 offset_right = -317.0
-offset_bottom = 480.0
+offset_bottom = 474.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -310,5 +372,6 @@ color = Color(0, 0, 0, 0.352941)
 
 [connection signal="pressed" from="Control/VBoxContainer/Begin" to="." method="_on_begin_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/End" to="." method="_on_end_pressed"]
+[connection signal="toggled" from="Control/HBoxContainer2/TutCheckBox" to="." method="_on_tut_check_box_toggled"]
 [connection signal="toggled" from="Control/HBoxContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="value_changed" from="Control/VBoxContainer2/HSlider" to="." method="_on_h_slider_value_changed"]

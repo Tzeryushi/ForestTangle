@@ -22,8 +22,10 @@ var forest_height : float = 0.0
 var danger_level : int = 0
 var intro_done : bool = false
 var end_state_triggered : bool = false
-var elapsed_time_msecs : float = 0.0
-var update_time : float = 0.0
+var elapsed_time_msecs : int = 0
+var update_time : int = 0
+var is_tracking_time : bool = false
+var reached_spike_threshold : bool = false
 
 var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.GROW1:{"unlock":false, "call":cast_grow1},
@@ -51,7 +53,6 @@ signal druid_added()
 signal collect_shards_called
 
 func _ready() -> void:
-	update_time = Time.get_ticks_msec()
 	MusicManager.play(playing_music)
 	for forest in forests:
 		forest.forest_grown.connect(check_change_level)
@@ -61,25 +62,36 @@ func _ready() -> void:
 	for key in constellation_unlocks:
 		if constellation_unlocks[key]["unlock"]:
 			starspace.unlock(key)
-	#dialoguer.play_dialogue("Hell rains from the sky", 3.0)
-	#await dialoguer.finished
-	#dialoguer.play_dialogue("Should the treeline break, all will end", 4.0)
-	#await dialoguer.finished
-	#dialoguer.play_dialogue("Bolster the forest, grow to the heavens", 4.0)
-	#await dialoguer.finished
-	#dialoguer.play_dialogue("Hold 1, 2, 3, and 4 to target forests", 4.0)
-	#await dialoguer.finished
-	#dialoguer.play_dialogue("Draw upon the heavens with your mouse", 4.0)
-	#await dialoguer.finished
+	if flags.play_tutorial_msgs:
+		dialoguer.play_dialogue("Hell rains from the sky", 3.0)
+		await dialoguer.finished
+		dialoguer.play_dialogue("Should the treeline break, all will end", 4.0)
+		await dialoguer.finished
+		dialoguer.play_dialogue("Bolster the forest, grow to the heavens", 4.0)
+		await dialoguer.finished
+		dialoguer.play_dialogue("Hold 1, 2, 3, and 4 to target forests", 4.0)
+		await dialoguer.finished
+		dialoguer.play_dialogue("Draw upon the heavens with your mouse", 4.0)
+		await dialoguer.finished
+		dialoguer.play_dialogue("Consult the star chart from the left tab", 4.0)
+		await dialoguer.finished
+		dialoguer.play_dialogue("Collect star shards from fallen asteroids", 4.0)
+		await dialoguer.finished
+		dialoguer.play_dialogue("Discover constellations in the star chart", 4.0)
+		await dialoguer.finished
+		flags.set_tutorial(false)
+	update_time = Time.get_ticks_msec()
+	is_tracking_time = true
 	asteroid_timer.wait_time = asteroid_wait_default
 	asteroid_timer.start()
 	dialoguer.play_dialogue("Follow the stars", 3.0)
 	await dialoguer.finished
 	intro_done = true
 
-func _process(delta) -> void:
-	elapsed_time_msecs += Time.get_ticks_msec() - update_time
-	update_time = Time.get_ticks_msec()
+func _process(_delta) -> void:
+	if is_tracking_time:
+		elapsed_time_msecs += Time.get_ticks_msec() - update_time
+		update_time = Time.get_ticks_msec()
 
 func _unhandled_input(_event) -> void:
 	var was_no_active_forest : bool = active_forest == null
@@ -129,6 +141,11 @@ func set_forest_height(new_height:float) -> void:
 		forest_level_changed.emit(danger_level)
 		if danger_timers.size() > danger_level:
 			asteroid_timer.wait_time = clampf(danger_timers[danger_level], 0.12, asteroid_wait_default)
+		if danger_level == 12 and !reached_spike_threshold:
+			reached_spike_threshold = true
+			dialoguer.play_dialogue("Our enemy awaits just above")
+			await dialoguer.finished
+			dialoguer.play_dialogue("Skewer them with your spikes!")
 
 func druid_heal(heal_value:float) -> void:
 	for forest in forests:

@@ -1,14 +1,14 @@
 class_name UserFlags
 extends Resource
 
-var last_time : float = 5999999
-var best_time : float = 5999999
+var last_time : int = 5999999
+var best_time : int = 5999999
 var play_tutorial_msgs : bool = true
 
 func set_tutorial(value:bool=true) -> void:
 	play_tutorial_msgs = value
 
-func submit_time(new_time:float) -> void:
+func submit_time(new_time:int) -> void:
 	last_time = new_time
 	if new_time < best_time:
 		best_time = new_time
