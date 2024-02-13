@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8o415ye0cdn3"]
+[gd_scene load_steps=9 format=3 uid="uid://b8o415ye0cdn3"]
 
 [ext_resource type="Script" path="res://scenes/victory_screen.gd" id="1_4toa8"]
 [ext_resource type="Texture2D" uid="uid://bm4qd4sahw262" path="res://scenes/EndScreen.PNG" id="1_xq3x4"]
 [ext_resource type="FontFile" uid="uid://gaeyjpdg42w4" path="res://fonts/CelticHand.ttf" id="2_b5432"]
 [ext_resource type="AudioStream" uid="uid://d0m8kelugfkm2" path="res://music/Keepers.wav" id="2_oflua"]
+[ext_resource type="Resource" uid="uid://dard3s4wdo72b" path="res://globals/main_flags.tres" id="3_v5f58"]
 [ext_resource type="Texture2D" uid="uid://kc6lq70qvcxa" path="res://scenes/main_level assets/starry_sky/DruidsConst.PNG" id="4_4kglv"]
+[ext_resource type="FontFile" uid="uid://vcxdt5phcc0d" path="res://fonts/LEVEFD__.ttf" id="6_n83h1"]
+[ext_resource type="FontFile" uid="uid://cnb0jluob5lp2" path="res://fonts/IrishUncialfabeta-Bold.ttf" id="8_6bgqn"]
 
-[node name="VictoryScreen" type="Node2D"]
+[node name="VictoryScreen" type="Node2D" node_paths=PackedStringArray("time_last", "time_best")]
 script = ExtResource("1_4toa8")
 menu_music = ExtResource("2_oflua")
+time_last = NodePath("Control/VBoxContainer2/TimeLast")
+time_best = NodePath("Control/VBoxContainer2/TimeBest")
+flags = ExtResource("3_v5f58")
 
 [node name="EndScreen" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
@@ -40,7 +46,7 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
 theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
 theme_override_constants/outline_size = 12
-theme_override_fonts/normal_font = ExtResource("2_b5432")
+theme_override_fonts/normal_font = ExtResource("6_n83h1")
 theme_override_font_sizes/normal_font_size = 160
 bbcode_enabled = true
 text = "[center][wave amp=20.0 freq=2.0]Thanks for Playing!"
@@ -70,10 +76,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 277.0
-offset_top = -127.0
-offset_right = 725.0
-offset_bottom = -17.0
+offset_left = 313.0
+offset_top = -64.0
+offset_right = 761.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -94,10 +100,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 387.0
-offset_top = 20.0
-offset_right = 835.0
-offset_bottom = 130.0
+offset_left = 235.0
+offset_top = 228.0
+offset_right = 683.0
+offset_bottom = 338.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -105,10 +111,58 @@ theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
 theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
 theme_override_constants/outline_size = 12
 theme_override_fonts/normal_font = ExtResource("2_b5432")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "[center][wave amp=20.0 freq=2.0]Celtic Hand font by 
 Dieter Steffmann"
+scroll_active = false
+
+[node name="StarText4" type="RichTextLabel" parent="CanvasLayer"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 214.0
+offset_top = 320.0
+offset_right = 662.0
+offset_bottom = 430.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("6_n83h1")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center][wave amp=20.0 freq=2.0]Level 14 Druid font by
+Someone"
+scroll_active = false
+
+[node name="StarText5" type="RichTextLabel" parent="CanvasLayer"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 189.0
+offset_top = 404.0
+offset_right = 637.0
+offset_bottom = 514.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("8_6bgqn")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[center][wave amp=20.0 freq=2.0]Irish Unical font by
+Someone else"
 scroll_active = false
 
 [node name="Control" type="Control" parent="."]
@@ -139,8 +193,44 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 0.752941, 1)
-theme_override_fonts/font = ExtResource("2_b5432")
+theme_override_fonts/font = ExtResource("6_n83h1")
 theme_override_font_sizes/font_size = 80
 text = "Main Menu"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 775.0
+offset_right = 762.0
+offset_bottom = 861.0
+theme_override_constants/separation = 25
+
+[node name="TimeLast" type="RichTextLabel" parent="Control/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("6_n83h1")
+theme_override_font_sizes/normal_font_size = 38
+bbcode_enabled = true
+text = "[wave amp=20.0 freq=2.0]Your Time: 99:59:999"
+fit_content = true
+scroll_active = false
+
+[node name="TimeBest" type="RichTextLabel" parent="Control/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 0.752941, 1)
+theme_override_colors/font_outline_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("6_n83h1")
+theme_override_font_sizes/normal_font_size = 38
+bbcode_enabled = true
+text = "[wave amp=20.0 freq=2.0]Best Time: 99:59:999"
+fit_content = true
+scroll_active = false
 
 [connection signal="pressed" from="Control/VBoxContainer/Menu" to="." method="_on_menu_pressed"]

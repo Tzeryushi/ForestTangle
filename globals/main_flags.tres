@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="UserFlags" load_steps=2 format=3 uid="uid://dard3s4wdo72b"]
+
+[ext_resource type="Script" path="res://globals/user_flags.gd" id="1_y3bd1"]
+
+[resource]
+script = ExtResource("1_y3bd1")

@@ -15,12 +15,16 @@ extends Node2D
 @export var starspace : Starspace
 
 @export var wave_scene : PackedScene
+@export var flags : UserFlags
 
 var active_forest : Forest = null
 var forest_height : float = 0.0
 var danger_level : int = 0
 var intro_done : bool = false
 var end_state_triggered : bool = false
+var elapsed_time_msecs : float = 0.0
+var update_time : float = 0.0
+
 var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.GROW1:{"unlock":false, "call":cast_grow1},
 	Globals.MAGIC.GROW2:{"unlock":false, "call":cast_grow2},
@@ -36,7 +40,6 @@ var constellation_unlocks : Dictionary = {
 	Globals.MAGIC.NEEDLES:{"unlock":false, "call":cast_needles},
 	Globals.MAGIC.WAVE:{"unlock":false, "call":cast_wave}
 }
-
 var danger_timers : Array[float] = [
 	8.0,6.0,4.0,2.8,2.0,1.4,1.0,0.8,0.7,0.65,0.6,0.55,0.5,0.4,0.2,0.15
 ]
@@ -48,6 +51,7 @@ signal druid_added()
 signal collect_shards_called
 
 func _ready() -> void:
+	update_time = Time.get_ticks_msec()
 	MusicManager.play(playing_music)
 	for forest in forests:
 		forest.forest_grown.connect(check_change_level)
@@ -72,6 +76,10 @@ func _ready() -> void:
 	dialoguer.play_dialogue("Follow the stars", 3.0)
 	await dialoguer.finished
 	intro_done = true
+
+func _process(delta) -> void:
+	elapsed_time_msecs += Time.get_ticks_msec() - update_time
+	update_time = Time.get_ticks_msec()
 
 func _unhandled_input(_event) -> void:
 	var was_no_active_forest : bool = active_forest == null
@@ -130,6 +138,7 @@ func game_win() -> void:
 	if end_state_triggered:
 		return
 	end_state_triggered = true
+	flags.submit_time(elapsed_time_msecs)
 	for asteroid in get_tree().get_nodes_in_group("asteroid"):
 		if asteroid is Asteroid:
 			asteroid.queue_free()

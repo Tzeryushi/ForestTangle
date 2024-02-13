@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bbtlb3eielxan"]
+[gd_scene load_steps=24 format=3 uid="uid://bbtlb3eielxan"]
 
 [ext_resource type="PackedScene" uid="uid://bfpu2ir1bjh1v" path="res://entities/forest/forest.tscn" id="1_0cunq"]
 [ext_resource type="PackedScene" uid="uid://wk4gwx56fos7" path="res://entities/circle/sky_circle.tscn" id="1_jirym"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/player_stats.gd" id="3_nkcm1"]
 [ext_resource type="PackedScene" uid="uid://b4tt8nyt8esmp" path="res://entities/wave/wave.tscn" id="3_pnlu8"]
 [ext_resource type="PackedScene" uid="uid://dvry1a86ykyak" path="res://entities/asteroids/asteroid.tscn" id="3_tblxa"]
+[ext_resource type="Resource" uid="uid://dard3s4wdo72b" path="res://globals/main_flags.tres" id="4_7ejxe"]
 [ext_resource type="PackedScene" uid="uid://cq5xuf5cf6d8f" path="res://entities/skyman/skyman.tscn" id="10_byidy"]
 [ext_resource type="PackedScene" uid="uid://dkv20xh0xtiqb" path="res://entities/druids/druid.tscn" id="12_br7i5"]
 [ext_resource type="PackedScene" uid="uid://da2vo1gjr6uh1" path="res://scenes/chart/star_chart.tscn" id="13_khf2j"]
@@ -35,6 +36,7 @@ cast_texter = NodePath("Dialogue/CastLayer")
 playing_music = ExtResource("2_yfn0k")
 starspace = NodePath("Starspace")
 wave_scene = ExtResource("3_pnlu8")
+flags = ExtResource("4_7ejxe")
 
 [node name="PlayerStats" type="Node" parent="." node_paths=PackedStringArray("starter_druid") groups=["stats"]]
 script = ExtResource("3_nkcm1")

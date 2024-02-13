@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b72txff18tomj"]
+[gd_scene load_steps=30 format=3 uid="uid://b72txff18tomj"]
 
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_0kkvv"]
 [ext_resource type="AudioStream" uid="uid://d0m8kelugfkm2" path="res://music/Keepers.wav" id="2_4b8u0"]
@@ -13,8 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://byc03g5ikmdw8" path="res://scenes/chart/constellations/star_chart_Grow2_Const.png" id="11_1c6ck"]
 [ext_resource type="Texture2D" uid="uid://c0qx4gmg5tf2f" path="res://scenes/chart/constellations/star_chart_Grow3_Const.png" id="12_byybq"]
 [ext_resource type="Texture2D" uid="uid://f8xwoyqvskpy" path="res://scenes/chart/constellations/star_chart_Heal_Const.png" id="13_xoreu"]
+[ext_resource type="Texture2D" uid="uid://d01xsch3qixpw" path="res://scenes/chart/constellations/star_chart_Wave_Const.png" id="14_dr8fx"]
 [ext_resource type="FontFile" uid="uid://vcxdt5phcc0d" path="res://fonts/LEVEFD__.ttf" id="14_fmuvj"]
+[ext_resource type="Texture2D" uid="uid://b1vgg7bbse7lp" path="res://scenes/chart/constellations/star_chart_Spirit_Const.png" id="15_ladeu"]
 [ext_resource type="Texture2D" uid="uid://b4lbmuq8t3ewm" path="res://assets/styles/box_unchecked.png" id="16_nl32b"]
+[ext_resource type="Texture2D" uid="uid://dnadkix37nmb1" path="res://scenes/chart/constellations/star_chart_Needles_Const.png" id="16_sjyj8"]
 [ext_resource type="Texture2D" uid="uid://bennkjrcvhky6" path="res://assets/styles/box_checked.png" id="17_vlhap"]
 [ext_resource type="Texture2D" uid="uid://520tcf6ap8ju" path="res://assets/styles/slide_rest.png" id="18_d706s"]
 [ext_resource type="Texture2D" uid="uid://yk8q3ql2ml1l" path="res://assets/styles/slide_hover.png" id="19_dn5ua"]
@@ -105,6 +108,21 @@ texture = ExtResource("12_byybq")
 position = Vector2(1075, 264)
 scale = Vector2(0.242405, 0.242405)
 texture = ExtResource("13_xoreu")
+
+[node name="StarChartBearsConst11" type="Sprite2D" parent="Skies"]
+position = Vector2(1023, -1)
+scale = Vector2(0.181328, 0.181328)
+texture = ExtResource("14_dr8fx")
+
+[node name="StarChartBearsConst12" type="Sprite2D" parent="Skies"]
+position = Vector2(1671, 131)
+scale = Vector2(0.1299, 0.1299)
+texture = ExtResource("15_ladeu")
+
+[node name="StarChartBearsConst13" type="Sprite2D" parent="Skies"]
+position = Vector2(14, 369)
+scale = Vector2(0.163698, 0.163698)
+texture = ExtResource("16_sjyj8")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -282,9 +300,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -1570.0
-offset_top = -109.0
+offset_top = -95.5
 offset_right = 1570.0
-offset_bottom = 109.0
+offset_bottom = 122.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
