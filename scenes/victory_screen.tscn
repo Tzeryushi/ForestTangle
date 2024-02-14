@@ -138,7 +138,7 @@ theme_override_fonts/normal_font = ExtResource("6_n83h1")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 text = "[center][wave amp=20.0 freq=2.0]Level 14 Druid font by
-Someone"
+Mickey Rossi"
 scroll_active = false
 
 [node name="StarText5" type="RichTextLabel" parent="CanvasLayer"]
@@ -161,8 +161,8 @@ theme_override_constants/outline_size = 12
 theme_override_fonts/normal_font = ExtResource("8_6bgqn")
 theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
-text = "[center][wave amp=20.0 freq=2.0]Irish Unical font by
-Someone else"
+text = "[center][wave amp=20.0 freq=2.0]Irish Uncialfabeta font by
+Manfred Klein"
 scroll_active = false
 
 [node name="Control" type="Control" parent="."]
