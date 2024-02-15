@@ -3,7 +3,7 @@ extends Node
 
 @export var starter_druid : Druid
 
-var star_count : int = 0
+var star_count : int = 1000
 var forest_level : int = 0
 var druid_count : int = 0
 var druid_stack : Array[Druid]

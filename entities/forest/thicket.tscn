@@ -27,11 +27,11 @@ shader_parameter/offset = 0.0
 script = ExtResource("1_g6slc")
 health = NodePath("Health")
 sprite = NodePath("TreeSprite")
+floor_collision = NodePath("TreeFloor/CollisionPolygon2D")
 thicket_destruct_sfx = ExtResource("2_gegbv")
 leaf_particles = ExtResource("3_f83gg")
 heal_particles = ExtResource("3_04bu8")
 small_heal_particles = ExtResource("3_5ggl7")
-floor_collision = NodePath("TreeFloor/CollisionPolygon2D")
 
 [node name="ForestHitbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("3_gufnx")]
 health = NodePath("../Health")

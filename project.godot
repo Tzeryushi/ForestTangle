@@ -15,6 +15,7 @@ config/description="Paint the sky to fight off asteroids."
 config/version="1.1"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
+run/max_fps=60
 boot_splash/image="res://scenes/chart/constellations/star_chart_Druid2_Const.png"
 config/icon="res://images/druid_icon.png"
 config/macos_native_icon="res://images/druid_icon.icns"
