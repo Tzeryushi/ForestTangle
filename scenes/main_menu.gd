@@ -9,7 +9,7 @@ func _ready() -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"),linear_to_db($Control/VBoxContainer2/HSlider.value))
 	await get_tree().process_frame
 	tutorial_button.button_pressed = flags.play_tutorial_msgs
-	print(flags.play_tutorial_msgs)
+	#print(flags.play_tutorial_msgs)
 
 func _on_begin_pressed():
 	SceneManager.switch_scene("main_level")
