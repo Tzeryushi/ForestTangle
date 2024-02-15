@@ -14,27 +14,27 @@ signal druid_made(druid_ref:Druid)
 signal not_enough_druids
 
 @export_category("Forest")
-@export var base_thicket : Thicket
-@export var forest_call : String = "forest1"
+@export var base_thicket: Thicket
+@export var forest_call: String = "forest1"
 
 @export_group("Resources")
-@export var thicket_scene : PackedScene
-@export var spike_scene : PackedScene
-@export var pod_scene : PackedScene
-@export var druid_scene : PackedScene
-@export var bear_scene : PackedScene
-@export var spirit_scene : PackedScene
-@export var needler_scene : PackedScene
-@export var spawn_part_scene : PackedScene
-@export var heal_sfx : AudioStream
-@export var selector : Sprite2D
+@export var thicket_scene: PackedScene
+@export var spike_scene: PackedScene
+@export var pod_scene: PackedScene
+@export var druid_scene: PackedScene
+@export var bear_scene: PackedScene
+@export var spirit_scene: PackedScene
+@export var needler_scene: PackedScene
+@export var spawn_part_scene: PackedScene
+@export var heal_sfx: AudioStream
+@export var selector: Sprite2D
 
-static var druid_array : Array[Druid] = []
+static var druid_array: Array[Druid] = []
 
-var is_activated : bool = false
+var is_activated: bool = false
 
-@onready var top_thicket : Thicket = base_thicket
-@onready var thicket_array : Array[Thicket] = [base_thicket]
+@onready var top_thicket: Thicket = base_thicket
+@onready var thicket_array: Array[Thicket] = [base_thicket]
 
 
 func _ready() -> void:
@@ -89,7 +89,7 @@ func grow_thicket() -> void:
 
 
 ##heal all thickets in the forest
-func heal_thickets(heal_amount:float, druid_heal:bool=false) -> void:
+func heal_thickets(heal_amount: float, druid_heal: bool=false) -> void:
 	if !druid_heal:
 		SfxManager.play(heal_sfx,0.6)
 	else:
@@ -159,8 +159,8 @@ func make_spirit() -> void:
 func make_needles() -> void:
 	var new_needler = _instantiate_entity_at_top(needler_scene)
 	_play_spawn_particles(new_needler)
-	var tween : Tween = create_tween()
-	var move_position : Vector2 = Vector2(randf_range(-70,70), randf_range(-180, -70))
+	var tween: Tween = create_tween()
+	var move_position := Vector2(randf_range(-70,70), randf_range(-180, -70))
 	tween.tween_property(new_needler, "position", new_needler.position+move_position, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 
 
@@ -175,7 +175,7 @@ func get_stack_size() -> int:
 
 
 ## Instantiates a particle as a child of the argument node
-func _play_spawn_particles(node:Node2D) -> void:
+func _play_spawn_particles(node: Node2D) -> void:
 	var new_parts = spawn_part_scene.instantiate()
 	new_parts = new_parts as BaseParticle
 	node.add_child(new_parts)
@@ -197,7 +197,7 @@ func _instantiate_entity_at_top(packed_scene: PackedScene) -> Node:
 
 
 ## thickets handle their own destruction, but signals from the forest are generated here
-func _on_thicket_destructed(thicket_node:Thicket, last_thicket:Thicket):
+func _on_thicket_destructed(thicket_node: Thicket, last_thicket: Thicket):
 	thicket_array.erase(thicket_node)
 	
 	if thicket_node == base_thicket:
